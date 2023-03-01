@@ -1,0 +1,22 @@
+// Couleurs
+$dark-blue : #173760;
+$light-blue : #94E1FF;
+$turquoise : #a4efe4;
+$purple : #4E50BE;
+// Le gris foncé pour le corps de texte, moins agressif que le noir
+$grey : #a5a5a5;
+// Est-ce utile ?
+$white: #ffffff;
+$black: #000000;
+
+
+// Pour les polices :
+
+// Titres et boutons : Allerta (en majuscule pour les gros titres de sections) - Google font : 
+// A mettre dans html : <link rel="preconnect" href="https://fonts.googleapis.com">
+// <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+// <link href="https://fonts.googleapis.com/css2?family=Allerta&display=swap" rel="stylesheet">
+
+// Pour mettre ds le scss : font-family: 'Allerta', sans-serif;
+
+// Corps de texte : Segoe UI (à utiliser avec font-face)
