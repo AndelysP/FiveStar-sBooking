@@ -3,7 +3,9 @@ import "../assets/sass/footer.scss";
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <div className='footer'>
+      &#x24D2; 2023 Five Star's Booking All rights reserved
+    </div>
   )
 }
 
