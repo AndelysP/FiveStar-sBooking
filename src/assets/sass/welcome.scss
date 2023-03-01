@@ -1,0 +1,31 @@
+@import "variables";
+
+body {
+    font-size: 62.5%;
+    margin: 0 auto;
+}
+
+.welcome-video{
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    position: absolute;
+    z-index: -1;    
+}
+
+h1{
+    font-family: $font-titres;
+    font-size: 3rem;
+    text-transform: uppercase;
+    display: inline-block;
+    color: $white;
+    background: linear-gradient(to right, $light-blue, rgb(148, 225, 255, 0));
+}
+
+h2{
+    font-family: $font-titres;
+    font-size: 1.5rem;
+    display: inline-block;
+    color: $white;
+    background-color: $black;
+}
