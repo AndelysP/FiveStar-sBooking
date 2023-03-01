@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import '../assets/sass/home.scss';
 
 const Home = () => {
   return (

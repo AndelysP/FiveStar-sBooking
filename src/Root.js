@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Welcome from './components/Welcome';
 import Profil from './components/Profil';
 import NotFound from './components/NotFound';
+import Item from './components/Item';
 
 const Root = () => {
     return (

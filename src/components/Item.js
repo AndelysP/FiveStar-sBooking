@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import '../assets/sass/item.scss';
 
 const Item = () => {
   return (
