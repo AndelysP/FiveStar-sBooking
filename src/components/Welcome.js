@@ -3,7 +3,7 @@ import '../assets/sass/welcome.scss';
 
 const Welcome = () => {
   return (
-    <div>Welcome</div>
+    <div>Page de bienvenue pour l'utilisateur</div>
   )
 }
 
