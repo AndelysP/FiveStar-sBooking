@@ -12,6 +12,10 @@ $black: #000000;
 
 // Pour les polices :
 
+@import url('https://fonts.googleapis.com/css2?family=Allerta&display=swap');
+
+$font-titres : 'Allerta', sans-serif;
+
 // Titres et boutons : Allerta (en majuscule pour les gros titres de sections) - Google font : 
 // A mettre dans html : <link rel="preconnect" href="https://fonts.googleapis.com">
 // <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
