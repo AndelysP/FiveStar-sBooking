@@ -1,16 +1,18 @@
 import React from 'react';
 import '../assets/sass/welcome.scss';
-import Footer from './Footer';
+import Navbar from '../components/Navbar';
 
 const Welcome = () => {
   return (
-    <div>
-      <div>
-        Page de bienvenue pour l'utilisateur
-      </div>
-      <Footer/>
-      
-      </div>
+  <div>
+  <Navbar/>
+
+  <video autoplay loop muted class="welcome-video">
+      <source data-src="src/assets/videos/earth.mp4" type="video/mp4" />
+  </video>
+    
+  
+  </div>
   )
 }
 
