@@ -1,0 +1,48 @@
+@import "variables";
+
+.navbar-container {
+    background-image: url("../img/stars.jpg");
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: lighter;
+    color: $grey;
+
+    .logo-wrapper {
+        padding-left: 3%;
+
+        img {
+            height: 3rem;
+            width: auto;
+        }
+    }
+
+    .navbar {
+        a {
+            cursor: pointer;
+            color: $grey;
+            text-decoration: none;
+            padding: 0 2rem;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        li {
+            display: inline-block;
+            font-size: small;
+            text-transform: capitalize;
+        }
+    }
+
+    .button {
+        padding-right: 3%;
+        font-size: 1rem;
+    }
+}
