@@ -14,19 +14,19 @@ const Welcome = () => {
 
   return (
     <div class="container">
+      
+      <Navbar />
 
-      <video autoPlay loop muted class="welcome-video">
+      <video autoPlay loop muted className="welcome-video">
         <source src={Video} type="video/mp4" />
       </video>
 
-      <Navbar />
-
       <div className="box">
-        <div>
+        <div className='box-title'>
           <h1>Embarquez pour un voyage 5 étoiles</h1>
         </div>
 
-        <div>
+        <div className='box-subtitle'>
           <h2>À bord de nos magnifiques vaisseaux tout équipés</h2>
         </div>
 
