@@ -106,7 +106,7 @@
         .title {
             text-align: center;
             font-size: 18px;
-            color: rgb(71, 71, 71);
+            color: rgb(95, 95, 95);
 
             h1 {
                 display: inline-block;
@@ -157,7 +157,7 @@
         .title {
             text-align: center;
             font-size: 18px;
-            color: rgb(71, 71, 71);
+            color: rgb(95, 95, 95);
 
             h1 {
                 margin: 0;
@@ -167,12 +167,13 @@
         .subtitle {
             text-align: center;
             font-size: 14px;
-            color: rgb(71, 71, 71);
+            color: rgb(95, 95, 95);
 
             h2 {
                 margin: 0;
                 display: inline-block;
                 position: relative;
+                font-style: italic;
 
                 &::after {
                     content: '';
@@ -187,65 +188,92 @@
             }
         }
 
+        .shipList-error {
+            background-color: #E4EEF0;
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 24px;
+            margin-top: 2rem;
+            margin-bottom: 0;
+        }
 
-        .shipList{
-            padding-top: 6rem;
+        .shipList {
+            margin-top: 2rem;
+            padding-top: 2rem;
             background-color: #E4EEF0;
             display: flex;
+            flex-wrap: wrap;
 
-            .card{
+            .card {
+                display: flex;
                 width: 45%;
-                height: 400px;
+                margin: 1.5rem;
                 margin-bottom: 20px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                border-radius: 15px;
+                box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+                background-color: #FFF;
 
-                img{
+                img {
                     width: 100%;
-                    height: 200px;
+                    height: 100%;
+                    border-radius: 15px 0 0 15px;
                     object-fit: cover;
                 }
 
-                h3{
-                    margin: 10px;
-                    padding: 10px;
-                    font-size: 24px;
-                    font-weight: bold;
-                    text-align: center;
-                }
+                .card-text {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
 
-                p {
-                    margin: 10px;
-                    font-size: 16px;
-                    text-align: justify;
-
-                    &:last-of-type{
-                        margin-top: 20px;
-                        font-size: 20px;
+                    h3 {
+                        margin: 10px;
+                        padding: 10px;
+                        font-size: 24px;
                         font-weight: bold;
+                        text-align: center;
+                    }
+
+                    p {
+                        margin: 10px;
+                        font-size: 16px;
                         text-align: justify;
                     }
-                }
 
-                button{
-                    margin: 10px;
-                    padding: 10px 20px;
-                    font-size: 16px;
-                    font-weight: bold;
-                    color: #fff;
-                    background-color: #007bff;
-                    border: none;
-                    border-radius: 10px;
-                    cursor: pointer;
+                    &-footer {
+                        background-color: #f1f5f8;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+                        flex-direction: column;
 
-                    &:hover{
-                        background-color: #0069d9;
+                        p {
+                            font-weight: bold;
+                            text-align: center;
+                        }
+
+                        button {
+                            padding: 1rem 2rem;
+                            font-size: 16px;
+                            font-weight: bold;
+                            color: #fff;
+                            background-color: #4C51BF;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+
+                            &:hover {
+                                background-color: #3c409b;
+                                transform: scale(1.1);
+                            }
+                        }
                     }
+
                 }
             }
 
-            ul{
+            ul {
                 list-style-type: none;
             }
         }

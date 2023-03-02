@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../assets/sass/home.scss';
 import Navbar from './Navbar';
 import planetIllu from '../assets/img/icons/planet_design.png';
@@ -18,6 +18,13 @@ const Home = () => {
   const [price, setPrice] = useState(""); // state pour choisir le prix 
   const [startDate, setStartDate] = useState(null); // state pour la date d'arrivée
   const [endDate, setEndDate] = useState(null); // state pour la date de départ
+
+  // Permet de renvoyer l'utilisateur à la catégorie "Réservations" une fois qu'il a validé sa recherche
+  const reservationRef = useRef(null);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    reservationRef.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   const filteredData = data.filter(
     (ship) =>
@@ -49,7 +56,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="form">
+        <form action='' className="form" onSubmit={handleSubmit}>
 
           <div className='form-group'>
             <label htmlFor="start-date">Arrivée</label>
@@ -115,7 +122,7 @@ const Home = () => {
 
           <input type="submit" value="C'est parti !" className='submit' />
 
-        </div>
+        </form>
 
       </div>
 
@@ -139,7 +146,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="reservations">
+        <div className="reservations" ref={reservationRef}>
           <div className="title">
             <h1>Réservations</h1>
           </div>
@@ -147,18 +154,32 @@ const Home = () => {
             <h2>Trouvez votre prochain vol</h2>
           </div>
 
-          <div className="shipList">
-            {filteredData.map((ship, index) => (
-              <div className="card" key={index}>
-                <img src={require("../assets/img/ships/Ship/" + ship.name + "_Ship.png")} alt={ship.name} />
-                <h3>{ship.name}</h3>
-                <p>{ship.description.substr(0,200)}...</p>
-                <p>{ship.price} € / nuit</p>
 
-                <button>Réserver !</button>
-              </div>
-            ))}
-          </div>
+          {filteredData.length === 0 ? (
+            <p className='shipList-error'>Aucun résultat ne correspond à votre recherche</p>
+          ) : (
+            <div className="shipList">
+              {filteredData.map((ship, index) => (
+                <div className="card" key={index}>
+                  <div className="img-cover">
+                    <img src={require("../assets/img/ships/Ship/" + ship.name + "_Ship.png")} alt={ship.name} />
+                  </div>
+                  <div className="card-text">
+                    <h3>{ship.name}</h3>
+                    <p>{ship.description.substr(0, 250)}...</p>
+                    <div className="card-text-footer">
+                      <p>Prix: {ship.price} € / nuit</p>
+                      <button>Réserver !</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="contact">
+
         </div>
 
       </div>
