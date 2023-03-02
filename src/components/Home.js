@@ -1,13 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import '../assets/sass/home.scss';
 import Navbar from './Navbar';
-
+// Import librairie react pour gérer le calendrier
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+// Import pour la traduction du calendrier 
+import fr from 'date-fns/locale/fr';
 
 const Home = () => {
 
   const API = "http://localhost:5500/ships";
-  const [data, setData] = useState([]);
-  const [capacity, setCapacity] = useState("");
+  const [data, setData] = useState([]); // données du JSON
+  const [capacity, setCapacity] = useState(""); // state pour choisir la capacité du vaisseau
+  const [price, setPrice] = useState(""); // state pour choisir le prix 
+  const [startDate, setStartDate] = useState(null); // state pour la date d'arrivée
+  const [endDate, setEndDate] = useState(null); // state pour la date de départ
+
+  const filteredData = data.filter(
+    (ship) =>
+      ship.capacity >= capacity &&
+      ship.price >= price
+  );
 
   useEffect(() => {
     fetch(`${API}`)
@@ -35,28 +48,73 @@ const Home = () => {
 
         <div className="form">
 
-          <label htmlFor="capacity">Nombre de personnes:</label>
-          <input
-            type="number"
-            name="capacity"
-            value={capacity}
-            onChange={(e) =>
-              e.target.value < 0 || isNaN(e.target.value)
-                ? setCapacity("") // Pour améliorer l'exp utilisateur et empêcher de renseigner des valeurs négatives 
-                : setCapacity(e.target.value)
-            }
-          />
+          <div className='form-group'>
+            <label htmlFor="start-date">Arrivée</label>
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              dateFormat="dd/MM/yyyy"
+              showMonthDropdown
+              showYearDropdown
+              placeholderText="Sélectionnez une date d'arrivée"
+              locale={fr}
+            />
+          </div>
+
+          <div className='form-group'>
+            <label htmlFor="end-date">Retour</label>
+            <DatePicker
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+              dateFormat="dd/MM/yyyy"
+              showMonthDropdown
+              showYearDropdown
+              placeholderText="Sélectionnez une date de retour"
+              locale={fr}
+            />
+          </div>
+
+
+          <div className='form-group'>
+            <label htmlFor="capacity">Passagers</label>
+            <input
+              placeholder='Nombre de personnes...'
+              type="number"
+              name="capacity"
+              value={capacity}
+              onChange={(e) =>
+                e.target.value < 0 || isNaN(e.target.value)
+                  ? setCapacity("") // Pour améliorer l'exp utilisateur et empêcher de renseigner des valeurs négatives 
+                  : setCapacity(e.target.value)
+              }
+            />
+          </div>
+
+          <div>
+            <label htmlFor="price">Prix</label>
+            <input
+              placeholder='Prix...'
+              type="number"
+              name="price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+          </div>
+
+          <input type="submit" value="C'est partit !" className='submit' />
+
         </div>
+
       </div>
 
       <div className='main'>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum cum vel nesciunt. Maiores soluta odio fugiat recusandae repellat, provident odit placeat fuga laborum inventore exercitationem. Officia in voluptatem expedita minima?</p>
         <ul>
-          {data
-            .filter((ship) => ship.capacity >= capacity)
-            .map((ship) => (
-              <li key={ship.id}>{ship.name}</li>
-            ))}
+          {filteredData.map((ship, index) => (
+            <li key={index}>
+              <p>{ship.name}</p>
+            </li>
+          ))}
         </ul>
       </div>
 
