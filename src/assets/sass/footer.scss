@@ -3,4 +3,13 @@
 .footer{
     background-color: $light-grey;
     color: $grey;
+    height: 4rem;
+
+    font-family: 'Segoe UI', sans-serif;
+    font-size: small;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
