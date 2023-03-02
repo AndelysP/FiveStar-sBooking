@@ -1,3 +1,5 @@
+@import "variables";
+
 .header {
     position: relative;
     background-image: url("../img/stars.jpg");
@@ -9,25 +11,26 @@
     justify-content: center;
     align-items: center;
 
-    height: 70vh;
+    height: 50vh;
 
     position: relative;
 
     .banner {
         text-align: center;
+        font-family: Segoe UI Light;
+        letter-spacing: 3px;
 
         .banner-title {
             h1 {
-                font-size: 5rem;
-                color: #989FB3;
-                text-transform: uppercase;
+                font-size: 4rem;
+                color: #BCC7DF;
                 padding: 0 1.8rem;
             }
         }
 
         .banner-subtitle {
             h2 {
-                color: #989FB3;
+                color: #BCC7DF;
                 font-size: 2rem;
                 padding: 0 1.5rem;
             }
@@ -36,7 +39,7 @@
 
     .form {
         position: absolute;
-        bottom: -18%;
+        bottom: -25%;
         left: 50%;
         transform: translate(-50%, -50%);
         display: flex;
@@ -55,6 +58,15 @@
 
         .form-group {
             border-right: 0.1px solid rgb(156, 156, 156);
+            position: relative;
+            padding: 0 1rem;
+
+            .icon {
+                position: absolute;
+                left: 6px;
+                top: 60%;
+                transform: translateY(-50%);
+            }
         }
 
         input {
@@ -70,11 +82,172 @@
         .submit {
             border: none;
             border-radius: 30px;
-            background-color: #B2BECE;
+            background-color: #c4cbd3;
             padding: 1rem 1.5rem;
             color: #fff;
             font-size: 18px;
             cursor: pointer;
+
+            &:hover {
+                transform: scale(1.05);
+                background-color: #B2BECE;
+            }
+        }
+    }
+}
+
+.main {
+    background-color: #F6F4F5;
+    font-family: Segoe UI Light;
+
+    .about {
+        padding-top: 6rem;
+
+        .title {
+            text-align: center;
+            font-size: 18px;
+            color: rgb(71, 71, 71);
+
+            h1 {
+                display: inline-block;
+                position: relative;
+
+                // Barre en dessous du texte
+                &::after {
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    bottom: -15px;
+                    transform: translateX(-50%);
+                    width: 50%;
+                    height: 2px;
+                    background-color: grey;
+                }
+            }
+        }
+
+        .about-body {
+            display: flex;
+            align-items: center;
+
+            .about-text {
+                flex: 1;
+                font-size: 20px;
+                margin-left: 3rem;
+            }
+
+            .about-image {
+                flex: 1;
+                text-align: center;
+                background-color: #D2E1E6;
+                border-radius: 100% 0 0 0/110% 0 0 0;
+
+                img {
+                    object-fit: cover;
+                    max-width: 40%;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+
+    .reservations {
+        padding-top: 6rem;
+
+        .title {
+            text-align: center;
+            font-size: 18px;
+            color: rgb(71, 71, 71);
+
+            h1 {
+                margin: 0;
+            }
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: rgb(71, 71, 71);
+
+            h2 {
+                margin: 0;
+                display: inline-block;
+                position: relative;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    bottom: -15px;
+                    transform: translateX(-50%);
+                    width: 50%;
+                    height: 2px;
+                    background-color: grey;
+                }
+            }
+        }
+
+
+        .shipList{
+            padding-top: 6rem;
+            background-color: #E4EEF0;
+            display: flex;
+
+            .card{
+                width: 45%;
+                height: 400px;
+                margin-bottom: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+                img{
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                }
+
+                h3{
+                    margin: 10px;
+                    padding: 10px;
+                    font-size: 24px;
+                    font-weight: bold;
+                    text-align: center;
+                }
+
+                p {
+                    margin: 10px;
+                    font-size: 16px;
+                    text-align: justify;
+
+                    &:last-of-type{
+                        margin-top: 20px;
+                        font-size: 20px;
+                        font-weight: bold;
+                        text-align: justify;
+                    }
+                }
+
+                button{
+                    margin: 10px;
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #fff;
+                    background-color: #007bff;
+                    border: none;
+                    border-radius: 10px;
+                    cursor: pointer;
+
+                    &:hover{
+                        background-color: #0069d9;
+                    }
+                }
+            }
+
+            ul{
+                list-style-type: none;
+            }
         }
     }
 }

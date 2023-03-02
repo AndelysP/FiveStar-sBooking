@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import '../assets/sass/home.scss';
 import Navbar from './Navbar';
+import planetIllu from '../assets/img/icons/planet_design.png';
 // Import librairie react pour gérer le calendrier
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 // Import pour la traduction du calendrier 
 import fr from 'date-fns/locale/fr';
+import { BsCalendarDate, BsCurrencyEuro } from "react-icons/bs";
+import { MdPeople } from "react-icons/md";
 
 const Home = () => {
 
@@ -50,6 +53,8 @@ const Home = () => {
 
           <div className='form-group'>
             <label htmlFor="start-date">Arrivée</label>
+
+            <BsCalendarDate className='icon' size={20} />
             <DatePicker
               selected={startDate}
               onChange={(date) => setStartDate(date)}
@@ -63,6 +68,8 @@ const Home = () => {
 
           <div className='form-group'>
             <label htmlFor="end-date">Retour</label>
+
+            <BsCalendarDate className='icon' size={20} />
             <DatePicker
               selected={endDate}
               onChange={(date) => setEndDate(date)}
@@ -77,6 +84,8 @@ const Home = () => {
 
           <div className='form-group'>
             <label htmlFor="capacity">Passagers</label>
+
+            <MdPeople className='icon' size={20} />
             <input
               placeholder='Nombre de personnes...'
               type="number"
@@ -90,8 +99,10 @@ const Home = () => {
             />
           </div>
 
-          <div>
+          <div className='form-group'>
             <label htmlFor="price">Prix</label>
+
+            <BsCurrencyEuro className='icon' size={20} />
             <input
               placeholder='Prix...'
               type="number"
@@ -99,40 +110,59 @@ const Home = () => {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
+
           </div>
 
-          <input type="submit" value="C'est partit !" className='submit' />
+          <input type="submit" value="C'est parti !" className='submit' />
 
         </div>
 
       </div>
 
       <div className='main'>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum cum vel nesciunt. Maiores soluta odio fugiat recusandae repellat, provident odit placeat fuga laborum inventore exercitationem. Officia in voluptatem expedita minima?</p>
-        <ul>
-          {filteredData.map((ship, index) => (
-            <li key={index}>
-              <p>{ship.name}</p>
-            </li>
-          ))}
-        </ul>
+
+        <div className="about">
+          <div className="title">
+            <h1>A propos de nous</h1>
+          </div>
+
+          <div className="about-body">
+            <div className="about-text">
+              <p>Five Star's Booking est une entreprise de tourisme spatial innovante qui se concentre sur l'organisation de voyages dans l'espace pour les passionés d'aventure et de découverte. En plus d'offrir une expérience de voyage unique, l'entreprise a pour objectif de contribuer à la recherche scientifique en permettant aux passagers de participer à des expérienes inoubliables en vol et de collecter des données précieuses pour la science. </p>
+              <p>Les voyages spatiaux comprennent des itinéraires variés qui peuvent inclure des visites à des stations spatiales, des séjours en orbite autour de la Terre ou même des voyages interplanétaires. Les passagers peuvent profiter d'un séjour de luxe à bord de navettes spatiales de pointe, avec des équipements haut de gamme et une équipe de professionnels pour les accompagner à chaque étape du voyage.</p>
+              <p>En plus de proposer des voyages spatiaux exceptionnels, Five Star's Booking s'engage également à promouvoir la durabilité et la protection de l'environnement spatial, en mettant en place des pratiques éco-responsables dans toutes ses activités. Avec sa mission de tourisme spatial responsable et sa volonté de contribuer à la recherche scientifique, Five Star's Booking est une entreprise qui ouvre de nouvelles perspectives pour l'exploration spatiale.</p>
+            </div>
+
+            <div className="about-image">
+              <img src={planetIllu} alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div className="reservations">
+          <div className="title">
+            <h1>Réservations</h1>
+          </div>
+          <div className="subtitle">
+            <h2>Trouvez votre prochain vol</h2>
+          </div>
+
+          <div className="shipList">
+            {filteredData.map((ship, index) => (
+              <div className="card" key={index}>
+                <img src={require("../assets/img/ships/Ship/" + ship.name + "_Ship.png")} alt={ship.name} />
+                <h3>{ship.name}</h3>
+                <p>{ship.description.substr(0,200)}...</p>
+                <p>{ship.price} € / nuit</p>
+
+                <button>Réserver !</button>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
 
-      {/* <div className="ship-list">
-        {data.map((item, index) => {
-          // const pictureName = item.name + '_bathroom.png';
-          // const picturePath = '../assets/img/ships/' + pictureName;
-          
-          return (
-            <div className="ship-card" key={index}>
-              <img src={require("../assets/img/ships/Ship/" + item.name + "_Ship.png")} alt={item.name} />
-              <h2>{item.name}</h2>
-              <p>{item.description}</p>
-              <h3>Prix : {item.price} €</h3>
-            </div>
-          );
-        })}
-      </div> */}
     </>
   )
 }

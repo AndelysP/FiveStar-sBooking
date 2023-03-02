@@ -50,7 +50,7 @@ body {
 
 // Bouton
 
-button {
+.box-btn {
     font-family: $font-titres;
     font-size: 1.5rem;
     background-color: $white;
@@ -61,11 +61,11 @@ button {
     border-radius: 50px;
     transition-duration: 0.4s;
     cursor: pointer;
-}
 
-button:hover {
-    background-color: $light-blue;
-    color: $white;
+    &:hover {
+        background-color: $light-blue;
+        color: $white;
+    }
 }
 
 .box {

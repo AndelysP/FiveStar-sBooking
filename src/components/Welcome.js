@@ -30,7 +30,7 @@ const Welcome = () => {
           <h2>À bord de nos magnifiques vaisseaux tout équipés</h2>
         </div>
 
-        <button onClick={() => handleClick("home")}>
+        <button className="box-btn" onClick={() => handleClick("home")}>
           Partir à l'aventure
         </button>
       </div>
