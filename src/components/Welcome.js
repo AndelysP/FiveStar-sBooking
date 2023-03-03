@@ -13,7 +13,7 @@ const Welcome = () => {
   }
 
   return (
-    <div class="container">
+    <div className="container">
       
       <Navbar />
 

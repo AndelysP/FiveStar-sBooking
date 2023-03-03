@@ -72,6 +72,10 @@
         input {
             margin: 1rem;
             border: none;
+
+            &:focus {
+                outline: none;
+            }
         }
 
         ::placeholder {
@@ -151,7 +155,7 @@
         }
     }
 
-    .reservations {
+    #reservations {
         padding-top: 6rem;
 
         .title {
@@ -199,7 +203,7 @@
 
         .shipList {
             margin-top: 2rem;
-            padding-top: 2rem;
+            padding: 2rem 0;
             background-color: #E4EEF0;
             display: flex;
             flex-wrap: wrap;
@@ -277,5 +281,138 @@
                 list-style-type: none;
             }
         }
+    }
+
+    .contact {
+        position: relative;
+        padding-top: 4rem;
+
+        .title {
+            text-align: center;
+            font-size: 18px;
+            color: rgb(95, 95, 95);
+
+            h1 {
+                display: inline-block;
+                position: relative;
+
+                // Barre en dessous du texte
+                &::after {
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    bottom: -15px;
+                    transform: translateX(-50%);
+                    width: 50%;
+                    height: 2px;
+                    background-color: grey;
+                }
+            }
+        }
+
+        .form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            form {
+                z-index: 1;
+                position: absolute;
+
+                width: 100%;
+                padding: 4rem 0;
+
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                position: relative;
+
+                width: 600px;
+                margin: 0 auto;
+
+                input[type="text"],
+                input[type="email"],
+                input[type="tel"],
+                textarea {
+                    width: 100%;
+                    padding: 15px 20px;
+                    margin: 14px 0;
+                    border-radius: 20px;
+                    border: 1px solid rgb(223, 221, 221);
+                    box-sizing: border-box;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                input[type="submit"] {
+                    background-color: #b5e4f7;
+                    color: #fff;
+                    padding: 10px 50px;
+                    border-radius: 20px;
+                    border: none;
+                    cursor: pointer;
+
+                    box-shadow: inset 0 0 10px #7ab1bb;
+                    font-size: 18px;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+
+
+
+                ::placeholder {
+                    font-style: italic;
+                    color: #c7c7c7;
+                    font-family: Segoe UI Light;
+                    font-size: 14px;
+                }
+
+                p {
+                    font-size: 18px;
+                    color: rgb(95, 95, 95);
+                }
+            }
+        }
+
+        .contact-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .rocket-img {
+            z-index: 3;
+            position: absolute;
+            top: 20%;
+            left: 5%;
+            transform: rotate(17deg);
+
+            img {
+                width: 50%;
+                height: auto;
+
+                animation: float 4s ease-in-out infinite;
+            }
+        }
+    }
+}
+
+// Animation flottement 
+@keyframes float {
+    0% {
+        transform: translatey(0px);
+    }
+
+    50% {
+        transform: translatey(-20px);
+    }
+
+    100% {
+        transform: translatey(0px);
     }
 }
