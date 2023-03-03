@@ -4,7 +4,7 @@ import rocket from '../assets/img/icons/rocket.png'
 
 const ContactForm = () => {
     return (
-        <div className="contact">
+        <div id="contact">
             <div className="title">
                 <h1>Nous contacter</h1>
             </div>

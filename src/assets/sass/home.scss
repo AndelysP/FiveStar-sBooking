@@ -104,8 +104,13 @@
     background-color: #F6F4F5;
     font-family: Segoe UI Light;
 
-    .about {
+    #about {
         padding-top: 6rem;
+
+        .react-datepicker__month{
+            z-index: 5;
+            background-color: red;
+        }
 
         .title {
             text-align: center;
@@ -158,7 +163,7 @@
     #reservations {
         padding-top: 6rem;
 
-        .title {
+        .title {            
             text-align: center;
             font-size: 18px;
             color: rgb(95, 95, 95);
@@ -283,7 +288,7 @@
         }
     }
 
-    .contact {
+    #contact {
         position: relative;
         padding-top: 4rem;
 

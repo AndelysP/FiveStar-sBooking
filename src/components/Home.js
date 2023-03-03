@@ -44,7 +44,7 @@ const Home = () => {
       ship.price >= price
   );
 
-  // Lors du clic sur le bouton "Réserver" cela emmènve vers la page de l'item associé
+  // Lors du clic sur le bouton "Réserver" cela emmènve vers la page de l'item
   const navigate = useNavigate();
   const handleReserve = (id) => {
     navigate(`/item/${id}`);
@@ -138,7 +138,7 @@ const Home = () => {
 
       <div className='main'>
 
-        <div className="about">
+        <div id="about">
           <div className="title">
             <h1>A propos de nous</h1>
           </div>
@@ -188,7 +188,7 @@ const Home = () => {
           )}
         </div>
 
-        <ContactForm /> {/* Appel au formulaire de contact */}
+          <ContactForm /> {/* Appel au formulaire de contact */}
 
       </div>
 
