@@ -176,7 +176,7 @@ const Home = () => {
                   </div>
                   <div className="card-text">
                     <h3>{ship.name}</h3>
-                    <p>{ship.description.substr(0, 250)}...</p>
+                    <p>{ship.description.substr(0, 300)}...</p>
                     <div className="card-text-footer">
                       <p>Prix: {ship.price} € / nuit</p>
                       <button onClick={() => handleReserve(ship._id)}>Réserver !</button>
