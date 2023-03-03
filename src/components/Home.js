@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../assets/sass/home.scss';
 import Navbar from './Navbar';
 import planetIllu from '../assets/img/icons/planet_design.png';
@@ -42,6 +43,12 @@ const Home = () => {
       ship.capacity >= capacity &&
       ship.price >= price
   );
+
+  // Lors du clic sur le bouton "Réserver" cela emmènve vers la page de l'item associé
+  const navigate = useNavigate();
+  const handleReserve = (id) => {
+    navigate(`/item/${id}`);
+  };
 
 
   return (
@@ -172,7 +179,7 @@ const Home = () => {
                     <p>{ship.description.substr(0, 250)}...</p>
                     <div className="card-text-footer">
                       <p>Prix: {ship.price} € / nuit</p>
-                      <button>Réserver !</button>
+                      <button onClick={() => handleReserve(ship._id)}>Réserver !</button>
                     </div>
                   </div>
                 </div>
