@@ -78,5 +78,3 @@ const ships = [
         capacity: 6
     }
 ];
-
-export default cars;
