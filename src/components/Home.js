@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../assets/sass/home.scss';
 import Navbar from './Navbar';
 import planetIllu from '../assets/img/icons/planet_design.png';
@@ -9,6 +10,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import fr from 'date-fns/locale/fr';
 import { BsCalendarDate, BsCurrencyEuro } from "react-icons/bs";
 import { MdPeople } from "react-icons/md";
+import Footer from './Footer';
+import ContactForm from './ContactForm';
 
 const Home = () => {
 
@@ -18,6 +21,15 @@ const Home = () => {
   const [price, setPrice] = useState(""); // state pour choisir le prix 
   const [startDate, setStartDate] = useState(null); // state pour la date d'arrivée
   const [endDate, setEndDate] = useState(null); // state pour la date de départ
+
+  useEffect(() => {
+    fetch(`${API}`)
+      .then(res => res.json())
+      .then(data => setData(data))
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
   // Permet de renvoyer l'utilisateur à la catégorie "Réservations" une fois qu'il a validé sa recherche
   const reservationRef = useRef(null);
@@ -32,14 +44,12 @@ const Home = () => {
       ship.price >= price
   );
 
-  useEffect(() => {
-    fetch(`${API}`)
-      .then(res => res.json())
-      .then(data => setData(data))
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+  // Lors du clic sur le bouton "Réserver" cela emmènve vers la page de l'item
+  const navigate = useNavigate();
+  const handleReserve = (id) => {
+    navigate(`/item/${id}`);
+  };
+
 
   return (
     <>
@@ -56,7 +66,7 @@ const Home = () => {
           </div>
         </div>
 
-        <form action='' className="form" onSubmit={handleSubmit}>
+        <form action='' className="form" onSubmit={handleSubmit} >
 
           <div className='form-group'>
             <label htmlFor="start-date">Arrivée</label>
@@ -128,7 +138,7 @@ const Home = () => {
 
       <div className='main'>
 
-        <div className="about">
+        <div id="about">
           <div className="title">
             <h1>A propos de nous</h1>
           </div>
@@ -146,7 +156,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="reservations" ref={reservationRef}>
+        <div id="reservations" ref={reservationRef}>
           <div className="title">
             <h1>Réservations</h1>
           </div>
@@ -156,7 +166,7 @@ const Home = () => {
 
 
           {filteredData.length === 0 ? (
-            <p className='shipList-error'>Aucun résultat ne correspond à votre recherche</p>
+            <p className='shipList-error'>Oups ! Aucun résultat ne correspond à votre recherche</p>
           ) : (
             <div className="shipList">
               {filteredData.map((ship, index) => (
@@ -166,10 +176,10 @@ const Home = () => {
                   </div>
                   <div className="card-text">
                     <h3>{ship.name}</h3>
-                    <p>{ship.description.substr(0, 250)}...</p>
+                    <p>{ship.description.substr(0, 300)}...</p>
                     <div className="card-text-footer">
                       <p>Prix: {ship.price} € / nuit</p>
-                      <button>Réserver !</button>
+                      <button onClick={() => handleReserve(ship._id)}>Réserver !</button>
                     </div>
                   </div>
                 </div>
@@ -178,12 +188,11 @@ const Home = () => {
           )}
         </div>
 
-        <div className="contact">
-
-        </div>
+          <ContactForm /> {/* Appel au formulaire de contact */}
 
       </div>
 
+      <Footer />
     </>
   )
 }

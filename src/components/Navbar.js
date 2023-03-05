@@ -4,6 +4,7 @@ import logo from '../assets/img/Logo.png';
 import { BsPersonCircle } from "react-icons/bs";
 import { CgMenu } from "react-icons/cg";
 import { useNavigate } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 import { useState } from 'react';
 
 const Navbar = () => {
@@ -36,15 +37,12 @@ const Navbar = () => {
 
         <div className={`menu ${showNavbar && 'active'}`}>
           <ul className="navbar">
-            <li> <a href="">à propos de nous</a> </li>
-            <li> <a href="">réservation</a> </li>
-            <li> <a href="">contact</a> </li>
+            <li><Link smooth to="/home#about">à propos de nous</Link></li>
+            <li><Link smooth to="/home#reservations">réservations</Link></li>
+            <li><Link smooth to="/home#contact">contact</Link></li>
           </ul>
         </div>
       </div>
-
-
-
 
       <div className="button" onClick={() => goToProfil()}>
         <BsPersonCircle />
