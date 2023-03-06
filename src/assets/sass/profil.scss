@@ -1,0 +1,154 @@
+@import "variables";
+
+//Hero 
+
+.hero{
+    background-image: url("../img/earth-profile.jpg");
+    object-fit: cover;
+
+    img{
+        max-width: 100%;
+    }
+
+    h1{
+    font-family: $font-titres;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    display: inline-block;
+    color: $white;
+    background: linear-gradient(to right, rgb(48, 143, 217, 0.8), rgb(48, 143, 217, 0));
+    padding: 0.5rem;
+    margin: 13rem;
+}
+}
+
+// Connection
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2rem;
+
+    form {
+        z-index: 1;
+        width: 100%;
+        padding: 2rem 0;
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+
+        width: 600px;
+        margin: 0 auto;
+
+        input[type="email"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 15px 20px;
+            margin: 14px 0;
+            border-radius: 20px;
+            border: 1px solid rgb(223, 221, 221);
+            box-sizing: border-box;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        input[type="submit"] {
+            background-color: $light-blue;
+            color: $white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+
+            &:hover {
+                background: $dark-blue;
+            }
+        }
+
+        ::placeholder {
+            font-style: italic;
+            color: #c7c7c7;
+            font-family: Segoe UI Light;
+            font-size: 14px;
+        }
+
+        p {
+            font-size: 18px;
+            color: rgb(95, 95, 95);
+        }
+    }
+}
+
+// Modale Mot de passe oublié
+
+.password-btn {
+    background-color: $light-blue;
+    color: $white;
+    padding: 10px 25px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  .password-btn:hover {
+    background: $dark-blue;
+  }
+  .show:active {
+    transform: scale(0.9);
+  }
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 30px;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+  }
+  .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(52, 73, 94, 0.8);
+    z-index: 50;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.7s;
+  }
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 300px;
+    margin-left: -200px;
+    margin-top: -150px;
+    background: #fff;
+    padding: 10px;
+    z-index: 100;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s ease-out;
+    transform: translateY(45px);
+  }
+  .active {
+    visibility: visible;
+    opacity: 1;
+  }
+  .active + .modal {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
