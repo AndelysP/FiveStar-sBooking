@@ -30,22 +30,21 @@ const Navbar = () => {
         <img src={logo} alt="logo Five star's Booking" />
       </div>
 
-      <div>
+      <div className={`menu ${showNavbar && 'active'}`}>
+        <ul className="navbar">
+          <li><Link smooth to="/home#about">à propos de nous</Link></li>
+          <li><Link smooth to="/home#reservations">réservations</Link></li>
+          <li><Link smooth to="/home#contact">contact</Link></li>
+        </ul>
+      </div>
+
+      <div className="buttons">
         <div className="hamburger" onClick={handleShowNavbar}>
           <CgMenu />
         </div>
-
-        <div className={`menu ${showNavbar && 'active'}`}>
-          <ul className="navbar">
-            <li><Link smooth to="/home#about">à propos de nous</Link></li>
-            <li><Link smooth to="/home#reservations">réservations</Link></li>
-            <li><Link smooth to="/home#contact">contact</Link></li>
-          </ul>
+        <div className="button-profil" onClick={() => goToProfil()}>
+          <BsPersonCircle />
         </div>
-      </div>
-
-      <div className="button" onClick={() => goToProfil()}>
-        <BsPersonCircle />
       </div>
 
     </div>

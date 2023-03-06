@@ -1,13 +1,15 @@
 @import "variables";
 
 .navbar-container {
-    background-image: url("../img/stars.jpg");
+    background-color: rgba(255, 255, 255, 0);
     width: 100%;
     height: 5rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    position: absolute;
+    z-index: 1;
 
     font-family: 'Segoe UI', sans-serif;
     color: $grey;
@@ -21,40 +23,36 @@
             width: auto;
 
             @media (max-width: 768px) {
-                height: 2rem;
+                height: 3rem;
             }
-        }
-    }
-
-    .hamburger {
-        display: none;
-
-        @media (max-width: 768px) {
-            display: block;
-            cursor: pointer;
-            font-size: 1.5rem;
         }
     }
 
     .menu {
 
-        a {
-            cursor: pointer;
-            color: $grey;
-            text-decoration: none;
-            padding: 0 2rem;
+        ul {
+            margin: 0;
+            padding: 0;
 
-            &:hover {
-                text-decoration: underline;
-                color: $white;
+            a {
+                cursor: pointer;
+                color: $grey;
+                text-decoration: none;
+                padding: 0 2rem;
+
+                &:hover {
+                    text-decoration: underline;
+                    color: $white;
+                }
+            }
+
+            li {
+                display: inline-block;
+                font-size: medium;
+                text-transform: capitalize;
             }
         }
 
-        li {
-            display: inline-block;
-            font-size: medium;
-            text-transform: capitalize;
-        }
 
         @media (max-width: 768px) {
             position: absolute;
@@ -63,44 +61,61 @@
             width: 0;
             height: calc(100vh - 5rem);
             overflow: hidden;
-            transition: all 0.3s ease-in;
+            transition: height 0.3s ease-in;
+
 
             &.active {
-                width: 270px;
+                width: 100vw;
             }
 
             ul {
                 list-style: none;
-                margin: 0;
-                padding: 0;
 
                 li {
-                    border-bottom: 1px solid #ccc;
+                    background-color: $dark-blue;
                     display: block;
                 }
 
                 a {
                     display: block;
                     padding: 1rem 2rem;
-                    color: $grey;
-                    text-decoration: none;
-                    transition: background-color 0.3s ease-in-out;
                 }
             }
         }
     }
 
-    .button {
-        padding-right: 3%;
-        font-size: 1.5rem;
-        cursor: pointer;
 
-        &:hover{
-            color: $white;
+    .buttons {
+        padding-right: 3%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .hamburger {
+            display: none;
+
+            @media (max-width: 768px) {
+                display: block;
+                cursor: pointer;
+                font-size: 1.5rem;
+                padding: 0.5rem;
+
+                &:hover {
+                    color: $white;
+                }
+            }
         }
 
-        @media (max-width: 768px) {
-            font-size: 1rem;
+        .button-profil {
+            font-size: 1.5rem;
+            cursor: pointer;
+
+            &:hover {
+                color: $white;
+            }
+
         }
     }
+
+
 }
