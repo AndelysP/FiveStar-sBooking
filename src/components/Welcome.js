@@ -19,7 +19,7 @@ const Welcome = () => {
   }
 
   return (
-    <div class="container">
+    <div className="container">
 
       <video autoPlay loop muted className="welcome-video">
         <source src={Video} type="video/mp4" />

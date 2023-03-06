@@ -1,8 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../assets/sass/home.scss';
 import rocket from '../assets/img/icons/rocket.png'
+import { validateEmail, validateMessage, validateName, validatePhone } from './ContactFiles/ValidationContact';
+import InlineError from './ContactFiles/InlineError';
 
 const ContactForm = () => {
+
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState();
+    const [message, setMessage] = useState("");
+
+    const [nameError, setNameError] = useState("");
+    const [emailError, setEmailError] = useState("");
+    const [phoneError, setPhoneError] = useState();
+    const [messageError, setMessageError] = useState("");
+
+    useEffect(() => {
+        // VALIDATION
+        validateName({ name, setNameError })
+        validateEmail({ email, setEmailError })
+        validatePhone({ phone, setPhoneError })
+        validateMessage({ message, setMessageError })
+    }, [name, email, phone, message]);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        fetch("http://localhost:5500/contact", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                phone,
+                message
+            })
+        })
+            .then(response => {
+                console.log(response);
+                alert('Message envoyé avec succès !');
+            })
+            .catch(error => {
+                console.log(error);
+                alert('Une erreur est survenue, veuillez réessayer plus tard.');
+            });
+    }
+
     return (
         <div id="contact">
             <div className="title">
@@ -14,18 +60,50 @@ const ContactForm = () => {
             </div>
 
             <div className="form">
-                <form action="">
+                <form onSubmit={handleSubmit}>
                     <label htmlFor="name"></label>
-                    <input type="text" name="name" id="name" placeholder='* Nom, Prénom....' />
+                    <input
+                        type="text"
+                        name="name"
+                        value={name}
+                        id="name"
+                        placeholder='* Nom, Prénom....'
+                        onChange={(event) => setName(event.target.value)}
+                    />
+                    {nameError && <InlineError error={nameError} />}
 
                     <label htmlFor="email"></label>
-                    <input type="email" placeholder='* Adresse e-mail...' id="email" name="email" />
+                    <input
+                        type="email"
+                        value={email}
+                        placeholder='* Adresse e-mail...'
+                        id="email"
+                        name="email"
+                        onChange={(event) => setEmail(event.target.value)}
+                    />
+                    {emailError && <InlineError error={emailError} />}
 
                     <label htmlFor="phone"></label>
-                    <input type="tel" name='phone' id="phone" placeholder='N° de téléphone... (facultatif)' />
+                    <input
+                        type="tel"
+                        value={phone}
+                        name='phone'
+                        id="phone"
+                        placeholder='N° de téléphone... (facultatif)'
+                        onChange={(event) => setPhone(event.target.value)}
+                    />
+                    {phoneError && <InlineError error={phoneError} />}
 
                     <label htmlFor="message"></label>
-                    <textarea name="message" id="message" placeholder='* Votre message...' rows="12" cols="20" />
+                    <textarea
+                        name="message"
+                        value={message}
+                        id="message"
+                        placeholder='* Votre message...'
+                        rows="12" cols="20"
+                        onChange={(event) => setMessage(event.target.value)}
+                    />
+                    {messageError && <InlineError error={messageError} />}
 
                     <p>* Ces champs sont obligatoires</p>
 
