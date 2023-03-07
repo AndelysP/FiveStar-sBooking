@@ -29,7 +29,10 @@ const ContactForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (!nameError && !emailError && !phoneError && !messageError) {
+        // Si tous les champs sont remplis , on vérifie s'il n'y a pas d'erreurs dans les champs, si les deux conditions sont remplies => envoie du message
+        if (!name || !email || !message) {
+            toast.error('❌ Veuillez-remplir les champs obligatoires');
+        } else if (!nameError && !emailError && !phoneError && !messageError) {
             fetch("http://localhost:5500/contact", {
                 method: "POST",
                 headers: {
@@ -53,7 +56,8 @@ const ContactForm = () => {
         } else {
             toast.error('❌ Une erreur est survenue, veuillez réessayer plus tard.');
         }
-    }
+
+    };
 
     return (
         <div id="contact">
