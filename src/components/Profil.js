@@ -1,16 +1,24 @@
-import React, { useEffect, useState, useRef }  from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../assets/sass/profil.scss';
 import Navbar from './Navbar';
+import Footer from './Footer';
+import mdpIllu from '../assets/img/icons/connexion_image.png';
+import bluePlanet from '../assets/img/icons/blue_planet.png';
+import accountIllu from '../assets/img/icons/create_account.png';
 
 const Profil = () => {
 
-  const [show, setShow] = useState(false); // Définition du state à false
-
+  const [showMdp, setShowMdp] = useState(false); // Définition du state à false
+  const [showAccount, setShowAccount] = useState(false);
 
   return (
     <div>
 
       <Navbar />
+
+      <div className="blue-planet">
+        <img src={bluePlanet} alt="" />
+      </div>
 
       <div className="hero">
         <h1>Bienvenue dans votre espace personnel</h1>
@@ -32,23 +40,63 @@ const Profil = () => {
           {/* Mot de passe oublié */}
 
           {/* Quand je clique sur le bouton mon state passe à true, penser à ajouter le type button sinon comme on est dans un formulaire, le bouton est considéré comme un submit donc la modale se ferme seule */}
-          <button type='button' class="password-btn" onClick={() => setShow(true)}>Mot de passe oublié</button> 
+          <button type='button' class="password-btn" onClick={() => setShowMdp(true)}>Mot de passe oublié</button>
 
           {/* Quand on state est à true, on applique la classe active à mask et modal, sinon on ne fait rien */}
-          <div className={`mask ${show ? 'active' : ''}`}></div>
-          <div className={`modal ${show ? 'active' : ''}`}>
-            <h3>Réinitialisez votre mot de passe</h3>
-            <p>Veuillez nous indiquer votre adresse mail, nous vous enverrons un lien afin de réinitialiser votre mot de passe</p>
+          <div className="box-modal">
+            <div className={`mask ${showMdp ? 'active' : ''}`}></div>
+            <div className={`modal ${showMdp ? 'active' : ''}`}>
+              <div className="image">
+                <img src={mdpIllu} alt="" />
+              </div>
+              <div className="content">
+                <h3>Réinitialisez votre mot de passe</h3>
+                <p>Veuillez nous indiquer votre adresse mail, nous vous enverrons un lien afin de réinitialiser votre mot de passe</p>
+                <label htmlFor="email"></label>
+                
+                <div className="inputEmail">
+                  <input type="email" placeholder='* Adresse e-mail' id="email" name="email" />
+                </div>
 
-            <button className="close">X</button>
+                <button className="close" type='button' onClick={() => setShowMdp(false)}>X</button>
+              </div>
+            </div>
           </div>
-
-
         </form>
       </div>
 
-    </div>
+      {/* Wave */}
+      <div className="wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#bef2ea" fill-opacity="1" d="M0,192L60,192C120,192,240,192,360,202.7C480,213,600,235,720,224C840,213,960,171,1080,160C1200,149,1320,171,1380,181.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+      </div>
 
+
+      <div className="account">
+        <div className="title-account">
+          <p>Pas encore inscrit.e ?</p>
+        </div>
+
+
+        <button type='button' class="password-btn" onClick={() => setShowAccount(true)}>Créer mon compte</button>
+
+        <div className="box-modal">
+          <div className={`mask ${showAccount ? 'active' : ''}`}></div>
+          <div className={`modal ${showAccount ? 'active' : ''}`}>
+            <div className="image">
+              <img src={accountIllu} alt="" />
+            </div>
+            <div className="content">
+              <h3>Créez votre compte</h3>
+              <p>Renseignez les champs suivants afin de créer votre compte, c'est simple et rapide !</p>
+              <button className="close" onClick={() => setShowAccount(false)}>X</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <Footer />
+    </div>
   )
 }
 
