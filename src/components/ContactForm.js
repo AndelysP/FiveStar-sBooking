@@ -13,6 +13,7 @@ const ContactForm = () => {
     const [phone, setPhone] = useState("");
     const [message, setMessage] = useState("");
 
+    // State pour les messages d'erreurs 
     const [nameError, setNameError] = useState("");
     const [emailError, setEmailError] = useState("");
     const [phoneError, setPhoneError] = useState("");
@@ -47,6 +48,11 @@ const ContactForm = () => {
             })
                 .then(response => {
                     // console.log(response);
+                    // Réinitialiser les valeurs des champs
+                    setName('');
+                    setEmail('');
+                    setPhone('');
+                    setMessage('');
                     toast.success('🚀 Message envoyé avec succès !');
                 })
                 .catch(error => {
