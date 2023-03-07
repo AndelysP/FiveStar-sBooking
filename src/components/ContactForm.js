@@ -3,17 +3,19 @@ import '../assets/sass/home.scss';
 import rocket from '../assets/img/icons/rocket.png'
 import { validateEmail, validateMessage, validateName, validatePhone } from './ContactFiles/ValidationContact';
 import InlineError from './ContactFiles/InlineError';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ContactForm = () => {
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState();
+    const [phone, setPhone] = useState("");
     const [message, setMessage] = useState("");
 
     const [nameError, setNameError] = useState("");
     const [emailError, setEmailError] = useState("");
-    const [phoneError, setPhoneError] = useState();
+    const [phoneError, setPhoneError] = useState("");
     const [messageError, setMessageError] = useState("");
 
     useEffect(() => {
@@ -27,26 +29,30 @@ const ContactForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch("http://localhost:5500/contact", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name,
-                email,
-                phone,
-                message
+        if (!nameError && !emailError && !phoneError && !messageError) {
+            fetch("http://localhost:5500/contact", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    phone,
+                    message
+                })
             })
-        })
-            .then(response => {
-                console.log(response);
-                alert('Message envoyé avec succès !');
-            })
-            .catch(error => {
-                console.log(error);
-                alert('Une erreur est survenue, veuillez réessayer plus tard.');
-            });
+                .then(response => {
+                    // console.log(response);
+                    toast.success('🚀 Message envoyé avec succès !');
+                })
+                .catch(error => {
+                    // console.log(error);
+                    toast.error('❌ Une erreur est survenue, veuillez réessayer plus tard.');
+                });
+        } else {
+            toast.error('❌ Une erreur est survenue, veuillez réessayer plus tard.');
+        }
     }
 
     return (
@@ -109,6 +115,9 @@ const ContactForm = () => {
 
                     <input type="submit" value="Envoyer" />
                 </form>
+
+                <ToastContainer
+                />
             </div>
 
             <div className="contact-footer">
