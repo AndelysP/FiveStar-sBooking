@@ -52,14 +52,16 @@ const Profil = () => {
               <div className="content">
                 <h3>Réinitialisez votre mot de passe</h3>
                 <p>Veuillez nous indiquer votre adresse mail, nous vous enverrons un lien afin de réinitialiser votre mot de passe</p>
+
                 <label htmlFor="email"></label>
-                
                 <div className="inputEmail">
                   <input type="email" placeholder='* Adresse e-mail' id="email" name="email" />
                 </div>
 
+                <button type='button' class="password-btn">Envoyer</button>
                 <button className="close" type='button' onClick={() => setShowMdp(false)}>X</button>
               </div>
+
             </div>
           </div>
         </form>
@@ -70,12 +72,11 @@ const Profil = () => {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#bef2ea" fill-opacity="1" d="M0,192L60,192C120,192,240,192,360,202.7C480,213,600,235,720,224C840,213,960,171,1080,160C1200,149,1320,171,1380,181.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
       </div>
 
-
+      {/* Création de compte */}
       <div className="account">
         <div className="title-account">
           <p>Pas encore inscrit.e ?</p>
         </div>
-
 
         <button type='button' class="password-btn" onClick={() => setShowAccount(true)}>Créer mon compte</button>
 
@@ -87,7 +88,30 @@ const Profil = () => {
             </div>
             <div className="content">
               <h3>Créez votre compte</h3>
-              <p>Renseignez les champs suivants afin de créer votre compte, c'est simple et rapide !</p>
+              <p>Renseignez les champs suivants afin de créer votre compte :</p>
+
+              <label htmlFor="userfirstname"></label>
+              <div className="inputUserFirstname">
+                <input type="text" placeholder='* Prénom' id="userfirstname" name="userfirstname" />
+              </div>
+
+              <label htmlFor="userlastname"></label>
+              <div className="inputUserLastname">
+                <input type="text" placeholder='* Nom' id="userlastname" name="userlastname" />
+              </div>
+
+              <label htmlFor="email"></label>
+              <div className="inputEmail">
+                <input type="email" placeholder='* Adresse e-mail' id="email" name="email" />
+              </div>
+
+              <label htmlFor="password"></label>                
+                <div className="inputPassword">
+                  <input type="text" placeholder='* Mot de passe' id="password" name="password" />
+                </div>
+
+                <button type='button' class="password-btn">C'est parti !</button>
+
               <button className="close" onClick={() => setShowAccount(false)}>X</button>
             </div>
           </div>

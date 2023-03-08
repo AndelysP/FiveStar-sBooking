@@ -1,6 +1,6 @@
 @import "variables";
 
-body{
+body {
   overflow-x: hidden;
 }
 
@@ -28,26 +28,27 @@ body{
   }
 }
 
-.blue-planet{
+// Planète bleue 
+
+.blue-planet {
   position: absolute;
   bottom: -300px;
   right: 50px;
-  img{
-    max-width: 500px;  
+
+  img {
+    max-width: 500px;
     animation: rotation 120s infinite linear;
   }
 
-
-
-@keyframes rotation {
+  @keyframes rotation {
     from {
-        transform: rotate(0deg);
+      transform: rotate(0deg);
     }
 
     to {
-        transform: rotate(359deg);
+      transform: rotate(359deg);
     }
-}
+  }
 }
 
 // Connection
@@ -95,7 +96,7 @@ body{
       border-radius: 20px;
       border: none;
       cursor: pointer;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
 
       &:hover {
         background: $dark-blue;
@@ -116,17 +117,8 @@ body{
   }
 }
 
-.inputEmail{
-  textarea {
-    width: 70%;
-    padding: 15px 20px;
-    margin: 14px 0;
-    border-radius: 20px;
-    border: 1px solid rgb(223, 221, 221);
-    box-sizing: border-box;
-}}
 
-// Modale Mot de passe oublié
+// Modales
 
 .password-btn {
   margin-top: 1.5rem;
@@ -136,7 +128,7 @@ body{
   border-radius: 20px;
   border: none;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .password-btn:hover {
@@ -149,14 +141,15 @@ body{
 
 .close {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
   width: 35px;
-  height: 30px;
+  height: 35px;
   background: #000;
   color: #fff;
   cursor: pointer;
   border: 0;
+  border-radius: 50px;
 }
 
 .mask {
@@ -171,13 +164,6 @@ body{
   opacity: 0;
   transition: 0.7s;
 }
-
-// .boxmodal{
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100vh;
-// }
 
 .modal {
   display: flex;
@@ -207,16 +193,38 @@ body{
     }
   }
 
+  // Contenu modale mdp oublié
+
   .content {
     flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
 
     h3 {
-      padding-top: 5rem;
       font-family: $font-titres;
       font-size: 2rem;
       text-align: center;
     }
 
+    p {
+      text-align: center;
+      font-family: Segoe UI Light;
+    }
+
+    .inputEmail {
+
+      input[type="email"],
+      textarea {
+        width: 20rem;
+        padding: 15px 20px;
+        margin: 14px 0;
+        border-radius: 20px;
+        border: 1px solid rgb(223, 221, 221);
+      }
+    }
   }
 }
 
@@ -231,9 +239,10 @@ body{
   transform: translateY(0);
 }
 
+
 // Création de compte
 
-.account{
+.account {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -242,16 +251,44 @@ body{
   padding-bottom: 5rem;
   margin-top: -5rem;
 
-  button{
+  h3{
+    margin-block-start: 0;
+    font-family: $font-titres;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  p{
+    text-align: center;
+    font-family: Segoe UI Light;
+    font-size: 1rem;
+  }
+
+  button {
     background-color: $dark-blue;
+
     &:hover {
       background-color: #0d2544;
     }
   }
+
+  .box-modal {
+    .content {
+      input[type="email"],
+      input[type="text"],
+      textarea {
+        width: 20rem;
+        padding: 15px 20px;
+        margin: 14px 0;
+        border-radius: 20px;
+        border: 1px solid rgb(223, 221, 221);
+      }
+    }
+  }
 }
 
-.title-account{
-    p{
+.title-account {
+  p {
     font-family: $font-titres;
     color: $dark-blue;
     font-size: 2rem;
@@ -259,7 +296,7 @@ body{
   }
 }
 
-.wave{
+.wave {
   margin-top: -10rem;
   margin-bottom: -2rem;
 }
