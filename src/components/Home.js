@@ -7,6 +7,7 @@ import { BsCalendarDate, BsCurrencyEuro } from "react-icons/bs";
 import { MdPeople } from "react-icons/md";
 import Footer from './Footer';
 import ContactForm from './ContactForm';
+import { Link } from 'react-router-dom';
 
 import { DatePicker, Input, } from 'antd';
 import 'dayjs/locale/fr';
@@ -51,13 +52,6 @@ const Home = () => {
     // Renvoie true si toutes les conditions sont remplies
     return capacityFilter && priceFilter;
   });
-
-  // Lors du clic sur le bouton "Réserver" cela emmènve vers la page de l'item
-  const navigate = useNavigate();
-  const handleReserve = (id) => {
-    navigate(`/item/${id}`);
-  };
-
 
   return (
     <>
@@ -200,7 +194,7 @@ const Home = () => {
                     <p>{ship.description.substr(0, 300)}...</p>
                     <div className="card-text-footer">
                       <p>Prix: {ship.price} € / nuit</p>
-                      <button onClick={() => handleReserve(ship._id)}>Réserver !</button>
+                      <Link to={`/item/${ship._id}`}><button>Réserver !</button></Link> 
                     </div>
                   </div>
                 </div>
