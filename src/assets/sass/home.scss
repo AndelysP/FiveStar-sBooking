@@ -51,7 +51,18 @@
         }
     }
 
+    .ant-picker {
+        border: none;
+        padding: 0;
+    }
+
+    .ant-picker-focused {
+        box-shadow: none;
+    }
+
+
     .form {
+        width: 60%;
         position: absolute;
         bottom: -25%;
         left: 50%;
@@ -63,12 +74,15 @@
         border-radius: 50px;
         box-shadow: 5px 5px 15px rgba(51, 51, 51, 0.5);
 
+        flex-basis: 33.33%;
+
         @media screen and (min-width: 2000px) {
             bottom: -19%; // Sur les écrans de plus de 1920px, le filtre ne s'affichait pas correctement
         }
 
         @media screen and (max-width: 1199px) {
             flex-direction: column;
+            align-items: flex-start;
             transform: none;
             margin-top: 3rem;
             position: static;
@@ -84,7 +98,7 @@
         .form-group {
             border-right: 0.1px solid rgb(156, 156, 156);
             position: relative;
-            padding: 0 1rem;
+            padding: 0 2rem;
 
             @media screen and (max-width: 1199px) {
                 border: none;
@@ -105,9 +119,11 @@
             }
         }
 
+
         input {
             margin: 1rem;
             border: none;
+            text-align: center;
 
             &:focus {
                 outline: none;
@@ -391,7 +407,7 @@
             margin: 0 2rem;
 
             form {
-                z-index: 1;
+                z-index: 5;
                 width: 100%;
                 padding: 2rem 0;
 
@@ -433,9 +449,11 @@
                     &:hover {
                         transform: scale(1.1);
                     }
+
+                    &:focus {
+                        outline: none;
+                    }
                 }
-
-
 
                 ::placeholder {
                     font-style: italic;
@@ -449,13 +467,17 @@
                     color: rgb(95, 95, 95);
                 }
 
-                .error-msg{
+                .error-msg {
                     color: rgb(218, 0, 0);
                     font-size: 15px;
                     text-align: left;
                     margin: 0;
                 }
             }
+        }
+
+        .Toastify__toast-body {
+            font-size: 13px;
         }
 
         .contact-footer {

@@ -3,15 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import '../assets/sass/home.scss';
 import Navbar from './Navbar';
 import planetIllu from '../assets/img/icons/planet_design.png';
-// Import librairie react pour gérer le calendrier
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
-// Import pour la traduction du calendrier 
-import fr from 'date-fns/locale/fr';
 import { BsCalendarDate, BsCurrencyEuro } from "react-icons/bs";
 import { MdPeople } from "react-icons/md";
 import Footer from './Footer';
 import ContactForm from './ContactForm';
+
+import { DatePicker, Input, } from 'antd';
+import 'dayjs/locale/fr';
+import locale from 'antd/es/date-picker/locale/fr_FR';
 
 const Home = () => {
 
@@ -19,8 +18,14 @@ const Home = () => {
   const [data, setData] = useState([]); // données du JSON
   const [capacity, setCapacity] = useState(""); // state pour choisir la capacité du vaisseau
   const [price, setPrice] = useState(""); // state pour choisir le prix 
-  const [startDate, setStartDate] = useState(null); // state pour la date d'arrivée
-  const [endDate, setEndDate] = useState(null); // state pour la date de départ
+
+  // State pour le calendrier antd
+  const { RangePicker } = DatePicker;
+  const [selectedRange, setSelectedRange] = useState([null, null]);
+
+  const handleRangeChange = (range) => {
+    setSelectedRange(range);
+  };
 
   useEffect(() => {
     fetch(`${API}`)
@@ -38,11 +43,14 @@ const Home = () => {
     reservationRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  const filteredData = data.filter(
-    (ship) =>
-      ship.capacity >= capacity &&
-      ship.price >= price
-  );
+  const filteredData = data.filter((ship) => {
+    // Vérifie si les valeurs de filtrage sont définies
+    const capacityFilter = capacity ? ship.capacity >= capacity : true;
+    const priceFilter = price ? ship.price <= price : true;
+
+    // Renvoie true si toutes les conditions sont remplies
+    return capacityFilter && priceFilter;
+  });
 
   // Lors du clic sur le bouton "Réserver" cela emmènve vers la page de l'item
   const navigate = useNavigate();
@@ -69,6 +77,19 @@ const Home = () => {
         <form action='' className="form" onSubmit={handleSubmit} >
 
           <div className='form-group'>
+            <label htmlFor="start-date">Date d'arrivée / départ</label>
+
+            <BsCalendarDate className='icon' size={20} />
+            <RangePicker
+              style={{ width: '100%' }}
+              locale={locale}
+              format="DD/MM/YYYY"
+              onChange={handleRangeChange}
+              placeholder={["Date d'arrivée", 'Date de retour']}
+            />
+          </div>
+
+          {/* <div className='form-group'>
             <label htmlFor="start-date">Arrivée</label>
 
             <BsCalendarDate className='icon' size={20} />
@@ -96,14 +117,13 @@ const Home = () => {
               placeholderText="Sélectionnez une date de retour"
               locale={fr}
             />
-          </div>
-
+          </div> */}
 
           <div className='form-group'>
             <label htmlFor="capacity">Passagers</label>
 
             <MdPeople className='icon' size={20} />
-            <input
+            <Input
               placeholder='Nombre de personnes...'
               type="number"
               name="capacity"
@@ -120,13 +140,14 @@ const Home = () => {
             <label htmlFor="price">Prix</label>
 
             <BsCurrencyEuro className='icon' size={20} />
-            <input
+            <Input
               placeholder='Prix...'
               type="number"
               name="price"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
+
 
           </div>
 
@@ -188,7 +209,7 @@ const Home = () => {
           )}
         </div>
 
-          <ContactForm /> {/* Appel au formulaire de contact */}
+        <ContactForm /> {/* Appel au formulaire de contact */}
 
       </div>
 
