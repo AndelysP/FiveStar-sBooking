@@ -1,0 +1,28 @@
+.banner-cart {
+    background-image: url("../img/earth-profile.jpg");
+
+    position: relative;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .cart-text {
+        font-family: "Allerta", sans-serif;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        color: #ffffff;
+        padding: 0.5rem;
+        margin: 10rem;
+    }
+}
+
+.cart-details {
+    padding: 5rem 0;
+    &_text {
+        text-align: center;
+        font-size: 2rem;
+        color: rgb(95, 95, 95);
+    }
+}

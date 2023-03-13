@@ -222,16 +222,21 @@ body {
   cursor: pointer;
   border: 0;
   border-radius: 50px;
+  padding: 0;
+}
+
+.close:hover{
+  background-color: $light-blue;
 }
 
 .mask {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  bottom: 0;
   height: 100%;
   background: rgb(23, 55, 96, 0.6);
-  z-index: 2;
   visibility: hidden;
   opacity: 0;
   transition: 0.7s;
@@ -239,63 +244,36 @@ body {
 
 .modal {
   display: flex;
-  flex-basis: 50%;
+  justify-content: center;
+  align-items: center;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 1200px;
-  height: 600px;
-  margin-left: -600px;
-  margin-top: -300px;
-  background: #fff;
-  border-radius: 20px;
-  border: none;
-  overflow: hidden;
-  z-index: 3;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   visibility: hidden;
   opacity: 0;
   transition: 0.5s ease-out;
   transform: translateY(45px);
 
-  // Notebook
-  @media only screen and (max-width: 1199px) {
-    width: 1000px;
-    height: 600px;
-    margin-left: -500px;
-    margin-top: -300px;
-  }
-
-  // Tablette
-  @media only screen and (max-width: 991px) {
-    width: 600px;
-    height: 300px;
-    margin-left: -300px;
-    margin-top: -150px;
-  }
-
-  // Phablet
-  @media only screen and (max-width: 767px) {
-    flex-direction: column;
-    width: 400px;
-    height: 700px;
-    margin-left: -200px;
-    margin-top: -350px;
-  }
-
-  // Mobile
-  @media only screen and (max-width: 575px) {
-    flex-direction: column;
-    width: 400px;
-    height: 700px;
-    margin-left: -200px;
-    margin-top: -350px;
-  }
-
   .image {
-    flex-basis: 50%;
+    object-fit: cover;
+
+    // Phablet
+    @media only screen and (max-width: 767px) {
+      max-height: 25%;
+    }
+
+    // Mobile
+    @media only screen and (max-width: 575px) {
+      max-height: 25%;
+    }
+
 
     img {
-      max-height: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
 
       // Phablet
       @media only screen and (max-width: 767px) {
@@ -306,6 +284,28 @@ body {
       @media only screen and (max-width: 575px) {
         max-width: 100%;
       }
+    }
+  }
+
+  .modal-inner {
+    display: flex;
+    position: relative;
+    background: #fff;
+    border-radius: 20px;
+    border: none;
+    overflow: hidden;
+    height: 60vh;
+    max-width: 1200px;
+    margin: 2rem;
+
+    // Phablet
+    @media only screen and (max-width: 767px) {
+      flex-direction: column;
+    }
+
+    // Mobile
+    @media only screen and (max-width: 575px) {
+      flex-direction: column;
     }
   }
 
@@ -323,6 +323,16 @@ body {
       font-family: $font-titres;
       font-size: 2rem;
       text-align: center;
+
+          // Phablet
+    @media only screen and (max-width: 767px) {
+      margin-block-start: 0;
+    }
+
+    // Mobile
+    @media only screen and (max-width: 575px) {
+      margin-block-start: 0;
+    }
     }
 
     p {
@@ -437,6 +447,29 @@ body {
   margin-top: -10rem;
   margin-bottom: -2rem;
 
+  // Notebook
+  @media only screen and (max-width: 1199px) {
+    margin-top: -8rem;
+    // margin-bottom: -2rem;
+  }
+
+  // Tablette
+  @media only screen and (max-width: 991px) {
+    margin-top: 0;
+    margin-bottom: -2rem;
+  }
+
+  // Phablet
+  @media only screen and (max-width: 767px) {
+    margin-top: 0;
+    margin-bottom: -2rem;
+  }
+
+  // Mobile
+  @media only screen and (max-width: 575px) {
+    margin-top: 0;
+    margin-bottom: -2rem;
+  }
   // Notebook
   @media only screen and (max-width: 1199px) {
     margin-top: -8rem;
