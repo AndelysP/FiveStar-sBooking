@@ -6,9 +6,23 @@
 }
 
 .cover {
+    position: relative;
+
     h1 {
-        color: purple;
+        position: absolute;
+        left: 50%;
+        top: 25%;
+
+        margin: 0;
+        padding: 0 2rem;
+
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+
         text-transform: uppercase;
+        font-family: $font-titres;
+        font-size: 4rem;
+        font-weight: normal;
     }
 
     img {
@@ -16,33 +30,135 @@
         height: 50vh;
         object-fit: cover;
     }
+
+    .form {
+        width: 75%;
+        position: absolute;
+        bottom: -25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 50px;
+        box-shadow: 5px 5px 15px rgba(51, 51, 51, 0.5);
+
+        // flex-basis: 33.33%;
+
+        @media screen and (min-width: 2000px) {
+            bottom: -19%; // Sur les écrans de plus de 1920px, le filtre ne s'affichait pas correctement
+        }
+
+        @media screen and (max-width: 1199px) {
+            flex-direction: column;
+            align-items: flex-start;
+            transform: none;
+            margin-top: 3rem;
+            position: static;
+            width: auto;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 15px;
+            padding-left: 15px;
+        }
+
+        .form-group {
+            // border-right: 0.1px solid rgb(156, 156, 156);
+            position: relative;
+            padding: 0 2rem;
+
+            @media screen and (max-width: 1199px) {
+                border: none;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .icon {
+                position: absolute;
+                left: 6px;
+                top: 60%;
+                transform: translateY(-50%);
+
+                @media screen and (max-width: 1199px) {
+                    left: 2px;
+                    top: 63%;
+                }
+            }
+        }
+
+        .radio {
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+
+        }
+
+        input {
+            border: none;
+            text-align: center;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        ::placeholder {
+            color: #b8b8b8;
+            font-style: italic;
+        }
+
+    }
 }
 
-.ship-details {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    text-align: start;
 
-    .wrapper1 {
-        flex-basis: 55%;
+
+    .ship-pictures {
+        width: 55vw;
+
+        .main-pic {
+            img {
+                width: 55vw;
+                height: auto;
+            }
+        }
+
+        .rooms-pic {
+            height: 25vh;
+
+            img {
+
+                height: 25vh;
+                object-fit: contain;
+            }
+        }
     }
 
-    .wrapper2 {
-        flex-basis: 45%;
+    .ship-details {
+        // display: flex;
+        align-items: center;
+        justify-content: space-around;
+        text-align: start;
+        font-family: Segoe UI Light;
+        font-size: medium;
+
+        h1 {
+            font-family: $font-titres;
+            font-weight: normal;
+            color: $dark-blue;
+        }
     }
 
-    img {
-        height: 10rem;
-        width: auto;
-    }
-}
 
 .schedule {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     text-align: center;
+    font-family: Segoe UI Light;
+    font-size: medium;
 
     .step {
         max-width: 15%;
@@ -53,4 +169,20 @@
         }
     }
 
+}
+
+button {
+    padding: 1rem 2rem;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4C51BF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #3c409b;
+        transform: scale(1.1);
+    }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../assets/sass/navbar.scss';
 import logo from '../assets/img/Logo.png';
-import { BsPersonCircle } from "react-icons/bs";
+import { BsPersonCircle, BsBasket2Fill } from "react-icons/bs";
 import { CgMenu } from "react-icons/cg";
 import { useNavigate } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
@@ -11,6 +11,10 @@ const Navbar = () => {
   const navigate = useNavigate();
   const goToProfil = () => {
     navigate("/profil");
+  }
+
+  const goToCart = () => {
+    navigate("/cart");
   }
 
   const goToWelcome = () => {
@@ -44,6 +48,9 @@ const Navbar = () => {
         </div>
         <div className="button-profil" onClick={() => goToProfil()}>
           <BsPersonCircle />
+        </div>
+        <div className="button-cart" onClick={() => goToCart()}>
+          <BsBasket2Fill />
         </div>
       </div>
 
