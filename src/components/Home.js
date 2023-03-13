@@ -59,7 +59,6 @@ const Home = () => {
 
       <div className="header">
         <div className='banner'>
-
           <div className="banner-title">
             <h1>Five Star's Booking</h1>
           </div>
