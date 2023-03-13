@@ -61,53 +61,52 @@ const Item = () => {
 
       <div className="cover">
         <img src={require("../assets/img/ships/Ship/" + item.name + "_Ship.png")} alt={item.name} />
-        <h1>{item.name}</h1>
-
-
-        {/* formulaire filtre a ajouter ici */}
-        <form action='' className="form" >
-
-          <div className='form-group'>
-            <label htmlFor="start-date">Date d'arrivée / départ</label>
-
-            <BsCalendarDate className='icon' size={20} />
-            <RangePicker
-              style={{ width: '100%' }}
-              locale={locale}
-              format="DD/MM/YYYY"
-              onChange={handleRangeChange}
-              placeholder={["Date d'arrivée", 'Date de retour']}
-            />
-          </div>
-
-          <div className="form-group radio">
-            <label htmlFor="repas">Repas premium</label>
-            <input type="radio" name="repas" id="" />
-          </div>
-
-          <div className="form-group radio">
-            <label htmlFor="divertissement">Option divertissement</label>
-            <input type="radio" name="divertissement" id="" />
-          </div>
-
-        </form>
+        <div className='title-wrapper'>
+          <h1>{item.name}</h1>
+        </div>
       </div>
 
-      <div className="ship-description">
-        
-        <div className="ship-pictures">
+      {/* formulaire filtre a ajouter ici */}
+      <form action='' className="form" >
 
-          <div className="main-pic">
-            <img src={require("../assets/img/ships/Ship/" + item.name + "_Ship.png")} alt={item.name} />
-          </div>
+        <div className='form-group'>
+          <label htmlFor="start-date">Date d'arrivée / départ</label>
 
+          <BsCalendarDate className='icon' size={20} />
+          <RangePicker
+            style={{ width: '100%' }}
+            locale={locale}
+            format="DD/MM/YYYY"
+            onChange={handleRangeChange}
+            placeholder={["Date d'arrivée", 'Date de retour']}
+          />
+        </div>
 
+        <div className="form-group radio">
+          <label htmlFor="repas">Repas premium</label>
+          <input type="radio" name="repas" id="" />
+        </div>
+
+        <div className="form-group radio">
+          <label htmlFor="divertissement">Option divertissement</label>
+          <input type="radio" name="divertissement" id="" />
+        </div>
+
+      </form>
+
+      <div className="ship">
+        {/* pour gerer avec propriété order des flex items il faut enlever les wrapper et laisse 4 flex items en mode desktop, mettre 50% pour la taille d'un item pour que ca se mette naturellement en 2 colones puis passer le container 2 en order 1 pour qu'il passe en dernier */}
+
+        <div className="wrapper">
           {/* utilisation du composant carroussel antD */}
           <Carousel
-            className="rooms-pic"
+            className="ship-pictures"
             autoplay
-            slidesToShow={3}
+            slidesToShow={1}
           >
+            <div className='caroussel'>
+              <img src={require("../assets/img/ships/Ship/" + item.name + "_Ship.png")} alt={item.name} />
+            </div>
             <div className='caroussel'>
               <img src={require("../assets/img/ships/Bedroom/" + item.name + "_Bedroom.png")} alt={item.name} />
             </div>
@@ -125,42 +124,42 @@ const Item = () => {
             </div>
           </Carousel>
 
+          <div className="ship-details">
+
+            <div className="ship-price">
+              <h1> Prix</h1>
+              <p>{item.price}€</p>
+            </div>
+
+            <div className="ship-foodOptions">
+              <h1> Option repas premium</h1>
+              <p>300€</p>
+            </div>
+
+            <div className="ship-EntertainmentOption">
+              <h1> Option divertissement</h1>
+              <p>150€ (comprends l'accès à des films, jeux vidéos, espace d'entrainement...)</p>
+            </div>
+          </div>
 
         </div>
 
-        <div className="ship-details">
-
-          <div className="ship-price">
-            <h1> prix</h1>
-            <p>{item.price}€</p>
-          </div>
-
-          <div className="ship-foodOptions">
-            <h1> Option repas premium</h1>
-            <p>300€</p>
-          </div>
-
-          <div className="ship-EntertainmentOption">
-            <h1> option divertissement</h1>
-            <p>150€ (comprends l'acces a des films, jeux vidéos, espace d'entrainement...)</p>
-          </div>
-
+        <div className="wrapper">
           <div className="ship-description">
             <p>{item.description}</p>
           </div>
 
           <div className="ship-equipments">
-            <h1> équipements</h1>
+            <h1> Equipements</h1>
             <ul>
               <li> {item.equipment.bedroom} chambre(s) </li>
               <li> {item.equipment.bathroom} salle(s) de bain</li>
               <li>{item.equipment.livingroom} salon(s)</li>
             </ul>
           </div>
-
         </div>
-      </div>
 
+      </div>
 
       <button >Réserver !</button>
 
