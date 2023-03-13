@@ -1,0 +1,99 @@
+@import "variables";
+
+.boxNotFound {
+    background-color: #282c52;
+    height: 100vh;
+}
+
+.imgNotFound {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+}
+
+.dessus {
+    width: 60%;
+
+    // Notebook
+    @media only screen and (max-width: 1199px) {
+        width: 100%;
+    }
+
+    // Tablette
+    @media only screen and (max-width: 991px) {
+        width: 100%;
+    }
+
+    // Phablet
+    @media only screen and (max-width: 767px) {
+        width: 100%;
+    }
+
+    // Mobile
+    @media only screen and (max-width: 575px) {
+        width: 100%;
+    }
+}
+
+.dessous {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+
+    img {
+        display: block;
+        padding-top: 5rem;
+        width: 60%;
+
+        // Notebook
+        @media only screen and (max-width: 1199px) {
+            width: 100%;
+        }
+
+
+        // Tablette
+        @media only screen and (max-width: 991px) {
+            width: 100%;
+        }
+
+        // Phablet
+        @media only screen and (max-width: 767px) {
+            width: 100%;
+        }
+
+        // Mobile
+        @media only screen and (max-width: 575px) {
+            width: 100%;
+        }
+    }
+}
+
+.imgNotFound:hover {
+    .dessous {
+        opacity: 1;
+    }
+}
+
+.content404 {
+    text-align: center;
+    color: white;
+
+    h1 {
+        font-family: $font-titres;
+        font-size: 5rem;
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+
+    p {
+        font-size: 1.5rem;
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+}

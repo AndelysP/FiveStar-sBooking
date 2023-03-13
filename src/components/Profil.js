@@ -46,22 +46,23 @@ const Profil = () => {
           <div className="box-modal">
             <div className={`mask ${showMdp ? 'active' : ''}`}></div>
             <div className={`modal ${showMdp ? 'active' : ''}`}>
-              <div className="image">
-                <img src={mdpIllu} alt="" />
-              </div>
-              <div className="content">
-                <h3>Réinitialisez votre mot de passe</h3>
-                <p>Veuillez nous indiquer votre adresse mail, nous vous enverrons un lien afin de réinitialiser votre mot de passe</p>
-
-                <label htmlFor="email"></label>
-                <div className="inputEmail">
-                  <input type="email" placeholder='* Adresse e-mail' id="email" name="email" />
+              <div className="modal-inner">
+                <div className="image">
+                  <img src={mdpIllu} alt="" />
                 </div>
+                <div className="content">
+                  <h3>Réinitialisez votre mot de passe</h3>
+                  <p>Veuillez nous indiquer votre adresse mail, nous vous enverrons un lien afin de réinitialiser votre mot de passe</p>
 
-                <button type='button' class="password-btn">Envoyer</button>
-                <button className="close" type='button' onClick={() => setShowMdp(false)}>X</button>
+                  <label htmlFor="email"></label>
+                  <div className="inputEmail">
+                    <input type="email" placeholder='* Adresse e-mail' id="email" name="email" />
+                  </div>
+
+                  <button type='button' class="password-btn">Envoyer</button>
+                  <button className="close" type='button' onClick={() => setShowMdp(false)}>X</button>
+                </div>
               </div>
-
             </div>
           </div>
         </form>
@@ -105,12 +106,12 @@ const Profil = () => {
                 <input type="email" placeholder='* Adresse e-mail' id="email" name="email" />
               </div>
 
-              <label htmlFor="password"></label>                
-                <div className="inputPassword">
-                  <input type="text" placeholder='* Mot de passe' id="password" name="password" />
-                </div>
+              <label htmlFor="password"></label>
+              <div className="inputPassword">
+                <input type="text" placeholder='* Mot de passe' id="password" name="password" />
+              </div>
 
-                <button type='button' class="password-btn">C'est parti !</button>
+              <button type='button' class="password-btn">C'est parti !</button>
 
               <button className="close" onClick={() => setShowAccount(false)}>X</button>
             </div>
