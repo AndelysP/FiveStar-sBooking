@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import '../assets/sass/item.scss';
 import Footer from './Footer';
 import Navbar from './Navbar';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { Carousel } from 'antd';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { BsCalendarDate } from "react-icons/bs";
-import { DatePicker, Input, } from 'antd';
+import { DatePicker } from 'antd';
 import 'dayjs/locale/fr';
 import locale from 'antd/es/date-picker/locale/fr_FR';
 
@@ -17,10 +19,38 @@ const Item = () => {
 
   // State pour le calendrier antd
   const { RangePicker } = DatePicker;
-  const [selectedRange, setSelectedRange] = useState([null, null]);
+
+  const navigate = useNavigate();
+  const [selectedRange, setSelectedRange] = useState(["", ""]);
+  const [divertissement, setDivertissement] = useState(false);
+  const [repas, setRepas] = useState(false);
+
+  console.log(selectedRange);
+  console.log(repas);
+
+  const handleSubmit = (e) => {
+
+    e.preventDefault();
+    console.log(selectedRange, repas, divertissement)
+
+    if (selectedRange[0] !== "" || selectedRange[1] !== "") {
+      navigate("/cart", {
+        state: {
+          selectedRange,
+          divertissement,
+          repas
+        }
+      });
+    } else {
+      toast.error('❌ Veuillez sélectionner vos dates');
+    }
+
+
+    console.log(selectedRange, repas, divertissement)
+  }
 
   const handleRangeChange = (range) => {
-    setSelectedRange(range);
+    setSelectedRange(range.join(" au "));
   };
 
   // On récupère l'id de l'item cliqué 
@@ -32,8 +62,6 @@ const Item = () => {
         console.log(error);
       });
   }
-  console.log(item);
-
   useEffect(() => {
     getItem()
   }, []);
@@ -67,7 +95,7 @@ const Item = () => {
       </div>
 
       {/* formulaire filtre a ajouter ici */}
-      <form action='' className="form" >
+      <form className="form" onSubmit={handleSubmit}>
 
         <div className='form-group'>
           <label htmlFor="start-date">Date d'arrivée / départ</label>
@@ -84,15 +112,31 @@ const Item = () => {
 
         <div className="form-group radio">
           <label htmlFor="repas">Repas premium</label>
-          <input type="radio" name="repas" id="" />
+          <input
+            type="checkbox"
+            name="repas"
+            id=""
+            checked={repas}
+            onChange={(e) => setRepas(e.target.checked)}
+          />
         </div>
 
         <div className="form-group radio">
           <label htmlFor="divertissement">Option divertissement</label>
-          <input type="radio" name="divertissement" id="" />
+          <input
+            type="checkbox"
+            name="divertissement"
+            id=""
+            checked={divertissement}
+            onChange={(e) => setDivertissement(e.target.checked)}
+          />
         </div>
 
+        <input type="submit" value="ok" />
       </form>
+
+      <ToastContainer
+      />
 
       <div className="ship">
         {/* pour gerer avec propriété order des flex items il faut enlever les wrapper et laisse 4 flex items en mode desktop, mettre 50% pour la taille d'un item pour que ca se mette naturellement en 2 colones puis passer le container 2 en order 1 pour qu'il passe en dernier */}
@@ -161,7 +205,7 @@ const Item = () => {
 
       </div>
 
-      <button >Réserver !</button>
+      <button>Réserver !</button>
 
       <div className="schedule">
         <div className="step">

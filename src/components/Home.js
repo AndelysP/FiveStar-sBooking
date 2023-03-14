@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../assets/sass/home.scss';
 import Navbar from './Navbar';
 import planetIllu from '../assets/img/icons/planet_design.png';
