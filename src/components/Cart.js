@@ -3,15 +3,12 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 import '../assets/sass/cart.scss';
 
-import { useLocation } from 'react-router-dom';
-
 const Cart = () => {
 
-    const location = useLocation();
+    // const location = useLocation();
+    const cartData = JSON.parse(localStorage.getItem('cartData'));
+    const { repas, divertissement, selectedRange } = cartData || {};
 
-    const {repas, divertissement, selectedRange} = location.state;
-    
-    
     return (
         <>
             <Navbar />
@@ -23,11 +20,17 @@ const Cart = () => {
 
             <div className='cart-details'>
                 <div className="cart-details_text">
-                    <p>Il n'y a rien dans votre panier pour le moment</p>
 
-                    <p> repas : {repas ? `oui` : `non`}</p>
-                    <p> divertissement : {divertissement ? `oui` : `non`}</p>
-                    <p>date : {selectedRange}</p>
+                    {selectedRange ? (
+                        <>                        
+                            <p>Dates : {selectedRange}</p>
+                            <p>Repas premium : {repas ? `Oui` : `Non`}</p>
+                            <p>Option divertissement : {divertissement ? `Oui` : `Non`}</p>
+                        </>
+
+                    ) : (
+                        <p>Il n'y a rien dans votre panier pour le moment</p>
+                    )}
                 </div>
             </div>
 

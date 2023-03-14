@@ -34,13 +34,14 @@ const Item = () => {
     console.log(selectedRange, repas, divertissement)
 
     if (selectedRange[0] !== "" || selectedRange[1] !== "") {
-      navigate("/cart", {
-        state: {
-          selectedRange,
-          divertissement,
-          repas
-        }
-      });
+      const data = {
+        selectedRange,
+        divertissement,
+        repas
+      };
+      localStorage.setItem("cartData", JSON.stringify(data));
+
+      navigate("/cart");
     } else {
       toast.error('❌ Veuillez sélectionner vos dates');
     }
@@ -60,6 +61,7 @@ const Item = () => {
         console.log(error);
       });
   }
+
   useEffect(() => {
     getItem()
   }, []);
