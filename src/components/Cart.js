@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import '../assets/sass/cart.scss';
@@ -6,8 +6,13 @@ import '../assets/sass/cart.scss';
 const Cart = () => {
 
     // const location = useLocation();
-    const cartData = JSON.parse(localStorage.getItem('cartData'));
-    const { repas, divertissement, selectedRange } = cartData || {};
+    const [cartData, setCartData] = useState([]);
+
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem("data")) || [];
+        setCartData(data);
+    }, []);
+
 
     return (
         <>
@@ -21,12 +26,18 @@ const Cart = () => {
             <div className='cart-details'>
                 <div className="cart-details_text">
 
-                    {selectedRange ? (
-                        <>                        
-                            <p>Dates : {selectedRange}</p>
-                            <p>Repas premium : {repas ? `Oui` : `Non`}</p>
-                            <p>Option divertissement : {divertissement ? `Oui` : `Non`}</p>
-                        </>
+                    {cartData.length > 0 ? (
+                        cartData.map((item) => (
+                            <>
+                                <div key={item._id} className="cart-details_products"></div>
+                                <p>{item.name}</p>
+                                <img src={require("../assets/img/ships/Ship/" + item.name + "_Ship.png")} alt={item.name} />
+                                <p>{item.price} €</p>
+                                <p>Dates : {item.selectedRange}</p>
+                                <p>Repas premium : {item.repas ? `Oui` : `Non`}</p>
+                                <p>Option divertissement : {item.divertissement ? `Oui` : `Non`}</p>
+                            </>
+                        ))
 
                     ) : (
                         <p>Il n'y a rien dans votre panier pour le moment</p>

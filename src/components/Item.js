@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../assets/sass/item.scss';
 import Footer from './Footer';
 import Navbar from './Navbar';
-import { useParams, useNavigate } from 'react-router';
+import { useParams, useNavigate, json } from 'react-router';
 import { Carousel } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -35,11 +35,25 @@ const Item = () => {
 
     if (selectedRange[0] !== "" || selectedRange[1] !== "") {
       const data = {
+        id: item._id,
+        price: item.price,
+        name: item.name,
         selectedRange,
         divertissement,
         repas
       };
-      localStorage.setItem("cartData", JSON.stringify(data));
+      
+      let storedCartData = localStorage.getItem("data");
+
+      if (!storedCartData) {
+        storedCartData = [];
+      } else {
+        storedCartData = JSON.parse(storedCartData);
+      }
+
+      storedCartData.push(data);
+
+      localStorage.setItem("data", JSON.stringify(storedCartData));
 
       navigate("/cart");
     } else {
