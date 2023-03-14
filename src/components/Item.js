@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../assets/sass/item.scss';
 import Footer from './Footer';
 import Navbar from './Navbar';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import { Carousel } from 'antd';
 
 import { BsCalendarDate } from "react-icons/bs";
@@ -12,16 +12,35 @@ import locale from 'antd/es/date-picker/locale/fr_FR';
 
 const Item = () => {
 
+  const navigate = useNavigate();
+
   const { id } = useParams();// on utilise la destructuration pour recuperer l'id dynamique contenu dans l'url
   const [item, setItem] = useState();// données du JSON (un objet ship correspondant a l'ID recupéré)
 
   // State pour le calendrier antd
   const { RangePicker } = DatePicker;
-  const [selectedRange, setSelectedRange] = useState([null, null]);
+  const [selectedRange, setSelectedRange] = useState(["",""]);
 
   const handleRangeChange = (range) => {
-    setSelectedRange(range);
+    setSelectedRange(range.join("-"));
   };
+
+  const [repas, setRepas] = useState(false);
+  const [divertissement, setDivertissement] = useState(false);
+
+  const handleSubmit = (e) => {
+    // pour empecher la page de se recharger a l'envoi du formulaire
+    e.preventDefault();
+
+    if (selectedRange) {
+       //navigate : 1er parame > vers quelle page on va // quelles infos on vehicule
+    navigate("/cart", {state:{repas, divertissement, selectedRange}})
+    // console.log(repas, divertissement, selectedRange);
+    }
+    else {
+      alert("ca marche pas")
+    }
+  }
 
   // On récupère l'id de l'item cliqué 
   const getItem = async () => {
@@ -67,7 +86,7 @@ const Item = () => {
       </div>
 
       {/* formulaire filtre a ajouter ici */}
-      <form action='' className="form" >
+      <form action='' onSubmit={handleSubmit} className="form-options" >
 
         <div className='form-group'>
           <label htmlFor="start-date">Date d'arrivée / départ</label>
@@ -79,18 +98,21 @@ const Item = () => {
             format="DD/MM/YYYY"
             onChange={handleRangeChange}
             placeholder={["Date d'arrivée", 'Date de retour']}
+            value={selectedRange}
           />
         </div>
 
         <div className="form-group radio">
           <label htmlFor="repas">Repas premium</label>
-          <input type="radio" name="repas" id="" />
+          <input type="checkbox" name="repas" id="repas" checked={repas} onChange={(e) => setRepas(e.target.checked)} />
         </div>
 
         <div className="form-group radio">
           <label htmlFor="divertissement">Option divertissement</label>
-          <input type="radio" name="divertissement" id="" />
+          <input type="checkbox" name="divertissement" id="divertissement" checked={divertissement} onChange={(e) => setDivertissement(e.target.checked)} />
         </div>
+
+        <button type="submit"> Reserver </button>
 
       </form>
 
@@ -160,8 +182,6 @@ const Item = () => {
         </div>
 
       </div>
-
-      <button >Réserver !</button>
 
       <div className="schedule">
         <div className="step">
