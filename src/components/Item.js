@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../assets/sass/item.scss';
 import Footer from './Footer';
 import Navbar from './Navbar';
-import { useNavigate, useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import { Carousel } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,19 +14,19 @@ import locale from 'antd/es/date-picker/locale/fr_FR';
 
 const Item = () => {
 
+  const navigate = useNavigate();
+
   const { id } = useParams();// on utilise la destructuration pour recuperer l'id dynamique contenu dans l'url
   const [item, setItem] = useState();// données du JSON (un objet ship correspondant a l'ID recupéré)
 
   // State pour le calendrier antd
   const { RangePicker } = DatePicker;
 
-  const navigate = useNavigate();
   const [selectedRange, setSelectedRange] = useState(["", ""]);
   const [divertissement, setDivertissement] = useState(false);
   const [repas, setRepas] = useState(false);
 
-  console.log(selectedRange);
-  console.log(repas);
+  // console.log(repas);
 
   const handleSubmit = (e) => {
 
@@ -44,9 +44,7 @@ const Item = () => {
     } else {
       toast.error('❌ Veuillez sélectionner vos dates');
     }
-
-
-    console.log(selectedRange, repas, divertissement)
+    // console.log(selectedRange, repas, divertissement)
   }
 
   const handleRangeChange = (range) => {
@@ -95,7 +93,7 @@ const Item = () => {
       </div>
 
       {/* formulaire filtre a ajouter ici */}
-      <form className="form" onSubmit={handleSubmit}>
+      <form action='' onSubmit={handleSubmit} className="form-options" >
 
         <div className='form-group'>
           <label htmlFor="start-date">Date d'arrivée / départ</label>
@@ -132,7 +130,8 @@ const Item = () => {
           />
         </div>
 
-        <input type="submit" value="ok" />
+        <button type="submit"> Reserver </button>
+
       </form>
 
       <ToastContainer
@@ -204,8 +203,6 @@ const Item = () => {
         </div>
 
       </div>
-
-      <button>Réserver !</button>
 
       <div className="schedule">
         <div className="step">
