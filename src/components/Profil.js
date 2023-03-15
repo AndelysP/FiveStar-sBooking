@@ -2,9 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import '../assets/sass/profil.scss';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import mdpIllu from '../assets/img/icons/connexion_image.png';
+import Modal from './Modal';
 import bluePlanet from '../assets/img/icons/blue_planet.png';
 import accountIllu from '../assets/img/icons/create_account.png';
+import mdpIllu from '../assets/img/icons/connexion_image.png';
 
 const Profil = () => {
 
@@ -24,7 +25,7 @@ const Profil = () => {
         <h1>Bienvenue dans votre espace personnel</h1>
       </div>
 
-      <div className="form">
+      <div className="form-connection">
         <form>
 
           <label htmlFor="email"></label>
@@ -43,28 +44,29 @@ const Profil = () => {
           <button type='button' class="password-btn" onClick={() => setShowMdp(true)}>Mot de passe oublié</button>
 
           {/* Quand on state est à true, on applique la classe active à mask et modal, sinon on ne fait rien */}
-          <div className="box-modal">
-            <div className={`mask ${showMdp ? 'active' : ''}`}></div>
-            <div className={`modal ${showMdp ? 'active' : ''}`}>
-              <div className="modal-inner">
-                <div className="image">
-                  <img src={mdpIllu} alt="" />
-                </div>
-                <div className="content">
-                  <h3>Réinitialisez votre mot de passe</h3>
-                  <p>Veuillez nous indiquer votre adresse mail, nous vous enverrons un lien afin de réinitialiser votre mot de passe</p>
 
-                  <label htmlFor="email"></label>
-                  <div className="inputEmail">
-                    <input type="email" placeholder='* Adresse e-mail' id="email" name="email" />
-                  </div>
 
-                  <button type='button' class="password-btn">Envoyer</button>
-                  <button className="close" type='button' onClick={() => setShowMdp(false)}>X</button>
-                </div>
-              </div>
+          {/* On passe les props au composant ModalMdp pour pouvoir les utiliser dans Modal.js, la prop showModal appliquera la classe active aux éléments qui doivent être affichés lorsque showMdp est vrai. La prop setShowModal  pour que le bouton "X" puisse fermer la modal en appelant setShowMdp(false) */}
+          <Modal showModal={showMdp} setShowModal={setShowMdp}>
+
+            <div className="image">
+              <img src={mdpIllu} alt="" />
             </div>
-          </div>
+            <div className="content">
+
+              <h3>Réinitialisez votre mot de passe</h3>
+              <p>Veuillez nous indiquer votre adresse mail, nous vous enverrons un lien afin de réinitialiser votre mot de passe</p>
+
+              <label htmlFor="email"></label>
+              <div className="inputEmail">
+                <input type="email" placeholder='* Adresse e-mail' id="email" name="email" />
+              </div>
+
+              <button type='button' class="password-btn">Envoyer</button>
+            </div>
+
+          </Modal>
+
         </form>
       </div>
 
@@ -81,43 +83,40 @@ const Profil = () => {
 
         <button type='button' class="password-btn" onClick={() => setShowAccount(true)}>Créer mon compte</button>
 
-        <div className="box-modal">
-          <div className={`mask ${showAccount ? 'active' : ''}`}></div>
-          <div className={`modal ${showAccount ? 'active' : ''}`}>
-            <div className="image">
-              <img src={accountIllu} alt="" />
-            </div>
-            <div className="content">
-              <h3>Créez votre compte</h3>
-              <p>Renseignez les champs suivants afin de créer votre compte :</p>
 
-              <label htmlFor="userfirstname"></label>
-              <div className="inputUserFirstname">
-                <input type="text" placeholder='* Prénom' id="userfirstname" name="userfirstname" />
-              </div>
-
-              <label htmlFor="userlastname"></label>
-              <div className="inputUserLastname">
-                <input type="text" placeholder='* Nom' id="userlastname" name="userlastname" />
-              </div>
-
-              <label htmlFor="email"></label>
-              <div className="inputEmail">
-                <input type="email" placeholder='* Adresse e-mail' id="email" name="email" />
-              </div>
-
-              <label htmlFor="password"></label>
-              <div className="inputPassword">
-                <input type="text" placeholder='* Mot de passe' id="password" name="password" />
-              </div>
-
-              <button type='button' class="password-btn">C'est parti !</button>
-
-              <button className="close" onClick={() => setShowAccount(false)}>X</button>
-            </div>
+        <Modal showModal={showAccount} setShowModal={setShowAccount}>
+          <div className="image">
+            <img src={accountIllu} alt="" />
           </div>
+          <div className="content">
+            <h3>Créez votre compte</h3>
+            <p>Renseignez les champs suivants afin de créer votre compte :</p>
 
-        </div>
+            <label htmlFor="userfirstname"></label>
+            <div className="inputUserFirstname">
+              <input type="text" placeholder='* Prénom' id="userfirstname" name="userfirstname" />
+            </div>
+
+            <label htmlFor="userlastname"></label>
+            <div className="inputUserLastname">
+              <input type="text" placeholder='* Nom' id="userlastname" name="userlastname" />
+            </div>
+
+            <label htmlFor="email"></label>
+            <div className="inputEmail">
+              <input type="email" placeholder='* Adresse e-mail' id="email" name="email" />
+            </div>
+
+            <label htmlFor="password"></label>
+            <div className="inputPassword">
+              <input type="text" placeholder='* Mot de passe' id="password" name="password" />
+            </div>
+
+            <button type='button' class="password-btn">C'est parti !</button>
+          </div>
+        </Modal>
+
+
       </div>
 
       <Footer />
