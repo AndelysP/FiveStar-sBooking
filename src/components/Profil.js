@@ -115,8 +115,7 @@ const Profil = () => {
             <button type='button' class="password-btn">C'est parti !</button>
           </div>
         </Modal>
-
-
+        
       </div>
 
       <Footer />
