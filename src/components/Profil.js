@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import '../assets/sass/profil.scss';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -11,6 +11,28 @@ const Profil = () => {
 
   const [showMdp, setShowMdp] = useState(false); // Définition du state à false
   const [showAccount, setShowAccount] = useState(false);
+
+  const [userfirstname, setUserfirstname] = useState("");
+  const [userlastname, setUserlastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    fetch("http://localhost:5500/users", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userfirstname,
+        userlastname,
+        email,
+        password
+      })
+    })
+  };
 
   return (
     <div>
@@ -92,27 +114,29 @@ const Profil = () => {
             <h3>Créez votre compte</h3>
             <p>Renseignez les champs suivants afin de créer votre compte :</p>
 
-            <label htmlFor="userfirstname"></label>
-            <div className="inputUserFirstname">
-              <input type="text" placeholder='* Prénom' id="userfirstname" name="userfirstname" />
-            </div>
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="userfirstname"></label>
+              <div className="inputUserFirstname">
+                <input type="text" value={userfirstname} placeholder='* Prénom' id="userfirstname" name="userfirstname" onChange={(event) => setUserfirstname(event.target.value)} />
+              </div>
 
-            <label htmlFor="userlastname"></label>
-            <div className="inputUserLastname">
-              <input type="text" placeholder='* Nom' id="userlastname" name="userlastname" />
-            </div>
+              <label htmlFor="userlastname"></label>
+              <div className="inputUserLastname">
+                <input type="text" value={userlastname} placeholder='* Nom' id="userlastname" name="userlastname" onChange={(event) => setUserlastname(event.target.value)} />
+              </div>
 
-            <label htmlFor="email"></label>
-            <div className="inputEmail">
-              <input type="email" placeholder='* Adresse e-mail' id="email" name="email" />
-            </div>
+              <label htmlFor="email"></label>
+              <div className="inputEmail">
+                <input type="email" value={email} placeholder='* Adresse e-mail' id="email" name="email" onChange={(event) => setEmail(event.target.value)}/>
+              </div>
 
-            <label htmlFor="password"></label>
-            <div className="inputPassword">
-              <input type="text" placeholder='* Mot de passe' id="password" name="password" />
-            </div>
+              <label htmlFor="password"></label>
+              <div className="inputPassword">
+                <input type="password" value={password} placeholder='* Mot de passe' id="password" name="password" onChange={(event) => setPassword(event.target.value)}/>
+              </div>
 
-            <button type='button' class="password-btn">C'est parti !</button>
+              <button type='submit' class="password-btn">C'est parti !</button>
+            </form>
           </div>
         </Modal>
 
