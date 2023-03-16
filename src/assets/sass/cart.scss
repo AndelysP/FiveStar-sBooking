@@ -28,6 +28,11 @@
     justify-content: center;
     align-items: start;
 
+    @media screen and (max-width: 1099px) {
+        flex-wrap: wrap;
+        margin: 2rem;
+    }
+
     .cart-details {
 
         background-color: rgb(255, 255, 255);
@@ -41,6 +46,10 @@
             align-items: center;
             justify-content: space-evenly;
 
+            @media screen and (max-width: 660px) {
+                flex-wrap: wrap;
+            }
+
             img {
                 width: 200px;
                 padding: 1rem;
@@ -52,6 +61,10 @@
                 align-items: center;
                 justify-content: space-around;
                 width: 20vw;
+
+                @media screen and (max-width: 660px) {
+                    flex-wrap: wrap;
+                }
 
                 .price {
                     font-weight: bold;
@@ -76,14 +89,23 @@
             }
         }
 
-        
+
     }
 
     .summary {
         width: 25%;
 
+        @media screen and (max-width: 1099px) {
+            width: 100%;
+        }
+
         .credit-card {
             display: flex;
+
+            @media screen and (max-width: 660px) {
+                flex-direction: column;
+                align-items: center;
+            }
 
             &_img {
                 img {
@@ -120,7 +142,7 @@
                     border: 0;
                     border: 0.1px solid rgb(226, 226, 226);
                     border-radius: 10px;
-                }                
+                }
             }
 
             .submit-paiement {
@@ -139,11 +161,11 @@
             }
         }
 
-        .total{
+        .total {
             border-top: 0.1px solid rgb(207, 207, 207);
             font-size: 19px;
 
-            span{
+            span {
                 text-decoration: underline;
                 font-weight: bold;
             }
