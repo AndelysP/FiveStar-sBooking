@@ -7,7 +7,7 @@ import { MdPeople } from "react-icons/md";
 import Footer from './Footer';
 import ContactForm from './ContactForm';
 import { Link } from 'react-router-dom';
-
+import { displayPrice } from '../helpers';
 import { DatePicker, Input, } from 'antd';
 import 'dayjs/locale/fr';
 import locale from 'antd/es/date-picker/locale/fr_FR';
@@ -191,7 +191,7 @@ const Home = () => {
                     <h3>{ship.name}</h3>
                     <p>{ship.description.substr(0, 300)}...</p>
                     <div className="card-text-footer">
-                      <p>Prix: {ship.price} € / nuit</p>
+                      <p>Prix: {displayPrice(ship.price)} / nuit</p>
                       <Link to={`/item/${ship._id}`}><button>Réserver !</button></Link> 
                     </div>
                   </div>

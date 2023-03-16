@@ -3,8 +3,9 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 import '../assets/sass/cart.scss';
 import { RiDeleteBin6Line } from "react-icons/ri";
-
 import { message, Popconfirm } from 'antd';
+
+import { formatDate, displayPrice } from '../helpers';
 
 const Cart = () => {
 
@@ -46,12 +47,7 @@ const Cart = () => {
         return price;
     };
 
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
-        return date.toLocaleDateString('fr-FR', options);
-      };
-
+    
     return (
         <>
             <Navbar />
@@ -71,7 +67,6 @@ const Cart = () => {
                     {cartData.length > 0 ? (
                         cartData.map((item, index) => (
                             <>
-
                                 <div className='cart-items' key={item._id}>
                                     <div className="cart-img">
                                         <img src={require("../assets/img/ships/Ship/" + item.name + "_Ship.png")} alt={item.name} />
@@ -86,7 +81,7 @@ const Cart = () => {
 
                                     <div className="cart-price">
                                         <input type="number" value="1" />
-                                        <p className='price'>{calculPrice(item)} €</p>
+                                        <p className='price'>{displayPrice(calculPrice(item))}</p>
                                         <Popconfirm
                                             placement="top"
                                             title="Êtes-vous sûr de vouloir supprimer cet article de votre panier ?"
@@ -114,7 +109,7 @@ const Cart = () => {
 
                 <div className="cart-details_text">
                     <div className="subtotal cart-items">
-                        <p>Total (taxes incluses): {total} €</p>
+                        <p>Total (taxes incluses): {displayPrice(total)}</p>
                     </div>
                 </div>
             </div>

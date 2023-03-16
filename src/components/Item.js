@@ -6,7 +6,7 @@ import { useParams, useNavigate } from 'react-router';
 import { Carousel } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { displayPrice } from '../helpers';
 import { BsCalendarDate } from "react-icons/bs";
 import { DatePicker } from 'antd';
 import 'dayjs/locale/fr';
@@ -200,17 +200,17 @@ const Item = () => {
 
             <div className="ship-price">
               <h1> Prix</h1>
-              <p>{item.price}€</p>
+              <p>{displayPrice(item.price)}</p>
             </div>
 
             <div className="ship-foodOptions">
               <h1> Option repas premium</h1>
-              <p>300€</p>
+              <p>{displayPrice(300)}</p>
             </div>
 
             <div className="ship-EntertainmentOption">
               <h1> Option divertissement</h1>
-              <p>150€ (comprends l'accès à des films, jeux vidéos, espace d'entrainement...)</p>
+              <p>{displayPrice(150)} (comprends l'accès à des films, jeux vidéos, espace d'entrainement...)</p>
             </div>
           </div>
 
