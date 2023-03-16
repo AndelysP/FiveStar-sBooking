@@ -23,56 +23,130 @@
     font-size: 2rem;
 }
 
-.cart-details_text {
-    
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 5px 10px rgb(216, 216, 216);
-    border-radius: 20px;
-    margin: 2rem 0.8rem;
+.basket {
+    display: flex;
+    justify-content: center;
+    align-items: start;
 
-    .cart-items {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .cart-details {
 
-        img {
-            width: 200px;
-            padding: 1rem;
-            border-radius: 20px;
-        }
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0px 5px 10px rgb(216, 216, 216);
+        border-radius: 20px;
+        margin: 2rem 0.8rem;
+        padding: 1rem;
 
-        .cart-price {
+        .cart-items {
             display: flex;
             align-items: center;
-            justify-content: space-around;
-            width: 20vw;
+            justify-content: space-evenly;
 
-            .price {
-                font-weight: bold;
-                font-size: 1rem;
+            img {
+                width: 200px;
+                padding: 1rem;
+                border-radius: 20px;
             }
 
-            input {
-                width: 5vw;
-                height: 2vh;
-                text-align: center;
-                border: none;
-                background-color: #fffdfd;
+            .cart-price {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                width: 20vw;
+
+                .price {
+                    font-weight: bold;
+                    font-size: 1rem;
+                }
+
+                input {
+                    width: 5vw;
+                    height: 2vh;
+                    text-align: center;
+                    border: none;
+                    background-color: #fffdfd;
+                }
+
+                svg {
+                    cursor: pointer;
+                }
             }
 
-            svg {
-                cursor: pointer;
+            .cart-text {
+                font-size: 13px;
             }
         }
 
-        .cart-text {
-            font-size: 13px;
-        }        
+        
     }
 
-    .subtotal {
-        p {
-            font-size: 18px;
+    .summary {
+        width: 25%;
+
+        .credit-card {
+            display: flex;
+
+            &_img {
+                img {
+                    width: 80px;
+                    height: 40px;
+                    margin-right: 10px;
+                    border: 0.1px solid rgb(211, 211, 211);
+                    border-radius: 10px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .form-pay {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+
+            .form-group {
+
+                margin-bottom: 1rem;
+
+                label {
+                    display: block;
+                    margin-bottom: 1rem;
+                    font-size: 16px;
+                }
+
+                input {
+                    display: block;
+                    width: 90%;
+                    padding: 1rem;
+                    border: 0;
+                    border: 0.1px solid rgb(226, 226, 226);
+                    border-radius: 10px;
+                }                
+            }
+
+            .submit-paiement {
+                padding: 1rem 2rem;
+                font-size: 16px;
+                font-weight: bold;
+                color: #fff;
+                background-color: #4C51BF;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #3c409b;
+                }
+            }
+        }
+
+        .total{
+            border-top: 0.1px solid rgb(207, 207, 207);
+            font-size: 19px;
+
+            span{
+                text-decoration: underline;
+                font-weight: bold;
+            }
         }
     }
 }

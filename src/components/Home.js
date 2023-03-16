@@ -21,7 +21,7 @@ const Home = () => {
 
   // State pour le calendrier antd
   const { RangePicker } = DatePicker;
-  const [selectedRange, setSelectedRange] = useState([null, null]);
+  const [selectedRange, setSelectedRange] = useState([]);
 
   const handleRangeChange = (range) => {
     setSelectedRange(range);

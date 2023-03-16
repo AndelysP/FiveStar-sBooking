@@ -3,7 +3,7 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 import '../assets/sass/cart.scss';
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { message, Popconfirm } from 'antd';
+import { Card, message, Popconfirm } from 'antd';
 
 import { formatDate, displayPrice } from '../helpers';
 
@@ -57,19 +57,19 @@ const Cart = () => {
                 </div>
             </div>
 
-            <div className='cart-details'>
+            {cartData.length > 0 ? (
+                <div className='cart-article-nb'>
+                    <p>Il y a {cartData.length} produit{cartData.length > 1 ? 's' : ''} dans votre panier</p>
+                </div>
+            ) : (
+                <div className='cart-article-nb'>
+                    <p>Il n'y a rien dans votre panier pour le moment</p>
+                </div>
+            )}
 
-                {cartData.length > 0 ? (
-                    <div className='cart-article-nb'>
-                        <p>Il y a {cartData.length} produit{cartData.length > 1 ? 's' : ''} dans votre panier</p>
-                    </div>
-                ) : (
-                    <div className='cart-article-nb'>
-                        <p>Il n'y a rien dans votre panier pour le moment</p>
-                    </div>
-                )}
+            <div className='basket'>
 
-                <div className="cart-details_text">
+                <div className="cart-details">
 
                     {cartData.map((item, index) => (
                         <>
@@ -105,16 +105,60 @@ const Cart = () => {
                                 </div>
 
                             </div>
+
                         </>
                     ))}
+
+
+
                 </div>
 
-                <div className="cart-details_text">
-                    <div className="subtotal cart-items">
-                        <p>Total (taxes incluses): {displayPrice(total)}</p>
+                <div className="cart-details summary">
+
+                    <h1>Carte de crédit </h1>
+                    <div className="credit-card">
+
+                        <div className="credit-card_img">
+                            <img className="pay" src="https://i.imgur.com/WIAP9Ku.jpg" />
+                        </div>
+                        <div className="credit-card_img">
+                            <img className="pay" src="https://i.imgur.com/OdxcctP.jpg" />
+                        </div>
+                        <div className="credit-card_img">
+                            <img className="pay" src="https://i.imgur.com/cMk1MtK.jpg" />
+                        </div>
                     </div>
+
+                    <h1>Paiement</h1>
+                    <form className="form-pay">
+
+                        <div className='form-group'>
+                            <label for="typeName">Nom du titulaire</label>
+                            <input type="text" id="typeName" placeholder="Nom du titulaire" />
+                        </div>
+
+                        <div className='form-group'>
+                            <label for="typeText">Numéro de carte</label>
+                            <input type="text" id="typeText" placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                        </div>
+
+                        <div className='form-group'>
+                            <label for="typeExp">Date d'expiration</label>
+                            <input type="text" id="typeExp" placeholder="MM/YYYY" size="7" minlength="7" maxlength="7" />
+                        </div>
+
+                        <div className="form-group">
+                            <label for="typeText">CVV</label>
+                            <input type="password" id="typeText" placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+                        </div>
+
+                        <div className="total">
+                            <p><span>Total (taxes incluses):</span> {displayPrice(total)}</p>
+                        </div>
+                        <input type='submit' value='Recevoir le devis' className='submit-paiement' />
+                    </form>
                 </div>
-            </div>
+            </div >
 
             <Footer />
         </>
