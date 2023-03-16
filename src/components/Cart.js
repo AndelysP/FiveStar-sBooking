@@ -4,6 +4,8 @@ import Navbar from './Navbar';
 import '../assets/sass/cart.scss';
 import { RiDeleteBin6Line } from "react-icons/ri";
 
+import { message, Popconfirm } from 'antd';
+
 const Cart = () => {
 
     // const location = useLocation();
@@ -13,6 +15,13 @@ const Cart = () => {
         const data = JSON.parse(localStorage.getItem("data")) || [];
         setCartData(data);
     }, []);
+
+    const remove = (index) => {
+        const removeProducts = [...cartData];
+        removeProducts.splice(index, 1);
+        setCartData(removeProducts);
+        localStorage.setItem("data", JSON.stringify(removeProducts));
+    };
 
     return (
         <>
@@ -31,10 +40,10 @@ const Cart = () => {
                 <div className="cart-details_text">
 
                     {cartData.length > 0 ? (
-                        cartData.map((item) => (
+                        cartData.map((item, index) => (
                             <>
 
-                                <div className='cart-items'>
+                                <div className='cart-items' key={item._id}>
                                     <div className="cart-img">
                                         <img src={require("../assets/img/ships/Ship/" + item.name + "_Ship.png")} alt={item.name} />
                                     </div>
@@ -49,7 +58,20 @@ const Cart = () => {
                                     <div className="cart-price">
                                         <input type="number" value="1" />
                                         <p className='price'>{item.price} €</p>
-                                        <RiDeleteBin6Line size={20} color="red" />
+                                        <Popconfirm
+                                            placement="top"
+                                            title="Êtes-vous sûr de vouloir supprimer cet article de votre panier ?"
+                                            description="Supprimer l'article"
+                                            onConfirm={() => {
+                                                remove(index);
+                                                message.success("L'article a été supprimé de votre panier")
+                                            }}
+                                            okText="Oui"
+                                            cancelText="Non"
+                                        >
+                                           <a href="#"><RiDeleteBin6Line size={20} color="red" /></a> 
+                                        </Popconfirm>
+
                                     </div>
 
                                 </div>
@@ -59,6 +81,12 @@ const Cart = () => {
                     ) : (
                         <p>Il n'y a rien dans votre panier pour le moment</p>
                     )}
+                </div>
+
+                <div className="cart-details_text">
+                    <div className="subtotal cart-items">
+                        <p>Total (taxes incluses): €</p>
+                    </div>
                 </div>
             </div>
 
