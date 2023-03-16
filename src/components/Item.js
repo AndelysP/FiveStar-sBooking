@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../assets/sass/item.scss';
 import Footer from './Footer';
 import Navbar from './Navbar';
-import { useParams, useNavigate, json } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import { Carousel } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,6 +11,10 @@ import { BsCalendarDate } from "react-icons/bs";
 import { DatePicker } from 'antd';
 import 'dayjs/locale/fr';
 import locale from 'antd/es/date-picker/locale/fr_FR';
+
+import moment from 'moment';
+import 'moment/locale/fr';
+moment.locale('fr');
 
 const Item = () => {
 
@@ -22,7 +26,7 @@ const Item = () => {
   // State pour le calendrier antd
   const { RangePicker } = DatePicker;
 
-  const [selectedRange, setSelectedRange] = useState(["", ""]);
+  const [selectedRange, setSelectedRange] = useState([]);
   const [divertissement, setDivertissement] = useState(false);
   const [repas, setRepas] = useState(false);
 
@@ -34,15 +38,23 @@ const Item = () => {
     console.log(selectedRange, repas, divertissement)
 
     if (selectedRange[0] !== "" || selectedRange[1] !== "") {
+
+      const startDate = selectedRange[0];
+      const endDate = selectedRange[1];
+      const diff = moment.duration(endDate.diff(startDate)).asDays();
+      const total = diff * item.price;
+      console.log(`Différence entre les deux dates sélectionnées: ${diff} jours.`);
+      console.log(`Le prix est de: ${total} €`);
+
       const data = {
         id: item._id,
-        price: item.price,
+        price: total,
         name: item.name,
         selectedRange,
         divertissement,
         repas
       };
-      
+
       let storedCartData = localStorage.getItem("data");
 
       if (!storedCartData) {
@@ -55,15 +67,17 @@ const Item = () => {
 
       localStorage.setItem("data", JSON.stringify(storedCartData));
 
-      navigate("/cart");
+      // navigate("/cart");
     } else {
       toast.error('❌ Veuillez sélectionner vos dates');
     }
-    // console.log(selectedRange, repas, divertissement)
+
   }
 
-  const handleRangeChange = (range) => {
-    setSelectedRange(range.join(" au "));
+  // console.log(selectedRange, repas, divertissement);
+
+  const handleRangeChange = (value) => {
+    setSelectedRange(value);
   };
 
   // On récupère l'id de l'item cliqué 
@@ -108,7 +122,6 @@ const Item = () => {
         </div>
       </div>
 
-      {/* formulaire filtre a ajouter ici */}
       <form action='' onSubmit={handleSubmit} className="form-options" >
 
         <div className='form-group'>
@@ -119,7 +132,7 @@ const Item = () => {
             style={{ width: '100%' }}
             locale={locale}
             format="DD/MM/YYYY"
-            onChange={handleRangeChange}
+            onChange={(handleRangeChange)}
             placeholder={["Date d'arrivée", 'Date de retour']}
           />
         </div>

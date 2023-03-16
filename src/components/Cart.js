@@ -8,12 +8,17 @@ import { message, Popconfirm } from 'antd';
 
 const Cart = () => {
 
-    // const location = useLocation();
     const [cartData, setCartData] = useState([]);
+    const [total, setTotal] = useState(0);
 
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem("data")) || [];
         setCartData(data);
+
+        // calculer le total des prix de tous les produits dans le panier
+        const cartTotal = data.reduce((acc, item) => acc + calculPrice(item), 0)
+        setTotal(cartTotal);
+
     }, []);
 
     const remove = (index) => {
@@ -21,7 +26,31 @@ const Cart = () => {
         removeProducts.splice(index, 1);
         setCartData(removeProducts);
         localStorage.setItem("data", JSON.stringify(removeProducts));
+
+        // recalculer le total après la suppression d'un produit
+        const cartTotal = removeProducts.reduce((acc, item) => acc + calculPrice(item), 0);
+        setTotal(cartTotal);
     };
+
+    // calcul du total en fonction des options choisies par l'utilisateur
+    const calculPrice = (item) => {
+        let price = item.price;
+
+        if(item.repas) {
+            price+=300;
+        }
+        if(item.divertissement) {
+            price+=150;
+        }
+
+        return price;
+    };
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+        return date.toLocaleDateString('fr-FR', options);
+      };
 
     return (
         <>
@@ -50,14 +79,14 @@ const Cart = () => {
 
                                     <div className="cart-text">
                                         <h1>{item.name}</h1>
-                                        <p>Dates : {item.selectedRange}</p>
+                                        <p>Dates : {formatDate(item.selectedRange[0])} au {formatDate(item.selectedRange[1])}</p>
                                         <p>Repas premium : {item.repas ? `Oui (300€)` : `Non`}</p>
                                         <p>Option divertissement : {item.divertissement ? `Oui (150€)` : `Non`}</p>
                                     </div>
 
                                     <div className="cart-price">
                                         <input type="number" value="1" />
-                                        <p className='price'>{item.price} €</p>
+                                        <p className='price'>{calculPrice(item)} €</p>
                                         <Popconfirm
                                             placement="top"
                                             title="Êtes-vous sûr de vouloir supprimer cet article de votre panier ?"
@@ -69,7 +98,7 @@ const Cart = () => {
                                             okText="Oui"
                                             cancelText="Non"
                                         >
-                                           <a href="#"><RiDeleteBin6Line size={20} color="red" /></a> 
+                                            <a href="#"><RiDeleteBin6Line size={20} color="red" /></a>
                                         </Popconfirm>
 
                                     </div>
@@ -85,7 +114,7 @@ const Cart = () => {
 
                 <div className="cart-details_text">
                     <div className="subtotal cart-items">
-                        <p>Total (taxes incluses): €</p>
+                        <p>Total (taxes incluses): {total} €</p>
                     </div>
                 </div>
             </div>
