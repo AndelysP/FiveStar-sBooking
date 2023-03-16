@@ -27,13 +27,17 @@ const Home = () => {
     setSelectedRange(range);
   };
 
-  useEffect(() => {
-    fetch(`${API}`)
+  const getItem = async () => {
+    await fetch(`${API}`)
       .then(res => res.json())
       .then(data => setData(data))
       .catch(error => {
         console.log(error);
       });
+  };
+
+  useEffect(() => {
+    getItem()
   }, []);
 
   // Permet de renvoyer l'utilisateur à la catégorie "Réservations" une fois qu'il a validé sa recherche
@@ -192,7 +196,7 @@ const Home = () => {
                     <p>{ship.description.substr(0, 300)}...</p>
                     <div className="card-text-footer">
                       <p>Prix: {displayPrice(ship.price)} / nuit</p>
-                      <Link to={`/item/${ship._id}`}><button>Réserver !</button></Link> 
+                      <Link to={`/item/${ship._id}`}><button>Réserver !</button></Link>
                     </div>
                   </div>
                 </div>

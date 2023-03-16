@@ -9,6 +9,8 @@ import { useState } from 'react';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const items = JSON.parse(localStorage.getItem("data")) || [];
+
   const goToProfil = () => {
     navigate("/profil");
   }
@@ -51,6 +53,7 @@ const Navbar = () => {
         </div>
         <div className="button-cart" onClick={() => goToCart()}>
           <BsBasket2Fill />
+          {items.length > 0 && <span className="cart-items-count">{items.length}</span>}
         </div>
       </div>
 

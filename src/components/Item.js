@@ -35,16 +35,17 @@ const Item = () => {
   const handleSubmit = (e) => {
 
     e.preventDefault();
-    console.log(selectedRange, repas, divertissement)
+    // console.log(selectedRange, repas, divertissement)
 
     if (selectedRange[0] !== "" || selectedRange[1] !== "") {
 
-      const startDate = selectedRange[0];
-      const endDate = selectedRange[1];
-      const diff = moment.duration(endDate.diff(startDate)).asDays();
-      const total = diff * item.price;
-      console.log(`Différence entre les deux dates sélectionnées: ${diff} jours.`);
-      console.log(`Le prix est de: ${total} €`);
+      const startDate = selectedRange[0]; // Date de départ
+      const endDate = selectedRange[1]; // Date de retour
+      const diff = moment.duration(endDate.diff(startDate)).asDays(); // On calcule le temps en jour qui sépare ces deux dates
+      const total = diff * item.price; // Multiplication du nombre de jours avec le prix de l'article
+
+      // console.log(`Différence entre les deux dates sélectionnées: ${diff} jours.`);
+      // console.log(`Le prix est de: ${total} €`);
 
       const data = {
         id: item._id,
@@ -67,7 +68,7 @@ const Item = () => {
 
       localStorage.setItem("data", JSON.stringify(storedCartData));
 
-      // navigate("/cart");
+      navigate("/cart");
     } else {
       toast.error('❌ Veuillez sélectionner vos dates');
     }

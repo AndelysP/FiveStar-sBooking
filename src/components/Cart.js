@@ -37,17 +37,17 @@ const Cart = () => {
     const calculPrice = (item) => {
         let price = item.price;
 
-        if(item.repas) {
-            price+=300;
+        if (item.repas) {
+            price += 300;
         }
-        if(item.divertissement) {
-            price+=150;
+        if (item.divertissement) {
+            price += 150;
         }
 
         return price;
     };
 
-    
+
     return (
         <>
             <Navbar />
@@ -58,53 +58,55 @@ const Cart = () => {
             </div>
 
             <div className='cart-details'>
-                <div className='cart-article-nb'>
-                    <p>Il y a {cartData.length} produits dans votre panier</p>
-                </div>
+
+                {cartData.length > 0 ? (
+                    <div className='cart-article-nb'>
+                        <p>Il y a {cartData.length} produit{cartData.length > 1 ? 's' : ''} dans votre panier</p>
+                    </div>
+                ) : (
+                    <div className='cart-article-nb'>
+                        <p>Il n'y a rien dans votre panier pour le moment</p>
+                    </div>
+                )}
 
                 <div className="cart-details_text">
 
-                    {cartData.length > 0 ? (
-                        cartData.map((item, index) => (
-                            <>
-                                <div className='cart-items' key={item._id}>
-                                    <div className="cart-img">
-                                        <img src={require("../assets/img/ships/Ship/" + item.name + "_Ship.png")} alt={item.name} />
-                                    </div>
+                    {cartData.map((item, index) => (
+                        <>
+                            <div className='cart-items' key={item._id}>
+                                <div className="cart-img">
+                                    <img src={require("../assets/img/ships/Ship/" + item.name + "_Ship.png")} alt={item.name} />
+                                </div>
 
-                                    <div className="cart-text">
-                                        <h1>{item.name}</h1>
-                                        <p>Dates : {formatDate(item.selectedRange[0])} au {formatDate(item.selectedRange[1])}</p>
-                                        <p>Repas premium : {item.repas ? `Oui (300€)` : `Non`}</p>
-                                        <p>Option divertissement : {item.divertissement ? `Oui (150€)` : `Non`}</p>
-                                    </div>
+                                <div className="cart-text">
+                                    <h1>{item.name}</h1>
+                                    <p>Dates : {formatDate(item.selectedRange[0])} au {formatDate(item.selectedRange[1])}</p>
+                                    <p>Repas premium : {item.repas ? `Oui (300€)` : `Non`}</p>
+                                    <p>Option divertissement : {item.divertissement ? `Oui (150€)` : `Non`}</p>
+                                </div>
 
-                                    <div className="cart-price">
-                                        <input type="number" value="1" />
-                                        <p className='price'>{displayPrice(calculPrice(item))}</p>
-                                        <Popconfirm
-                                            placement="top"
-                                            title="Êtes-vous sûr de vouloir supprimer cet article de votre panier ?"
-                                            description="Supprimer l'article"
-                                            onConfirm={() => {
-                                                remove(index);
-                                                message.success("L'article a été supprimé de votre panier")
-                                            }}
-                                            okText="Oui"
-                                            cancelText="Non"
-                                        >
-                                            <a href="#"><RiDeleteBin6Line size={20} color="red" /></a>
-                                        </Popconfirm>
-
-                                    </div>
+                                <div className="cart-price">
+                                    <input type="number" value="1" />
+                                    <p className='price'>{displayPrice(calculPrice(item))}</p>
+                                    <Popconfirm
+                                        placement="top"
+                                        title="Êtes-vous sûr de vouloir supprimer cet article de votre panier ?"
+                                        description="Supprimer l'article"
+                                        onConfirm={() => {
+                                            remove(index);
+                                            message.success("L'article a été supprimé de votre panier")
+                                        }}
+                                        okText="Oui"
+                                        cancelText="Non"
+                                    >
+                                        <a href="#"><RiDeleteBin6Line size={20} color="red" /></a>
+                                    </Popconfirm>
 
                                 </div>
-                            </>
-                        ))
 
-                    ) : (
-                        <p>Il n'y a rien dans votre panier pour le moment</p>
-                    )}
+                            </div>
+                        </>
+                    ))}
                 </div>
 
                 <div className="cart-details_text">
