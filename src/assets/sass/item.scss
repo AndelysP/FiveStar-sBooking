@@ -1,13 +1,7 @@
 @import "variables";
 
-.navbar-wrapper {
-    height: 5rem;
-    background-color: $dark-blue;
-}
-
-.cover {
+.header-item {
     position: relative;
-    z-index: -1;
 
     .title-wrapper {
         position: absolute;
@@ -34,100 +28,116 @@
         }
     }
 
-
-
     img {
-        width: 100vw;
+        width: 100%;
+        height: 50vh;
         object-fit: cover;
     }
 
-
-}
-
-.form-options {
-    width: 60%;
-    margin-top: -3rem;
-    margin-left: auto;
-    margin-right: auto;
-    // position: absolute;
-    // bottom: -30%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    // align-items: center;
-    padding: 20px;
-    background-color: white;
-    border-radius: 50px;
-    box-shadow: 5px 5px 15px rgba(51, 51, 51, 0.5);
-
-    // flex-basis: 33.33%;
-
-    @media screen and (min-width: 2000px) {
-        bottom: -19%; // Sur les écrans de plus de 1920px, le filtre ne s'affichait pas correctement
+    .ant-picker {
+        border: none;
+        padding: 0;
     }
 
-    @media screen and (max-width: 1199px) {
-        flex-direction: column;
-        align-items: flex-start;
-        transform: none;
-        margin-top: 3rem;
-        position: static;
-        // width: auto;
+    .ant-picker-focused {
+        box-shadow: none;
     }
 
-    label {
-        font-weight: bold;
-        font-size: 15px;
-        padding-left: 15px;
-    }
+    .form-options {
+        width: 60%;
+        position: absolute;
+        bottom: -20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 50px;
+        box-shadow: 5px 5px 15px rgba(51, 51, 51, 0.5);
 
-    .form-group {
-        // border-right: 0.1px solid rgb(156, 156, 156);
-        position: relative;
-        padding: 0 2rem;
+        flex-basis: 33.33%;
+
+        @media screen and (min-width: 2000px) {
+            bottom: -19%; // Sur les écrans de plus de 1920px, le filtre ne s'affichait pas correctement
+        }
 
         @media screen and (max-width: 1199px) {
-            border: none;
-            display: flex;
             flex-direction: column;
+            align-items: flex-start;
+            transform: none;
+            margin-top: 3rem;
+            position: static;
+            // width: auto;
         }
 
-        .icon {
-            position: absolute;
-            left: 6px;
-            top: 60%;
-            transform: translateY(-50%);
+        .submit {
+            border: none;
+            border-radius: 30px;
+            background-color: #c4cbd3;
+            padding: 1rem 1.5rem;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
 
-            @media screen and (max-width: 1199px) {
-                left: 2px;
-                top: 63%;
+            &:hover {
+                transform: scale(1.05);
+                background-color: #B2BECE;
             }
         }
-    }
 
-    .radio {
-        display: flex;
-        flex-direction: row;
-        text-align: center;
+        label {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            position: relative;
+            padding: 0 2rem;
 
-    }
+            @media screen and (max-width: 1199px) {
+                border: none;
+                display: flex;
+                flex-direction: column;
+            }
 
-    input {
-        border: none;
-        text-align: center;
+            .icon {
+                position: absolute;
+                left: 6px;
+                top: 60%;
+                transform: translateY(-50%);
 
-        &:focus {
-            outline: none;
+                @media screen and (max-width: 1199px) {
+                    left: 2px;
+                    top: 63%;
+                }
+            }
+        }
+
+        .radio {
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+
+        }
+
+        input {
+            border: none;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        ::placeholder {
+            color: #b8b8b8;
+            font-style: italic;
         }
     }
-
-    ::placeholder {
-        color: #b8b8b8;
-        font-style: italic;
-    }
-
 }
+
+
 
 .ship {
     padding-top: 5rem;

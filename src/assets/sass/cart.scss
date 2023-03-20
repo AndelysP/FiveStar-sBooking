@@ -23,6 +23,13 @@
     font-size: 2rem;
 }
 
+.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65vh;
+}
+
 .basket {
     display: flex;
     justify-content: center;

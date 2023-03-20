@@ -85,36 +85,6 @@ const Home = () => {
             />
           </div>
 
-          {/* <div className='form-group'>
-            <label htmlFor="start-date">Arrivée</label>
-
-            <BsCalendarDate className='icon' size={20} />
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              dateFormat="dd/MM/yyyy"
-              showMonthDropdown
-              showYearDropdown
-              placeholderText="Sélectionnez une date d'arrivée"
-              locale={fr}
-            />
-          </div>
-
-          <div className='form-group'>
-            <label htmlFor="end-date">Retour</label>
-
-            <BsCalendarDate className='icon' size={20} />
-            <DatePicker
-              selected={endDate}
-              onChange={(date) => setEndDate(date)}
-              dateFormat="dd/MM/yyyy"
-              showMonthDropdown
-              showYearDropdown
-              placeholderText="Sélectionnez une date de retour"
-              locale={fr}
-            />
-          </div> */}
-
           <div className='form-group'>
             <label htmlFor="capacity">Passagers</label>
 

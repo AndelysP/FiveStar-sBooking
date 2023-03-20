@@ -112,60 +112,56 @@ const Item = () => {
 
   return (
     <>
-      <div className="navbar-wrapper">
-        <Navbar />
-      </div>
+      <Navbar />
 
-      <div className="cover">
+      <div className="header-item">
         <img src={require("../assets/img/ships/Ship/" + item.name + "_Ship.png")} alt={item.name} />
         <div className='title-wrapper'>
           <h1>{item.name}</h1>
         </div>
+        <form action='' onSubmit={handleSubmit} className="form-options" >
+
+          <div className='form-group'>
+            <label htmlFor="start-date">Date d'arrivée / départ</label>
+
+            <BsCalendarDate className='icon' size={20} />
+            <RangePicker
+              style={{ width: '100%' }}
+              locale={locale}
+              format="DD/MM/YYYY"
+              onChange={(handleRangeChange)}
+              placeholder={["Date d'arrivée", 'Date de retour']}
+            />
+          </div>
+
+          <div className="form-group radio">
+            <label htmlFor="repas">Repas premium</label>
+            <input
+              type="checkbox"
+              name="repas"
+              id=""
+              checked={repas}
+              onChange={(e) => setRepas(e.target.checked)}
+            />
+          </div>
+
+          <div className="form-group radio">
+            <label htmlFor="divertissement">Option divertissement</label>
+            <input
+              type="checkbox"
+              name="divertissement"
+              id=""
+              checked={divertissement}
+              onChange={(e) => setDivertissement(e.target.checked)}
+            />
+          </div>
+
+          <button type="submit" className='submit'> Reserver </button>
+
+        </form>
+        <ToastContainer
+        />
       </div>
-
-      <form action='' onSubmit={handleSubmit} className="form-options" >
-
-        <div className='form-group'>
-          <label htmlFor="start-date">Date d'arrivée / départ</label>
-
-          <BsCalendarDate className='icon' size={20} />
-          <RangePicker
-            style={{ width: '100%' }}
-            locale={locale}
-            format="DD/MM/YYYY"
-            onChange={(handleRangeChange)}
-            placeholder={["Date d'arrivée", 'Date de retour']}
-          />
-        </div>
-
-        <div className="form-group radio">
-          <label htmlFor="repas">Repas premium</label>
-          <input
-            type="checkbox"
-            name="repas"
-            id=""
-            checked={repas}
-            onChange={(e) => setRepas(e.target.checked)}
-          />
-        </div>
-
-        <div className="form-group radio">
-          <label htmlFor="divertissement">Option divertissement</label>
-          <input
-            type="checkbox"
-            name="divertissement"
-            id=""
-            checked={divertissement}
-            onChange={(e) => setDivertissement(e.target.checked)}
-          />
-        </div>
-
-        <button type="submit"> Reserver </button>
-
-      </form>
-
-      <ToastContainer
-      />
 
       <div className="ship">
         {/* pour gerer avec propriété order des flex items il faut enlever les wrapper et laisse 4 flex items en mode desktop, mettre 50% pour la taille d'un item pour que ca se mette naturellement en 2 colones puis passer le container 2 en order 1 pour qu'il passe en dernier */}
