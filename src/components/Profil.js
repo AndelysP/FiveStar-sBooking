@@ -72,9 +72,9 @@ const Profil = () => {
     } else {
       setUserfirstname("");
       setUserlastname("");
-      setEmail(""); 
-      setPassword(""); 
-  
+      setEmail("");
+      setPassword("");
+
       navigate("/profilConnect"); // On redirige l'utilisateur sur la page profil qu'il voit lorsqu'il est connecté
     }
   }
@@ -107,10 +107,7 @@ const Profil = () => {
           <input type="submit" value="Connexion" />
 
           {/* Mot de passe oublié */}
-
-          {/* Quand je clique sur le bouton mon state passe à true, penser à ajouter le type button sinon comme on est dans un formulaire, le bouton est considéré comme un submit donc la modale se ferme seule */}
         </form>
-        {/* Quand on state est à true, on applique la classe active à mask et modal, sinon on ne fait rien */}
       </div>
 
       <div className="forgetPassword">
@@ -130,7 +127,7 @@ const Profil = () => {
                   <label htmlFor="emailForget"></label>
                   <input type="email" placeholder='* Adresse e-mail' id="emailForget" name="email" />
 
-                  <button type='button' className="password-btn">Envoyer</button>
+                  <button type='submit' className="password-btn">Envoyer</button>
                 </form>
               </div>
             </>
@@ -183,8 +180,8 @@ const Profil = () => {
 
                   <button type='submit' className="password-btn">C'est parti !</button>
                 </form>
-                <ToastContainer/>
-          </div>
+                <ToastContainer />
+              </div>
             </>
           }
         />

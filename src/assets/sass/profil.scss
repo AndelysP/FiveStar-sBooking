@@ -191,9 +191,13 @@ body {
 
 .forgetPassword {
   height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   form {
     display: flex;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 
@@ -206,60 +210,124 @@ body {
       box-sizing: border-box;
       padding: 15px 20px;
     }
+
+    button[type="submit"] {
+      margin: 1.5rem 0;
+      background-color: $light-blue;
+      color: $white;
+      padding: 10px 25px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+
+      &:hover {
+        background-color: $dark-blue;
+      }
+    }
+  }
+
+  button[type="button"] {
+    display: flex;
+    align-items: center;
+    background-color: $light-blue;
+    color: $white;
+    padding: 20px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    border-color: none;
+
+    &:hover {
+      background: $dark-blue;
+    }
   }
 }
 
 // Modale 
 
-.modalContent {
-  display: flex;
-  align-items: center;
-}
-
-
-.image img {
-  width: 100%;
-  height: auto;
+.image {
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .content {
-  flex: 1 1 auto;
-}
-
-.content h3 {
-  font-size: 1.2rem;
-  margin-top: 0;
-}
-
-.content p {
-  margin-bottom: 20px;
-}
-
-.content form label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.content form input[type="email"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
   width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+
+  @media only screen and (min-width: 1199px) {}
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px 20px;
+      margin: 5px 0;
+      border-radius: 20px;
+      border: 1px solid rgb(223, 221, 221);
+      box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+      margin: 1.5rem 0;
+      background-color: $light-blue;
+      color: $white;
+      padding: 10px 25px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+
+      &:hover {
+        background-color: $dark-blue;
+      }
+    }
+  }
 }
 
-.content form button[type="button"] {
-  background-color: #008CBA;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
 
-.content form button[type="button"]:hover {
-  background-color: #006B8F;
+.ant-modal-wrap {
+  .ant-modal-content {
+    padding: 0;
+
+    @media only screen and (min-width: 800px) {
+      width: auto;
+    }
+
+    .ant-modal-close-icon {
+      svg {
+        fill: #000000cc;
+      }
+    }
+
+    .ant-modal-body {
+      @media only screen and (min-width: 800px) {
+        display: flex;
+      }
+    }
+  }
 }
 
 // Création de compte
@@ -294,7 +362,6 @@ body {
   }
 
   h3 {
-    margin-block-start: 0;
     font-family: $font-titres;
     font-size: 2rem;
     text-align: center;
@@ -306,30 +373,23 @@ body {
     font-size: 1rem;
   }
 
-  button {
+  button[type=button] {
+    display: flex;
+    align-items: center;
     background-color: $dark-blue;
+    padding: 20px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: #fff;
+    border-color: none;
 
     &:hover {
       background-color: #0d2544;
     }
   }
-
-  .box-modal {
-    .content {
-
-      input[type="email"],
-      input[type="text"],
-      input[type="password"],
-      textarea {
-        width: 100%;
-        padding: 15px 20px;
-        margin: 14px 0;
-        border-radius: 20px;
-        border: 1px solid rgb(223, 221, 221);
-      }
-    }
-  }
 }
+
 
 .title-account {
   p {
