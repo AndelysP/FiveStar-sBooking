@@ -188,6 +188,23 @@ body {
   }
 }
 
+.forgetPassword {
+  form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    input[type="email"] {
+      margin: 2rem;
+      width: 100%;
+      margin: 14px 0;
+      border-radius: 20px;
+      border: 1px solid rgb(223, 221, 221);
+      box-sizing: border-box;
+      padding: 15px 20px;
+    }
+  }
+}
 
 // Modale
 
@@ -342,9 +359,8 @@ body {
     .inputEmail {
 
       input[type="email"],
-
       textarea {
-        width: 20rem;
+        width: 100%;
         padding: 15px 20px;
         margin: 14px 0;
         border-radius: 20px;
