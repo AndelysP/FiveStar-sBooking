@@ -97,8 +97,9 @@ const Profil = () => {
           <button type='button' className="password-btn" onClick={() => setShowMdp(true)}>Mot de passe oublié</button>
         </form>
         {/* Quand on state est à true, on applique la classe active à mask et modal, sinon on ne fait rien */}
+      </div>
 
-
+      <div className="forgetPassword">
         {/* On passe les props au composant ModalMdp pour pouvoir les utiliser dans Modal.js, la prop showModal appliquera la classe active aux éléments qui doivent être affichés lorsque showMdp est vrai. La prop setShowModal  pour que le bouton "X" puisse fermer la modal en appelant setShowMdp(false) */}
         <Modal showModal={showMdp} setShowModal={setShowMdp}>
 
@@ -111,18 +112,18 @@ const Profil = () => {
             <p>Veuillez nous indiquer votre adresse mail, nous vous enverrons un lien afin de réinitialiser votre mot de passe</p>
             <form>
               <label htmlFor="emailForget"></label>
-              <div className="inputEmail">
-                <input type="email" placeholder='* Adresse e-mail' id="emailForget" name="email" />
-              </div>
+              <input type="email" placeholder='* Adresse e-mail' id="emailForget" name="email" />
 
               <button type='button' className="password-btn">Envoyer</button>
             </form>
           </div>
 
         </Modal>
-
-
       </div>
+
+
+
+
 
       {/* Wave */}
       <div className="wave">

@@ -188,6 +188,23 @@ body {
   }
 }
 
+.forgetPassword {
+  form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    input[type="email"] {
+      margin: 2rem;
+      width: 100%;
+      margin: 14px 0;
+      border-radius: 20px;
+      border: 1px solid rgb(223, 221, 221);
+      box-sizing: border-box;
+      padding: 15px 20px;
+    }
+  }
+}
 
 // Modale
 
@@ -224,7 +241,7 @@ body {
   padding: 0;
 }
 
-.close:hover{
+.close:hover {
   background-color: $light-blue;
 }
 
@@ -323,15 +340,15 @@ body {
       font-size: 2rem;
       text-align: center;
 
-          // Phablet
-    @media only screen and (max-width: 767px) {
-      margin-block-start: 0;
-    }
+      // Phablet
+      @media only screen and (max-width: 767px) {
+        margin-block-start: 0;
+      }
 
-    // Mobile
-    @media only screen and (max-width: 575px) {
-      margin-block-start: 0;
-    }
+      // Mobile
+      @media only screen and (max-width: 575px) {
+        margin-block-start: 0;
+      }
     }
 
     p {
@@ -342,9 +359,8 @@ body {
     .inputEmail {
 
       input[type="email"],
-
       textarea {
-        width: 20rem;
+        width: 100%;
         padding: 15px 20px;
         margin: 14px 0;
         border-radius: 20px;
@@ -444,7 +460,7 @@ body {
   }
 }
 
-.accountErrors{
+.accountErrors {
   text-align: center;
   font-size: 0.5rem;
 }
@@ -476,6 +492,7 @@ body {
     margin-top: 0;
     margin-bottom: -2rem;
   }
+
   // Notebook
   @media only screen and (max-width: 1199px) {
     margin-top: -8rem;
