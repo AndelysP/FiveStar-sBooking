@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../assets/sass/profil.scss';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import Modal from './Modal';
+import UserModal from './UserModal';
 import bluePlanet from '../assets/img/icons/blue_planet.png';
 import accountIllu from '../assets/img/icons/create_account.png';
 import mdpIllu from '../assets/img/icons/connexion_image.png';
@@ -94,36 +94,34 @@ const Profil = () => {
           {/* Mot de passe oublié */}
 
           {/* Quand je clique sur le bouton mon state passe à true, penser à ajouter le type button sinon comme on est dans un formulaire, le bouton est considéré comme un submit donc la modale se ferme seule */}
-          <button type='button' className="password-btn" onClick={() => setShowMdp(true)}>Mot de passe oublié</button>
         </form>
         {/* Quand on state est à true, on applique la classe active à mask et modal, sinon on ne fait rien */}
       </div>
 
       <div className="forgetPassword">
         {/* On passe les props au composant ModalMdp pour pouvoir les utiliser dans Modal.js, la prop showModal appliquera la classe active aux éléments qui doivent être affichés lorsque showMdp est vrai. La prop setShowModal  pour que le bouton "X" puisse fermer la modal en appelant setShowMdp(false) */}
-        <Modal showModal={showMdp} setShowModal={setShowMdp}>
+        <UserModal
+          buttonText={"Mot de passe oublié"}
+          modalContent={
+            <>
+              <div className="image">
+                <img src={mdpIllu} alt="" />
+              </div>
+              <div className="content">
 
-          <div className="image">
-            <img src={mdpIllu} alt="" />
-          </div>
-          <div className="content">
+                <h3>Réinitialisez votre mot de passe</h3>
+                <p>Veuillez nous indiquer votre adresse mail, nous vous enverrons un lien afin de réinitialiser votre mot de passe</p>
+                <form>
+                  <label htmlFor="emailForget"></label>
+                  <input type="email" placeholder='* Adresse e-mail' id="emailForget" name="email" />
 
-            <h3>Réinitialisez votre mot de passe</h3>
-            <p>Veuillez nous indiquer votre adresse mail, nous vous enverrons un lien afin de réinitialiser votre mot de passe</p>
-            <form>
-              <label htmlFor="emailForget"></label>
-              <input type="email" placeholder='* Adresse e-mail' id="emailForget" name="email" />
-
-              <button type='button' className="password-btn">Envoyer</button>
-            </form>
-          </div>
-
-        </Modal>
+                  <button type='button' className="password-btn">Envoyer</button>
+                </form>
+              </div>
+            </>
+          }
+        />
       </div>
-
-
-
-
 
       {/* Wave */}
       <div className="wave">
@@ -136,46 +134,44 @@ const Profil = () => {
           <p>Pas encore inscrit.e ?</p>
         </div>
 
-        <button type='button' className="password-btn" onClick={() => setShowAccount(true)}>Créer mon compte</button>
+        <UserModal
 
-
-        <Modal showModal={showAccount} setShowModal={setShowAccount}>
-          <div className="image">
-            <img src={accountIllu} alt="" />
-          </div>
-          <div className="content">
-            <h3>Créez votre compte</h3>
-            <p>Renseignez les champs suivants afin de créer votre compte :</p>
-
-            <form onSubmit={handleSubmit}>
-              <label htmlFor="userfirstname"></label>
-              <div className="inputUserFirstname">
-                <input type="text" value={userfirstname} placeholder='* Prénom' id="userfirstname" name="userfirstname" onChange={(event) => setUserfirstname(event.target.value)} />
+          buttonText={"Créer mon compte"}
+          modalContent={
+            <>
+              <div className="image">
+                <img src={accountIllu} alt="" />
               </div>
+              <div className="content">
+                <h3>Créez votre compte</h3>
+                <p>Renseignez les champs suivants afin de créer votre compte :</p>
 
-              <label htmlFor="userlastname"></label>
-              <div className="inputUserLastname">
-                <input type="text" value={userlastname} placeholder='* Nom' id="userlastname" name="userlastname" onChange={(event) => setUserlastname(event.target.value)} />
+                <form onSubmit={handleSubmit}>
+                  <label htmlFor="userfirstname"></label>
+                  <input type="text" value={userfirstname} placeholder='* Prénom' id="userfirstname" name="userfirstname" onChange={(event) => setUserfirstname(event.target.value)} />
+
+
+                  <label htmlFor="userlastname"></label>
+                  <input type="text" value={userlastname} placeholder='* Nom' id="userlastname" name="userlastname" onChange={(event) => setUserlastname(event.target.value)} />
+
+
+                  <label htmlFor="email"></label>
+                  <input type="email" value={email} placeholder='* Adresse e-mail' id="email" name="email" onChange={(event) => setEmail(event.target.value)} />
+
+                  {emailError && <InlineError error={emailError} />}
+
+
+                  <label htmlFor="password"></label>
+                  <input type="password" value={password} placeholder='* Mot de passe' id="password" name="password" onChange={(event) => setPassword(event.target.value)} />
+
+                  {passwordError && <InlineError error={passwordError} />}
+
+                  <button type='submit' className="password-btn">C'est parti !</button>
+                </form>
               </div>
-
-              <label htmlFor="email"></label>
-              <div className="inputEmail">
-                <input type="email" value={email} placeholder='* Adresse e-mail' id="email" name="email" onChange={(event) => setEmail(event.target.value)} />
-              </div>
-              {emailError && <InlineError error={emailError} />}
-
-
-              <label htmlFor="password"></label>
-              <div className="inputPassword">
-                <input type="password" value={password} placeholder='* Mot de passe' id="password" name="password" onChange={(event) => setPassword(event.target.value)} />
-              </div>
-              {passwordError && <InlineError error={passwordError} />}
-
-              <button type='submit' className="password-btn">C'est parti !</button>
-            </form>
-          </div>
-
-        </Modal>
+            </>
+          }
+        />
 
       </div>
 

@@ -109,6 +109,7 @@ body {
     // Tablette
     @media only screen and (max-width: 991px) {
       visibility: hidden;
+      animation: none;
     }
 
     // Phablet
@@ -189,6 +190,8 @@ body {
 }
 
 .forgetPassword {
+  height: auto;
+
   form {
     display: flex;
     justify-content: center;
@@ -206,181 +209,58 @@ body {
   }
 }
 
-// Modale
+// Modale 
 
-.password-btn {
-  margin-top: 1.5rem;
-  background-color: $light-blue;
-  color: $white;
-  padding: 10px 25px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 1.3rem;
-}
-
-.password-btn:hover {
-  background: $dark-blue;
-}
-
-.show:active {
-  transform: scale(0.9);
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 35px;
-  height: 35px;
-  background: #000;
-  color: #fff;
-  cursor: pointer;
-  border: 0;
-  border-radius: 50px;
-  padding: 0;
-}
-
-.close:hover {
-  background-color: $light-blue;
-}
-
-.mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100%;
-  background: rgb(23, 55, 96, 0.6);
-  visibility: hidden;
-  opacity: 0;
-  transition: 0.7s;
-}
-
-.modal {
+.modalContent {
   display: flex;
-  justify-content: center;
   align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  visibility: hidden;
-  opacity: 0;
-  transition: 0.5s ease-out;
-  transform: translateY(45px);
-
-  .image {
-    object-fit: cover;
-
-    // Phablet
-    @media only screen and (max-width: 767px) {
-      max-height: 25%;
-    }
-
-    // Mobile
-    @media only screen and (max-width: 575px) {
-      max-height: 25%;
-    }
-
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-
-      // Phablet
-      @media only screen and (max-width: 767px) {
-        max-width: 100%;
-      }
-
-      // Mobile
-      @media only screen and (max-width: 575px) {
-        max-width: 100%;
-      }
-    }
-  }
-
-  .modal-inner {
-    display: flex;
-    position: relative;
-    background: #fff;
-    border-radius: 20px;
-    border: none;
-    overflow: hidden;
-    height: 80vh;
-    max-width: 1200px;
-    margin: 2rem;
-
-    // Phablet
-    @media only screen and (max-width: 767px) {
-      flex-direction: column;
-    }
-
-    // Mobile
-    @media only screen and (max-width: 575px) {
-      flex-direction: column;
-    }
-  }
-
-  // Contenu modale 
-
-  .content {
-    flex-basis: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem;
-
-    h3 {
-      font-family: $font-titres;
-      font-size: 2rem;
-      text-align: center;
-
-      // Phablet
-      @media only screen and (max-width: 767px) {
-        margin-block-start: 0;
-      }
-
-      // Mobile
-      @media only screen and (max-width: 575px) {
-        margin-block-start: 0;
-      }
-    }
-
-    p {
-      text-align: center;
-      font-family: Segoe UI Light;
-    }
-
-    .inputEmail {
-
-      input[type="email"],
-      textarea {
-        width: 100%;
-        padding: 15px 20px;
-        margin: 14px 0;
-        border-radius: 20px;
-        border: 1px solid rgb(223, 221, 221);
-      }
-    }
-  }
 }
 
-.active {
-  visibility: visible;
-  opacity: 1;
+
+.image img {
+  width: 100%;
+  height: auto;
 }
 
-.active+.modal {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
+.content {
+  flex: 1 1 auto;
 }
 
+.content h3 {
+  font-size: 1.2rem;
+  margin-top: 0;
+}
+
+.content p {
+  margin-bottom: 20px;
+}
+
+.content form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.content form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.content form button[type="button"] {
+  background-color: #008CBA;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.content form button[type="button"]:hover {
+  background-color: #006B8F;
+}
 
 // Création de compte
 
@@ -441,7 +321,7 @@ body {
       input[type="text"],
       input[type="password"],
       textarea {
-        width: 20rem;
+        width: 100%;
         padding: 15px 20px;
         margin: 14px 0;
         border-radius: 20px;
