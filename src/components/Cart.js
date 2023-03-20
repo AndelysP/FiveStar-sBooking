@@ -72,7 +72,7 @@ const Cart = () => {
                 <div className="cart-details">
 
                     {cartData.map((item, index) => (
-                        <>
+                        <div key={index}>
                             <div className='cart-items' key={item._id}>
                                 <div className="cart-img">
                                     <img src={require("../assets/img/ships/Ship/" + item.name + "_Ship.png")} alt={item.name} />
@@ -86,7 +86,6 @@ const Cart = () => {
                                 </div>
 
                                 <div className="cart-price">
-                                    <input type="number" value="1" />
                                     <p className='price'>{displayPrice(calculPrice(item))}</p>
                                     <Popconfirm
                                         placement="top"
@@ -106,7 +105,7 @@ const Cart = () => {
 
                             </div>
 
-                        </>
+                        </div>
                     ))}
 
 
@@ -133,23 +132,23 @@ const Cart = () => {
                     <form className="form-pay">
 
                         <div className='form-group'>
-                            <label for="typeName">Nom du titulaire</label>
-                            <input type="text" id="typeName" placeholder="Nom du titulaire" />
+                            <label hmtlfor="name">Nom du titulaire</label>
+                            <input type="text" id="name" placeholder="Nom du titulaire" />
                         </div>
 
                         <div className='form-group'>
-                            <label for="typeText">Numéro de carte</label>
-                            <input type="text" id="typeText" placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                            <label hmtlfor="cardNumber">Numéro de carte</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3457" minLength="19" maxLength="19" />
                         </div>
 
                         <div className='form-group'>
-                            <label for="typeExp">Date d'expiration</label>
-                            <input type="text" id="typeExp" placeholder="MM/YYYY" size="7" minlength="7" maxlength="7" />
+                            <label hmtlfor="cardExp">Date d'expiration</label>
+                            <input type="text" id="cardExp" placeholder="MM/YYYY" size="7" minLength="7" maxLength="7" />
                         </div>
 
                         <div className="form-group">
-                            <label for="typeText">CVV</label>
-                            <input type="password" id="typeText" placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+                            <label hmtlfor="cardCvv">CVV</label>
+                            <input type="password" id="cardCvv" placeholder="&#9679;&#9679;&#9679;" size="1" minLength="3" maxLength="3" />
                         </div>
 
                         <div className="total">

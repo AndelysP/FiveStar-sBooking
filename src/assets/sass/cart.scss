@@ -71,16 +71,12 @@
                     font-size: 1rem;
                 }
 
-                input {
-                    width: 5vw;
-                    height: 2vh;
-                    text-align: center;
-                    border: none;
-                    background-color: #fffdfd;
-                }
-
                 svg {
                     cursor: pointer;
+                }
+
+                span {
+                    font-size: 16px;
                 }
             }
 
