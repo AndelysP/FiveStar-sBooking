@@ -6,6 +6,7 @@ import Profil from './components/Profil';
 import NotFound from './components/NotFound';
 import Item from './components/Item';
 import Cart from './components/Cart';
+import ProfilConnect from './components/ProfilConnect';
 
 const Root = () => {
     return (
@@ -17,6 +18,7 @@ const Root = () => {
           <Route path="/cart" element={<Cart />}/>
           <Route path="/item/:id" element={<Item />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/profilConnect" element={<ProfilConnect />} />
         </Routes>
       </BrowserRouter>
     )

@@ -224,7 +224,7 @@ body {
   padding: 0;
 }
 
-.close:hover{
+.close:hover {
   background-color: $light-blue;
 }
 
@@ -323,15 +323,15 @@ body {
       font-size: 2rem;
       text-align: center;
 
-          // Phablet
-    @media only screen and (max-width: 767px) {
-      margin-block-start: 0;
-    }
+      // Phablet
+      @media only screen and (max-width: 767px) {
+        margin-block-start: 0;
+      }
 
-    // Mobile
-    @media only screen and (max-width: 575px) {
-      margin-block-start: 0;
-    }
+      // Mobile
+      @media only screen and (max-width: 575px) {
+        margin-block-start: 0;
+      }
     }
 
     p {
@@ -444,7 +444,7 @@ body {
   }
 }
 
-.accountErrors{
+.accountErrors {
   text-align: center;
   font-size: 0.5rem;
 }
@@ -476,6 +476,7 @@ body {
     margin-top: 0;
     margin-bottom: -2rem;
   }
+
   // Notebook
   @media only screen and (max-width: 1199px) {
     margin-top: -8rem;

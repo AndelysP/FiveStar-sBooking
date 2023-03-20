@@ -8,6 +8,8 @@ import accountIllu from '../assets/img/icons/create_account.png';
 import mdpIllu from '../assets/img/icons/connexion_image.png';
 import InlineError from './ContactFiles/InlineError';
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Profil = () => {
 
@@ -18,6 +20,8 @@ const Profil = () => {
   const [userlastname, setUserlastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   // Pour les erreurs :
   const [passwordError, setPasswordError] = useState("");
@@ -47,10 +51,10 @@ const Profil = () => {
   };
 
   // Récupération des données lors de l'envoi du formulaire et enregistrement en bdd :
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    fetch("http://localhost:5500/users", {
+    const response = await fetch("http://localhost:5500/users", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -62,6 +66,17 @@ const Profil = () => {
         password
       })
     })
+
+    if (response.status === 400) {
+      toast.error('❌ Un compte existe déjà à cette adresse mail');
+    } else {
+      setUserfirstname("");
+      setUserlastname("");
+      setEmail(""); 
+      setPassword(""); 
+  
+      navigate("/profilConnect"); // On redirige l'utilisateur sur la page profil qu'il voit lorsqu'il est connecté
+    }
   }
 
 
@@ -172,6 +187,7 @@ const Profil = () => {
 
               <button type='submit' className="password-btn">C'est parti !</button>
             </form>
+            <ToastContainer/>
           </div>
 
         </Modal>
