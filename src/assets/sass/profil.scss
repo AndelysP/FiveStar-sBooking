@@ -293,7 +293,7 @@ body {
     border-radius: 20px;
     border: none;
     overflow: hidden;
-    height: 60vh;
+    height: 80vh;
     max-width: 1200px;
     margin: 2rem;
 
@@ -442,6 +442,11 @@ body {
     font-size: 2rem;
     text-align: center;
   }
+}
+
+.accountErrors{
+  text-align: center;
+  font-size: 0.5rem;
 }
 
 .wave {

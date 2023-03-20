@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../assets/sass/profil.scss';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -6,6 +6,8 @@ import Modal from './Modal';
 import bluePlanet from '../assets/img/icons/blue_planet.png';
 import accountIllu from '../assets/img/icons/create_account.png';
 import mdpIllu from '../assets/img/icons/connexion_image.png';
+import InlineError from './ContactFiles/InlineError';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Profil = () => {
 
@@ -17,6 +19,34 @@ const Profil = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // Pour les erreurs :
+  const [passwordError, setPasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  useEffect(() => {
+    validatePassword({ password, setPasswordError })
+    validateEmail({ email, setEmailError })
+  }, [password, email])
+
+  // Validation du mot de passe
+  const validatePassword = ({ password, setPasswordError }) => {
+    const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+
+    return password && !password.match(passwordRegex)
+      ? setPasswordError("Votre mot de passe doit contenir minimum 12 caractères, dont au moins une lettre, un chiffre et un caractère spécial")
+      : setPasswordError("");
+  };
+
+  // Validation du mail
+  const validateEmail = ({ email, setEmailError }) => {
+    const emailRegular = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+
+    return email && !email.match(emailRegular)
+      ? setEmailError("Email non valide")
+      : setEmailError("");
+  };
+
+  // Récupération des données lors de l'envoi du formulaire et enregistrement en bdd :
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -32,7 +62,8 @@ const Profil = () => {
         password
       })
     })
-  };
+  }
+
 
   return (
     <div>
@@ -127,19 +158,23 @@ const Profil = () => {
 
               <label htmlFor="email"></label>
               <div className="inputEmail">
-                <input type="email" value={email} placeholder='* Adresse e-mail' id="email" name="email" onChange={(event) => setEmail(event.target.value)}/>
+                <input type="email" value={email} placeholder='* Adresse e-mail' id="email" name="email" onChange={(event) => setEmail(event.target.value)} />
               </div>
+                {emailError && <InlineError error={emailError} />}
+
 
               <label htmlFor="password"></label>
               <div className="inputPassword">
-                <input type="password" value={password} placeholder='* Mot de passe' id="password" name="password" onChange={(event) => setPassword(event.target.value)}/>
+                <input type="password" value={password} placeholder='* Mot de passe' id="password" name="password" onChange={(event) => setPassword(event.target.value)} />
               </div>
+                {passwordError && <InlineError error={passwordError} />}
 
               <button type='submit' class="password-btn">C'est parti !</button>
             </form>
           </div>
+
         </Modal>
-        
+
       </div>
 
       <Footer />
