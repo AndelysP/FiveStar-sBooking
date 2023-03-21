@@ -195,42 +195,38 @@ const Item = () => {
               <img src={require("../assets/img/ships/Livingroom/" + item.name + "_Livingroom.png")} alt={item.name} />
             </div>
           </Carousel>
-
-          <div className="ship-details">
-
-            <div className="ship-price">
-              <h2> Prix</h2>
-              <p>{displayPrice(item.price)}</p>
-            </div>
-
-            <div className="ship-foodOptions">
-              <h2> Option repas premium</h2>
-              <p>{displayPrice(300)}</p>
-            </div>
-
-            <div className="ship-EntertainmentOption">
-              <h2> Option divertissement</h2>
-              <p>{displayPrice(150)} (comprends l'accès à des films, jeux vidéos, espace d'entrainement...)</p>
-            </div>
-          </div>
-
         </div>
 
         <div className="wrapper">
           <div className="ship-description">
             <p>{item.description}</p>
           </div>
+        </div>
+      </div>
 
-          <div className="ship-equipments">
-            <h2> Equipements</h2>
-            <ul>
-              <li> {item.equipment.bedroom} chambre(s) </li>
-              <li> {item.equipment.bathroom} salle(s) de bain</li>
-              <li>{item.equipment.livingroom} salon(s)</li>
-            </ul>
-          </div>
+      <div className="ship-details">
+        <div className="ship-equipments">
+          <h2> Equipements</h2>
+          <ul>
+            <li> {item.equipment.bedroom} chambre(s) </li>
+            <li> {item.equipment.bathroom} salle(s) de bain</li>
+            <li>{item.equipment.livingroom} salon(s)</li>
+          </ul>
+        </div>
+        <div className="ship-price">
+          <h2> Prix</h2>
+          <p>{displayPrice(item.price)}</p>
         </div>
 
+        <div className="ship-foodOptions">
+          <h2> Option repas premium</h2>
+          <p>{displayPrice(300)}</p>
+        </div>
+
+        <div className="ship-EntertainmentOption">
+          <h2> Option divertissement</h2>
+          <p>{displayPrice(150)} (comprends l'accès à des films, jeux vidéos, espace d'entrainement...)</p>
+        </div>
       </div>
 
       <div className="schedule">
@@ -241,31 +237,31 @@ const Item = () => {
             <div className="step">
               <img src={require("../assets/img/icons/earth.png")} alt="" />
               <p>
-                Terre <br /> Notre point de départ.
+                Terre <br /> Notre point de départ
               </p>
             </div>
             <div className="step">
               <img src={require("../assets/img/icons/constellation.png")} alt="" />
               <p>
-                Un passage par les plus belles constellations de l'espace.
+                Un passage par les plus belles constellations de l'espace
               </p>
             </div>
             <div className="step">
               <img src={require("../assets/img/icons/saturn.png")} alt="" />
               <p>
-                Vous aurez l'occasion de voir de plus pres les anneaux de Saturne
+                Vous aurez l'occasion de voir de plus près les anneaux de Saturne
               </p>
             </div>
             <div className="step">
               <img src={require("../assets/img/icons/base.png")} alt="" />
               <p>
-                Le chemin se poursuit par la visite d'une station spatiale pour la collecte des données.
+                Le chemin se poursuit par la visite d'une station spatiale pour la collecte des données
               </p>
             </div>
             <div className="step">
               <img src={require("../assets/img/icons/exoplanet.png")} alt="" />
               <p>
-                Votre voyage s'achèvera en passant par une toute nouvelle exoplanète découverte : Kepler 22b.
+                Votre voyage s'achèvera en passant par une toute nouvelle exoplanète découverte : Kepler 22b
               </p>
             </div>
           </div>

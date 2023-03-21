@@ -97,6 +97,28 @@ const Profil = () => {
       navigate("/profilConnect");
     }
 
+  const forgetPassword = async (e) => {
+    e.preventDefault();
+
+    await fetch("http://localhost:5500/resetPassword", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email
+      })
+    })
+      .then(response => {
+        setEmail('');
+        toast.success('🚀 Message envoyé avec succès !');
+      })
+      .catch(error => {
+        // console.log(error);
+        toast.error('❌ Une erreur est survenue, veuillez réessayer plus tard.');
+      });
+  }
+
 
   return (
     <div>
@@ -141,9 +163,9 @@ const Profil = () => {
 
                 <h3>Réinitialisez votre mot de passe</h3>
                 <p>Veuillez nous indiquer votre adresse mail, nous vous enverrons un lien afin de réinitialiser votre mot de passe</p>
-                <form>
+                <form onSubmit={forgetPassword}>
                   <label htmlFor="emailForget"></label>
-                  <input type="email" placeholder='* Adresse e-mail' id="emailForget" name="email" />
+                  <input type="email" placeholder='* Adresse e-mail' id="emailForget" name="email" value={email} onChange={(event) => setEmail(event.target.value)} />
 
                   <button type='submit' className="password-btn">Envoyer</button>
                 </form>
