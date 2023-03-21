@@ -115,16 +115,17 @@ const Item = () => {
       <Navbar />
 
       <div className="header-item">
-        <img src={require("../assets/img/ships/Ship/" + item.name + "_Ship.png")} alt={item.name} />
-        <div className='title-wrapper'>
-          <h1>{item.name}</h1>
+        <div className="banner-item">
+          <img src={require("../assets/img/ships/Ship/" + item.name + "_Ship.png")} alt={item.name} />
+          <div className='title-wrapper'>
+            <h1>{item.name}</h1>
+          </div>
         </div>
+
         <form action='' onSubmit={handleSubmit} className="form-options" >
 
           <div className='form-group'>
             <label htmlFor="start-date">Date d'arrivée / départ</label>
-
-            <BsCalendarDate className='icon' size={20} />
             <RangePicker
               style={{ width: '100%' }}
               locale={locale}
@@ -159,6 +160,8 @@ const Item = () => {
           <button type="submit" className='submit'> Reserver </button>
 
         </form>
+
+
         <ToastContainer
         />
       </div>
@@ -196,17 +199,17 @@ const Item = () => {
           <div className="ship-details">
 
             <div className="ship-price">
-              <h1> Prix</h1>
+              <h2> Prix</h2>
               <p>{displayPrice(item.price)}</p>
             </div>
 
             <div className="ship-foodOptions">
-              <h1> Option repas premium</h1>
+              <h2> Option repas premium</h2>
               <p>{displayPrice(300)}</p>
             </div>
 
             <div className="ship-EntertainmentOption">
-              <h1> Option divertissement</h1>
+              <h2> Option divertissement</h2>
               <p>{displayPrice(150)} (comprends l'accès à des films, jeux vidéos, espace d'entrainement...)</p>
             </div>
           </div>
@@ -219,7 +222,7 @@ const Item = () => {
           </div>
 
           <div className="ship-equipments">
-            <h1> Equipements</h1>
+            <h2> Equipements</h2>
             <ul>
               <li> {item.equipment.bedroom} chambre(s) </li>
               <li> {item.equipment.bathroom} salle(s) de bain</li>
@@ -231,37 +234,43 @@ const Item = () => {
       </div>
 
       <div className="schedule">
-        <div className="step">
-          <img src={require("../assets/img/icons/earth.png")} alt="" />
-          <p>
-            Terre <br /> Notre point de départ.
-          </p>
-        </div>
-        <div className="step">
-          <img src={require("../assets/img/icons/constellation.png")} alt="" />
-          <p>
-            Un passage par les plus belles constellations de l'espace.
-          </p>
-        </div>
-        <div className="step">
-          <img src={require("../assets/img/icons/saturn.png")} alt="" />
-          <p>
-            Vous aurez l'occasion de voir de plus pres les anneaux de Saturne
-          </p>
-        </div>
-        <div className="step">
-          <img src={require("../assets/img/icons/base.png")} alt="" />
-          <p>
-            Le chemin se poursuit par la visite d'une station spatiale pour la collecte des données.
-          </p>
-        </div>
-        <div className="step">
-          <img src={require("../assets/img/icons/exoplanet.png")} alt="" />
-          <p>
-            Votre voyage s'achèvera en passant par une toute nouvelle exoplanète découverte : Kepler 22b.
-          </p>
-        </div>
+        <div className="text-schedule">
+          <h2>L'itinéraire</h2>
 
+          <div className="steps">
+            <div className="step">
+              <img src={require("../assets/img/icons/earth.png")} alt="" />
+              <p>
+                Terre <br /> Notre point de départ.
+              </p>
+            </div>
+            <div className="step">
+              <img src={require("../assets/img/icons/constellation.png")} alt="" />
+              <p>
+                Un passage par les plus belles constellations de l'espace.
+              </p>
+            </div>
+            <div className="step">
+              <img src={require("../assets/img/icons/saturn.png")} alt="" />
+              <p>
+                Vous aurez l'occasion de voir de plus pres les anneaux de Saturne
+              </p>
+            </div>
+            <div className="step">
+              <img src={require("../assets/img/icons/base.png")} alt="" />
+              <p>
+                Le chemin se poursuit par la visite d'une station spatiale pour la collecte des données.
+              </p>
+            </div>
+            <div className="step">
+              <img src={require("../assets/img/icons/exoplanet.png")} alt="" />
+              <p>
+                Votre voyage s'achèvera en passant par une toute nouvelle exoplanète découverte : Kepler 22b.
+              </p>
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <Footer />
