@@ -61,7 +61,7 @@
         transform: translate(-50%, -50%);
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
         padding: 20px;
         background-color: white;
         border-radius: 50px;
@@ -161,18 +161,10 @@
 
 
 .ship {
-
-    h2 {
-        font-family: $font-titres;
-        font-weight: normal;
-        color: $dark-blue;
-    }
-
     padding-top: 5rem;
     text-align: start;
 
     display: flex;
-    flex-direction: row;
     justify-content: space-evenly;
 
     font-family: Segoe UI Light;
@@ -221,17 +213,56 @@
 
     .ship-description {
         font-size: larger;
+        margin: 0;
 
         @media (max-width: 767px) {
             font-size: normal;
             margin: 0 5%;
         }
     }
-
-    li::marker {
-        font-size: x-small;
+}
 
 
+.ship-details {
+    margin: 5rem 0;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    @media (max-width: 1099px) {
+        flex-direction: column;
+    }
+
+    h2 {
+        font-family: $font-titres;
+        font-weight: normal;
+        color: $dark-blue;
+        font-size: 16px;
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    p,
+    li {
+        font-size: 16px;
+        list-style-type: none;
+    }
+
+    &>* {
+        margin: 0 2rem;
+        padding: 10px;
+        border-radius: 20px;
+        flex-basis: 15%;
+        background-color: #dfedf156;
+
+        @media (max-width: 1099px) {
+            margin: 0;
+            padding: 0;
+            border-radius: 0px;
+            border: none;
+        }
     }
 }
 
