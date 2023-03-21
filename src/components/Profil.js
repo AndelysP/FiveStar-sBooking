@@ -13,9 +13,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Profil = () => {
 
-  const [showMdp, setShowMdp] = useState(false); // Définition du state à false
-  const [showAccount, setShowAccount] = useState(false);
-
   const [userfirstname, setUserfirstname] = useState("");
   const [userlastname, setUserlastname] = useState("");
   const [email, setEmail] = useState("");
@@ -82,7 +79,7 @@ const Profil = () => {
   const forgetPassword = async (e) => {
     e.preventDefault();
 
-    await fetch("http://localhost:5500/resetPassword", {
+    await fetch("http://localhost:5500/forgetPassword", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
