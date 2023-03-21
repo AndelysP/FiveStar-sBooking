@@ -76,6 +76,24 @@ const Profil = () => {
     }
   }
 
+    //connexion page profil 
+
+    // enregistrer le token dans le local storage 
+    const handleConnect = async(event) => {
+      event.preventDefault();
+
+      await fetch("http://localhost:5500/login",{
+        method:'POST', 
+        headers: {
+          'Authorization': 'Bearer {token}',
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+      navigate("/profilConnect");
+    }
+
   const forgetPassword = async (e) => {
     e.preventDefault();
 
@@ -113,7 +131,7 @@ const Profil = () => {
       </div>
 
       <div className="form-connection">
-        <form>
+        <form onSubmit={handleConnect}>
 
           <label htmlFor="emailConnexion"></label>
           <input type="email" placeholder='* Adresse e-mail' id="emailConnexion" name="email" />
