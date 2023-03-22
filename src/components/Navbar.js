@@ -5,11 +5,40 @@ import { BsPersonCircle, BsBasket2Fill, BsPower } from "react-icons/bs";
 import { CgMenu } from "react-icons/cg";
 import { useNavigate } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const items = JSON.parse(localStorage.getItem("data")) || [];
+
+  const uploadsUrl = process.env.REACT_APP_UPLOADS_URL;
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || {})
+
+  const getUserLoged = async () => {
+    await fetch(`http://localhost:5500/users/${user.userId}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${user.token}`,
+      }
+    })
+      .then(res => {
+        if (res.status === 401) {
+          localStorage.removeItem('user');
+          navigate("/profil"); // On redirige l'utilisateur sur la page connexion 
+        }
+        return res.json()
+      })
+      .then(data => setUser(data))
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getUserLoged()
+  }, []);
+
+  console.log(user);
 
   const goToProfil = () => {
     navigate("/profil");
@@ -54,8 +83,9 @@ const Navbar = () => {
           <CgMenu />
         </div>
         <div className="button-profil" onClick={() => goToProfil()}>
-          <BsPersonCircle />
-        </div>  
+          {user && user.avatar ? (
+            <img className='avatar-profil' src={`${uploadsUrl}${user.avatar}`} alt="avatar utilisateur" />) : (<BsPersonCircle />)}
+        </div>
         <div className="button-deconnect" onClick={() => deconnexion()}>
           <BsPower />
         </div>

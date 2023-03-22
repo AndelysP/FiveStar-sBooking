@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { validatePassword, validateEmail } from './ContactFiles/ValidationContact';
+import profilLogin from '../assets/img/profil_login.jpg';
 
 const Profil = () => {
 
@@ -29,8 +30,6 @@ const Profil = () => {
     validatePassword({ password, setPasswordError })
     validateEmail({ email, setEmailError })
   }, [password, email])
-
-  
 
   // Récupération des données lors de l'envoi du formulaire et enregistrement en bdd :
   const handleSubmit = async (event) => {
@@ -61,25 +60,23 @@ const Profil = () => {
     }
   }
 
-  //connexion page profil 
-
   // enregistrer le token dans le local storage 
   const handleConnect = async (event) => {
     event.preventDefault();
 
-      await fetch("http://localhost:5500/login",{
-        method:'POST', 
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-      })
+    await fetch("http://localhost:5500/login", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    })
       .then(res => res.json())
       .then(data => localStorage.setItem('user', JSON.stringify(data)))
-      
-      navigate("/profilConnect");
-    }
+
+    navigate("/profilConnect");
+  }
 
   const forgetPassword = async (e) => {
     e.preventDefault();
@@ -103,7 +100,6 @@ const Profil = () => {
       });
   }
 
-
   return (
     <div>
 
@@ -121,10 +117,10 @@ const Profil = () => {
         <form onSubmit={handleConnect}>
 
           <label htmlFor="emailConnexion"></label>
-          <input type="email" placeholder='* Adresse e-mail' id="emailConnexion" name="email" onChange={(e)=>setEmail(e.target.value)}/>
+          <input type="email" placeholder='* Adresse e-mail' id="emailConnexion" name="email" onChange={(e) => setEmail(e.target.value)} />
 
           <label htmlFor="passwordConnexion"></label>
-          <input type="password" placeholder='* Mot de passe' id="passwordConnexion" name="password" onChange={(e)=>setPassword(e.target.value)}/>
+          <input type="password" placeholder='* Mot de passe' id="passwordConnexion" name="password" onChange={(e) => setPassword(e.target.value)} />
 
           <p>* Ces champs sont obligatoires</p>
 
@@ -135,7 +131,6 @@ const Profil = () => {
       </div>
 
       <div className="forgetPassword">
-        {/* On passe les props au composant ModalMdp pour pouvoir les utiliser dans Modal.js, la prop showModal appliquera la classe active aux éléments qui doivent être affichés lorsque showMdp est vrai. La prop setShowModal  pour que le bouton "X" puisse fermer la modal en appelant setShowMdp(false) */}
         <UserModal
           buttonText={"Mot de passe oublié"}
           modalContent={
@@ -215,5 +210,6 @@ const Profil = () => {
     </div >
   )
 }
+
 
 export default Profil

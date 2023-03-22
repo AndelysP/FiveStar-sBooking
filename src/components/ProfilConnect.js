@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import profilLogin from '../assets/img/profil_login.jpg';
 import '../assets/sass/profilConnect.scss';
-import { json } from 'react-router-dom';
 
 
 const ProfilConnect = () => {
@@ -59,7 +58,10 @@ const ProfilConnect = () => {
     }
 
     const uploadsUrl = process.env.REACT_APP_UPLOADS_URL;
+
+
     return (
+
         <div>
             <Navbar />
             <div className="imageHero">
@@ -87,16 +89,17 @@ const ProfilConnect = () => {
 
 
                 <div className="partieDroite">
-                    <h1>Bonjour {user.userfirstname}</h1>
+                    <h1>Bonjour {user.userfirstname},</h1>
 
                     <p>Prêt.e à embarquer avec nous ?</p>
 
-                    <button type='button' className="password-btn" onClick={() => goToHome()}>Réservez un voyage</button>
+                    <button type='button' className="button-avatar" onClick={() => goToHome()}>Réservez un voyage</button>
 
                 </div>
             </div>
             <Footer />
         </div>
+
 
     )
 }
