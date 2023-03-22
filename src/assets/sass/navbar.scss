@@ -114,7 +114,16 @@
             &:hover {
                 color: $white;
             }
+        }
 
+        .button-deconnect {
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 1rem;
+
+            &:hover {
+                color: $white;
+            }
         }
 
         .button-cart {

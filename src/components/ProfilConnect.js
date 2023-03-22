@@ -1,26 +1,40 @@
 import Footer from './Footer';
 import Navbar from './Navbar';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import profilLogin from '../assets/img/profil_login.jpg';
 import '../assets/sass/profilConnect.scss';
+import { json } from 'react-router-dom';
 
 
 const ProfilConnect = () => {
 
-    const API = "http://localhost:5500/users";
-    const [data, setData] = useState([]); // données du JSON
+    const navigate = useNavigate();
 
-    const getUser = async () => {
-        await fetch(`${API}`)
-            .then(res => res.json())
-            .then(data => setData(data))
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || {})
+
+    const getUserLoged = async () => {
+        await fetch(`http://localhost:5500/users/${user.userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${user.token}`,
+            }
+        })
+            .then(res => {
+                if (res.status === 401) {
+                    localStorage.removeItem('user');
+                    navigate("/profil"); // On redirige l'utilisateur sur la page connexion 
+                }
+               return res.json()
+            })
+            .then(data => setUser(data))
             .catch(error => {
                 console.log(error);
             });
     };
 
     useEffect(() => {
-        getUser()
+        getUserLoged()
     }, []);
 
     return (
@@ -32,15 +46,15 @@ const ProfilConnect = () => {
 
             <div className="helloProfil">
 
-                {data.map((user) => (
-                    <>
-                        <h1>Bonjour {user.userfirstname}</h1>
 
-                        <p>Prêt.e à embarquer avec nous ?</p>
+                <>
+                    <h1>Bonjour {user.userfirstname} {user.userlastname}  </h1>
 
-                        <button type='button' className="password-btn">Réservez un voyage</button>
-                    </>
-                ))}
+                    <p>Prêt.e à embarquer avec nous ?</p>
+
+                    <button type='button' className="password-btn">Réservez un voyage</button>
+                </>
+
 
             </div>
 

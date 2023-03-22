@@ -1,7 +1,7 @@
 import React from 'react';
 import '../assets/sass/navbar.scss';
 import logo from '../assets/img/Logo.png';
-import { BsPersonCircle, BsBasket2Fill } from "react-icons/bs";
+import { BsPersonCircle, BsBasket2Fill, BsPower } from "react-icons/bs";
 import { CgMenu } from "react-icons/cg";
 import { useNavigate } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
@@ -17,6 +17,11 @@ const Navbar = () => {
 
   const goToCart = () => {
     navigate("/cart");
+  }
+
+  const deconnexion = () => {
+    localStorage.removeItem('user');
+    navigate("/profil");
   }
 
   const goToWelcome = () => {
@@ -50,11 +55,15 @@ const Navbar = () => {
         </div>
         <div className="button-profil" onClick={() => goToProfil()}>
           <BsPersonCircle />
+        </div>  
+        <div className="button-deconnect" onClick={() => deconnexion()}>
+          <BsPower />
         </div>
         <div className="button-cart" onClick={() => goToCart()}>
           <BsBasket2Fill />
           {items.length > 0 && <span className="cart-items-count">{items.length}</span>}
         </div>
+
       </div>
 
     </div>

@@ -85,12 +85,14 @@ const Profil = () => {
       await fetch("http://localhost:5500/login",{
         method:'POST', 
         headers: {
-          'Authorization': 'Bearer {token}',
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ email, password })
-      });
+      })
+      .then(res => res.json())
+      .then(data => localStorage.setItem('user', JSON.stringify(data)))
+      
       navigate("/profilConnect");
     }
 
@@ -134,10 +136,10 @@ const Profil = () => {
         <form onSubmit={handleConnect}>
 
           <label htmlFor="emailConnexion"></label>
-          <input type="email" placeholder='* Adresse e-mail' id="emailConnexion" name="email" />
+          <input type="email" placeholder='* Adresse e-mail' id="emailConnexion" name="email" onChange={(e)=>setEmail(e.target.value)}/>
 
           <label htmlFor="passwordConnexion"></label>
-          <input type="password" placeholder='* Mot de passe' id="passwordConnexion" name="password" />
+          <input type="password" placeholder='* Mot de passe' id="passwordConnexion" name="password" onChange={(e)=>setPassword(e.target.value)}/>
 
           <p>* Ces champs sont obligatoires</p>
 
