@@ -24,7 +24,7 @@ const Navbar = () => {
       .then(res => {
         if (res.status === 401) {
           localStorage.removeItem('user');
-          navigate("/profil"); // On redirige l'utilisateur sur la page connexion 
+          // navigate("/profil"); // On redirige l'utilisateur sur la page connexion 
         }
         return res.json()
       })
@@ -37,8 +37,6 @@ const Navbar = () => {
   useEffect(() => {
     getUserLoged()
   }, []);
-
-  console.log(user);
 
   const goToProfil = () => {
     navigate("/profil");
@@ -84,7 +82,8 @@ const Navbar = () => {
         </div>
         <div className="button-profil" onClick={() => goToProfil()}>
           {user && user.avatar ? (
-            <img className='avatar-profil' src={`${uploadsUrl}${user.avatar}`} alt="avatar utilisateur" />) : (<BsPersonCircle />)}
+            <img className='avatar-profil' src={`${uploadsUrl}${user.avatar}`} alt="avatar utilisateur" />) : (<BsPersonCircle />
+          )}
         </div>
         <div className="button-deconnect" onClick={() => deconnexion()}>
           <BsPower />
