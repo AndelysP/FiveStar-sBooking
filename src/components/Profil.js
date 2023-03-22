@@ -10,6 +10,7 @@ import InlineError from './ContactFiles/InlineError';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { validatePassword, validateEmail } from './ContactFiles/ValidationContact';
 
 const Profil = () => {
 
@@ -29,23 +30,7 @@ const Profil = () => {
     validateEmail({ email, setEmailError })
   }, [password, email])
 
-  // Validation du mot de passe
-  const validatePassword = ({ password, setPasswordError }) => {
-    const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
-
-    return password && !password.match(passwordRegex)
-      ? setPasswordError("Votre mot de passe doit contenir minimum 12 caractères, dont au moins une lettre, un chiffre et un caractère spécial")
-      : setPasswordError("");
-  };
-
-  // Validation du mail
-  const validateEmail = ({ email, setEmailError }) => {
-    const emailRegular = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-
-    return email && !email.match(emailRegular)
-      ? setEmailError("Email non valide")
-      : setEmailError("");
-  };
+  
 
   // Récupération des données lors de l'envoi du formulaire et enregistrement en bdd :
   const handleSubmit = async (event) => {
@@ -76,23 +61,23 @@ const Profil = () => {
     }
   }
 
-    //connexion page profil 
+  //connexion page profil 
 
-    // enregistrer le token dans le local storage 
-    const handleConnect = async(event) => {
-      event.preventDefault();
+  // enregistrer le token dans le local storage 
+  const handleConnect = async (event) => {
+    event.preventDefault();
 
-      await fetch("http://localhost:5500/login",{
-        method:'POST', 
-        headers: {
-          'Authorization': 'Bearer {token}',
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-      });
-      navigate("/profilConnect");
-    }
+    await fetch("http://localhost:5500/login", {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer {token}',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    });
+    navigate("/profilConnect");
+  }
 
   const forgetPassword = async (e) => {
     e.preventDefault();
@@ -108,7 +93,7 @@ const Profil = () => {
     })
       .then(response => {
         setEmail('');
-        toast.success('🚀 Message envoyé avec succès !');
+        toast.success('Un e-mail de réinitialisation vous a été envoyé à cette adresse !');
       })
       .catch(error => {
         // console.log(error);
@@ -217,14 +202,13 @@ const Profil = () => {
 
                   <button type='submit' className="password-btn">C'est parti !</button>
                 </form>
-                <ToastContainer />
               </div>
             </>
           }
         />
 
       </div>
-
+      <ToastContainer />
       <Footer />
     </div >
   )
