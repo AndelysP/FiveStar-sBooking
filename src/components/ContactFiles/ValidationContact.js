@@ -7,11 +7,11 @@ const validateEmail = ({ email, setEmailError }) => {
 };
 
 const validatePhone = ({ phone, setPhoneError }) => {
-    var phoneRegular = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-    return phone && !phone.match(phoneRegular)
-      ? setPhoneError("Le numéro de téléphone n'est pas valide")
-      : setPhoneError('');
-  };
+    const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    return phone && !phone.match(phoneRegex)
+        ? setPhoneError("Le numéro de téléphone n'est pas valide")
+        : setPhoneError('');
+};
 
 const validateName = ({ name, setNameError }) => {
 
@@ -31,4 +31,22 @@ const validateMessage = ({ message, setMessageError }) => {
             : setMessageError("");
 };
 
-export { validateEmail, validatePhone, validateName, validateMessage };
+// Validation du mot de passe
+const validatePassword = ({ password, setPasswordError }) => {
+    const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+
+    return password && !password.match(passwordRegex)
+        ? setPasswordError("Votre mot de passe doit contenir minimum 12 caractères, dont au moins une lettre, un chiffre et un caractère spécial")
+        : setPasswordError("");
+};
+
+const resetPassword = ({ newPassword, setPasswordError }) => {
+    const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+
+    return newPassword && !newPassword.match(passwordRegex)
+        ? setPasswordError("Votre mot de passe doit contenir minimum 12 caractères, dont au moins une lettre, un chiffre et un caractère spécial")
+        : setPasswordError("");
+};
+
+
+export { validateEmail, validatePhone, validateName, validateMessage, validatePassword, resetPassword };

@@ -1,14 +1,22 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { resetPassword } from './ContactFiles/ValidationContact';
+import InlineError from './ContactFiles/InlineError';
 
 const ResetPassword = (props) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+
+    const [passwordError, setPasswordError] = useState("");
+
+    useEffect(() => {
+        resetPassword({ newPassword, setPasswordError })
+    }, [newPassword]);
 
     const handlePasswordChange = (e) => {
         setNewPassword(e.target.value);
@@ -39,7 +47,7 @@ const ResetPassword = (props) => {
         if (response.ok) {
             navigate('/profil');
         } else {
-            toast.error('Erreur lors de la mise à jour du mot de passe.');
+            toast.error('Utilisateur introuvable, assurez vous que l\e-mail correspond à celui de votre compte.');
         }
     };
 
@@ -71,7 +79,7 @@ const ResetPassword = (props) => {
                         value={newPassword}
                         onChange={handlePasswordChange}
                     />
-
+                    {passwordError && <InlineError error={passwordError} />}
                     <label htmlFor='cPassword'>Confirmer le nouveau mot de passe :</label>
                     <input
                         type="password"
