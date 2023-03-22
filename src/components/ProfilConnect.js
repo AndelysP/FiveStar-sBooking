@@ -69,7 +69,7 @@ const ProfilConnect = () => {
                         <form onSubmit={handleSubmit} encType="multipart/form-data">
                             <p>Ajouter ou modifier mon avatar :</p>
                             <input type="file" name="avatar" onChange={(e) => setAvatar({ file: e.target.files[0] })} />
-                            <button type='submit' className="uploadAvatar password-btn" >Ajouter</button>
+                            <button type='submit' className="uploadAvatar button-avatar" >Ajouter</button>
                         </form>
                     </div>
                 </div>
@@ -80,7 +80,7 @@ const ProfilConnect = () => {
 
                     <p>Prêt.e à embarquer avec nous ?</p>
 
-                    <button type='button' className="password-btn" onClick={() => goToHome()}>Réservez un voyage</button>
+                    <button type='button' className="button-avatar" onClick={() => goToHome()}>Réservez un voyage</button>
                 </div>
             </div>
 
