@@ -29,11 +29,11 @@ const ResetPassword = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (newPassword != confirmPassword) {
+        if (newPassword !== confirmPassword) {
             alert("Les mots de passe ne correspondent pas");
         }
 
-        const response = await fetch(`http://localhost:5500/resetPassword`, {
+        const response = await fetch(`${process.env.REACT_APP_BDD}/resetPassword`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -47,7 +47,7 @@ const ResetPassword = (props) => {
         if (response.ok) {
             navigate('/profil');
         } else {
-            toast.error('Utilisateur introuvable, assurez vous que l\e-mail correspond à celui de votre compte.');
+            toast.error('Utilisateur introuvable, assurez vous que l\'e-mail correspond à celui de votre compte.');
         }
     };
 

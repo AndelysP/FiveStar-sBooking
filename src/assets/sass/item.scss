@@ -40,7 +40,7 @@
 
     img {
         width: 100%;
-        height: 50vh;
+        height: 35vh;
         object-fit: cover;
     }
 
@@ -56,7 +56,7 @@
     .form-options {
         width: 60%;
         position: absolute;
-        bottom: -20%;
+        bottom: -25%;
         left: 50%;
         transform: translate(-50%, -50%);
         display: flex;
@@ -84,19 +84,15 @@
         .submit {
             border: none;
             border-radius: 30px;
-            background-color: #c4cbd3;
-            padding: 0.8rem 1.5rem;
+            background-color: #4C51BF;
+            padding: 1rem 1.5rem;
             color: #fff;
             font-size: 18px;
             cursor: pointer;
 
             &:hover {
                 transform: scale(1.05);
-                background-color: #B2BECE;
-            }
-
-            @media screen and (max-width: 1199px) {
-                margin-top: 1rem;
+                background-color: #3c409b;
             }
         }
 

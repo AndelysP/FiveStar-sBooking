@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../assets/sass/profil.scss';
+import '../assets/sass/profilConnect.scss';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import UserModal from './UserModal';
@@ -12,15 +13,19 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { validatePassword, validateEmail } from './ContactFiles/ValidationContact';
 import profilLogin from '../assets/img/profil_login.jpg';
+import { Avatar } from 'antd';
 
 const Profil = () => {
+  const navigate = useNavigate();
 
   const [userfirstname, setUserfirstname] = useState("");
   const [userlastname, setUserlastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
+  // Récupérer les données de connexion
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
+  const [avatar, setAvatar] = useState("");
 
   // Pour les erreurs :
   const [passwordError, setPasswordError] = useState("");
@@ -35,28 +40,31 @@ const Profil = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch("http://localhost:5500/users", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        userfirstname,
-        userlastname,
-        email,
-        password
-      })
-    })
-
-    if (response.status === 400) {
-      toast.error('❌ Un compte existe déjà à cette adresse mail');
+    if (!password || !userfirstname || !userlastname || !email) {
+      toast.error('❌ Veuillez-remplir tous les champs')
     } else {
-      setUserfirstname("");
-      setUserlastname("");
-      setEmail("");
-      setPassword("");
+      const response = await fetch(`${process.env.REACT_APP_BDD}/users`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userfirstname,
+          userlastname,
+          email,
+          password
+        })
+      })
 
-      // navigate("/profilConnect"); // On redirige l'utilisateur sur la page profil qu'il voit lorsqu'il est connecté
+      if (response.status === 400) {
+        toast.error('❌ Un compte existe déjà à cette adresse mail');
+      } else {
+        toast.success('✔️ Votre compte a bien été créé');
+        setUserfirstname("");
+        setUserlastname("");
+        setEmail("");
+        setPassword("");
+      }
     }
   }
 
@@ -64,24 +72,29 @@ const Profil = () => {
   const handleConnect = async (event) => {
     event.preventDefault();
 
-    await fetch("http://localhost:5500/login", {
+    const response = await fetch(`${process.env.REACT_APP_BDD}/login`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ email, password })
-    })
-      .then(res => res.json())
-      .then(data => {
-        localStorage.setItem('user', JSON.stringify(data));
-      })
+    });
+
+    if (response.status === 200) {
+      const data = await response.json();
+      setUser(data);
+      localStorage.setItem('user', JSON.stringify(data));
+    } else {
+      toast.error('❌ L\'email ou le mot de passe est incorrect');
+    }
   }
 
+  // Mdp oublié
   const forgetPassword = async (e) => {
     e.preventDefault();
 
-    await fetch("http://localhost:5500/forgetPassword", {
+    await fetch(`${process.env.REACT_APP_BDD}/forgetPassword`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -102,51 +115,45 @@ const Profil = () => {
 
   //-------------------------------Partie Connexion---------------------------------------------
 
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null)
-  const [avatar, setAvatar] = useState("");
-
   const goToHome = () => {
     navigate("/home");
   }
 
-  const getUserLoged = async () => {
-    await fetch(`http://localhost:5500/users/${user.userId}`, {
+  const getUserLogged = async () => {
+    const response = await fetch(`${process.env.REACT_APP_BDD}/users/${user.userId}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${user.token}`,
       }
-    })
-      .then(res => {
-        if (res.status === 401) {
-          localStorage.removeItem('user');
-          // navigate("/profil"); // On redirige l'utilisateur sur la page connexion 
-        }
-        return res.json()
-      })
-      .then(data => setUser(data))
-      .catch(error => {
-        console.log(error);
-      });
+    });
+
+    if (response.status === 200) {
+      const data = await response.json();
+      setUser(data);
+    }
+
+    console.log(user)
   };
 
   useEffect(() => {
-    getUserLoged()
-  }, []);
-
+    if (user) {
+      getUserLogged();
+    }
+  }, [user]);
 
   const handleSubmitAvatar = async (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append('avatar', avatar.file)
 
-    await fetch(`http://localhost:5500/users/${user._id}`, {
+    await fetch(`${process.env.REACT_APP_BDD}/users/${user._id}`, {
       method: "POST",
       headers: {
         'Authorization': `Bearer ${user.token}`,
       },
       body: formData
     }).then(res => res.json())
-      .then(json => setUser({ ...user, avatar: json.avatar }));
+      .then(json => setUser({ ...user, avatar: json.avatar }))
   }
 
   const uploadsUrl = process.env.REACT_APP_UPLOADS_URL;
@@ -162,12 +169,10 @@ const Profil = () => {
           </div>
 
           <div className="helloProfil">
-
-
             {/* Affichage des données de l'utilisateur */}
             <div key={user._id} className="partieGauche">
               <div className="avatar">
-                <img src={`${uploadsUrl}${user.avatar}`} alt="avatar utilisateur" />
+                <Avatar size={150} src={`${uploadsUrl}${user.avatar}`} alt="avatar utilisateur" />
               </div>
 
               <div className="uploadAvatar">

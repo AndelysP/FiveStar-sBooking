@@ -3,7 +3,7 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 import '../assets/sass/cart.scss';
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { Card, message, Popconfirm } from 'antd';
+import { message, Popconfirm } from 'antd';
 
 import { formatDate, displayPrice } from '../helpers';
 
@@ -115,13 +115,13 @@ const Cart = () => {
                             <div className="credit-card">
 
                                 <div className="credit-card_img">
-                                    <img className="pay" src="https://i.imgur.com/WIAP9Ku.jpg" />
+                                    <img className="pay" src="https://i.imgur.com/WIAP9Ku.jpg" alt="mastercard"/>
                                 </div>
                                 <div className="credit-card_img">
-                                    <img className="pay" src="https://i.imgur.com/OdxcctP.jpg" />
+                                    <img className="pay" src="https://i.imgur.com/OdxcctP.jpg" alt="visa"/>
                                 </div>
                                 <div className="credit-card_img">
-                                    <img className="pay" src="https://i.imgur.com/cMk1MtK.jpg" />
+                                    <img className="pay" src="https://i.imgur.com/cMk1MtK.jpg" alt="paypal"/>
                                 </div>
                             </div>
 

@@ -36,7 +36,7 @@ const validatePassword = ({ password, setPasswordError }) => {
     const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
 
     return password && !password.match(passwordRegex)
-        ? setPasswordError("Votre mot de passe doit contenir minimum 12 caractères, dont au moins une lettre, un chiffre et un caractère spécial")
+        ? setPasswordError("Votre mot de passe doit contenir minimum 8 caractères, dont au moins une lettre, un chiffre et un caractère spécial")
         : setPasswordError("");
 };
 
@@ -44,7 +44,7 @@ const resetPassword = ({ newPassword, setPasswordError }) => {
     const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
 
     return newPassword && !newPassword.match(passwordRegex)
-        ? setPasswordError("Votre mot de passe doit contenir minimum 12 caractères, dont au moins une lettre, un chiffre et un caractère spécial")
+        ? setPasswordError("Votre mot de passe doit contenir minimum 8 caractères, dont au moins une lettre, un chiffre et un caractère spécial")
         : setPasswordError("");
 };
 

@@ -7,7 +7,6 @@ $light-grey : #E9F3F5;
 $purple : #4E50BE;
 // Le gris foncé pour le corps de texte, moins agressif que le noir
 $grey : #a5a5a5;
-// Est-ce utile ?
 $white: #ffffff;
 $black: #000000;
 
@@ -22,7 +21,4 @@ $font-titres : 'Allerta', sans-serif;
 // A mettre dans html : <link rel="preconnect" href="https://fonts.googleapis.com">
 // <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 // <link href="https://fonts.googleapis.com/css2?family=Allerta&display=swap" rel="stylesheet">
-
-// Pour mettre ds le scss : font-family: 'Allerta', sans-serif;
-
 // Corps de texte : Segoe UI (à utiliser avec font-face)

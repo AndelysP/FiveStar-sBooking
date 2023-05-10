@@ -1,6 +1,5 @@
 import React from 'react';
 import '../assets/sass/welcome.scss';
-import Navbar from '../components/Navbar';
 import Video from '../assets/videos/earth.mp4';
 import { useNavigate } from "react-router-dom";
 import logo from '../assets/img/Logo.png'

@@ -8,9 +8,6 @@ function UserModal(props) {
     const showModal = () => {
         setIsModalOpen(true);
     };
-    const handleOk = () => {
-        setIsModalOpen(false);
-    };
     const handleCancel = () => {
         setIsModalOpen(false);
     };

@@ -7,7 +7,6 @@ import { Carousel } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { displayPrice } from '../helpers';
-import { BsCalendarDate } from "react-icons/bs";
 import { DatePicker } from 'antd';
 import 'dayjs/locale/fr';
 import locale from 'antd/es/date-picker/locale/fr_FR';
@@ -30,12 +29,9 @@ const Item = () => {
   const [divertissement, setDivertissement] = useState(false);
   const [repas, setRepas] = useState(false);
 
-  // console.log(repas);
-
   const handleSubmit = (e) => {
 
     e.preventDefault();
-    // console.log(selectedRange, repas, divertissement)
 
     if (selectedRange[0] !== "" || selectedRange[1] !== "") {
 
@@ -72,7 +68,6 @@ const Item = () => {
     } else {
       toast.error('❌ Veuillez sélectionner vos dates');
     }
-
   }
 
   // console.log(selectedRange, repas, divertissement);
@@ -83,7 +78,7 @@ const Item = () => {
 
   // On récupère l'id de l'item cliqué 
   const getItem = async () => {
-    await fetch(`http://localhost:5500/ships/${id}`)
+    await fetch(`${process.env.REACT_APP_BDD}/ships/${id}`)
       .then(response => response.json())
       .then(data => setItem(data))
       .catch(error => {
@@ -131,6 +126,10 @@ const Item = () => {
               locale={locale}
               format="DD/MM/YYYY"
               onChange={(handleRangeChange)}
+              value={selectedRange}
+              disabledDate={(current) => {
+                return current && current < moment().startOf('day'); // Retourne la date actuelle à minuit, si cette date est antérieure à la date actuelle, la fonction retourne true.
+              }}
               placeholder={["Date d'arrivée", 'Date de retour']}
             />
           </div>
@@ -161,9 +160,7 @@ const Item = () => {
 
         </form>
 
-
-        <ToastContainer
-        />
+        <ToastContainer/>
       </div>
 
       <div className="ship">

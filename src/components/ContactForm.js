@@ -34,7 +34,7 @@ const ContactForm = () => {
         if (!name || !email || !message) {
             toast.error('❌ Veuillez-remplir les champs obligatoires');
         } else if (!nameError && !emailError && !phoneError && !messageError) {
-            fetch("http://localhost:5500/contact", {
+            fetch(`${process.env.REACT_APP_BDD}/contact`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

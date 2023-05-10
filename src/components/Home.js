@@ -9,12 +9,13 @@ import ContactForm from './ContactForm';
 import { Link } from 'react-router-dom';
 import { displayPrice } from '../helpers';
 import { DatePicker, Input, } from 'antd';
+import moment from 'moment';
 import 'dayjs/locale/fr';
 import locale from 'antd/es/date-picker/locale/fr_FR';
 
 const Home = () => {
 
-  const API = "http://localhost:5500/ships";
+  const API = `${process.env.REACT_APP_BDD}/ships`;
   const [data, setData] = useState([]); // données du JSON
   const [capacity, setCapacity] = useState(""); // state pour choisir la capacité du vaisseau
   const [price, setPrice] = useState(""); // state pour choisir le prix 
@@ -81,6 +82,9 @@ const Home = () => {
               locale={locale}
               format="DD/MM/YYYY"
               onChange={handleRangeChange}
+              disabledDate={(current) => {
+                return current && current < moment().startOf('day');
+              }}
               placeholder={["Date d'arrivée", 'Date de retour']}
             />
           </div>

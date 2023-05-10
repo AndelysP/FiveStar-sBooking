@@ -71,7 +71,7 @@ body {
 
   // Taille intermédiaire
   @media only screen and (max-width: 1500px) {
-    bottom: -100px;
+    bottom: -300px;
     right: 20px;
   }
 
@@ -83,7 +83,7 @@ body {
   }
 
   img {
-    max-width: 500px;
+    max-width: 350px;
     animation: rotation 120s infinite linear;
 
     // Taille intermédiaire
@@ -268,7 +268,7 @@ body {
   }
 
   p {
-    margin-bottom: 20px;
+    margin: 0;
   }
 
   form {
@@ -282,7 +282,6 @@ body {
     }
 
     input {
-      width: 100%;
       padding: 15px 20px;
       margin: 5px 0;
       border-radius: 20px;

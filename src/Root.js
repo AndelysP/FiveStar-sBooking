@@ -6,7 +6,6 @@ import Profil from './components/Profil';
 import NotFound from './components/NotFound';
 import Item from './components/Item';
 import Cart from './components/Cart';
-import ProfilConnect from './components/ProfilConnect';
 import ResetPassword from './components/ResetPassword';
 
 const Root = () => {
@@ -19,7 +18,6 @@ const Root = () => {
         <Route path="/profil" element={<Profil />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/item/:id" element={<Item />} />
-        <Route path="/profilConnect" element={<ProfilConnect />} />
         <Route path='/reset/:token' element={<ResetPassword />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

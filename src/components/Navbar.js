@@ -6,37 +6,37 @@ import { CgMenu } from "react-icons/cg";
 import { useNavigate } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
 import { useState, useEffect } from 'react';
+import { Avatar } from 'antd';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const items = JSON.parse(localStorage.getItem("data")) || [];
 
   const uploadsUrl = process.env.REACT_APP_UPLOADS_URL;
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || {})
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null)
 
-  const getUserLoged = async () => {
-    await fetch(`http://localhost:5500/users/${user.userId}`, {
+  const isConnected = !!localStorage.getItem('user') // convertir la valeur en booléen
+
+  const getUserLogged = async () => {
+    const response = await fetch(`${process.env.REACT_APP_BDD}/users/${user.userId}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${user.token}`,
       }
-    })
-      .then(res => {
-        if (res.status === 401) {
-          localStorage.removeItem('user');
-          // navigate("/profil"); // On redirige l'utilisateur sur la page connexion 
-        }
-        return res.json()
-      })
-      .then(data => setUser(data))
-      .catch(error => {
-        console.log(error);
-      });
+    });
+
+    if (response.status === 200) {
+      const data = await response.json();
+      setUser(data);
+    }
   };
 
   useEffect(() => {
-    getUserLoged()
-  }, []);
+    if (user) {
+      getUserLogged();
+    }
+  }, [user]);
+
 
   const goToProfil = () => {
     navigate("/profil");
@@ -46,9 +46,9 @@ const Navbar = () => {
     navigate("/cart");
   }
 
-  const deconnexion = () => {
+  const logout = () => {
     localStorage.removeItem('user');
-    navigate("/profil");
+    navigate("/home");
   }
 
   const goToWelcome = () => {
@@ -80,14 +80,18 @@ const Navbar = () => {
         <div className="hamburger" onClick={handleShowNavbar}>
           <CgMenu />
         </div>
-        <div className="button-profil" onClick={() => goToProfil()}>
+
+        <div onClick={() => goToProfil()}>
           {user && user.avatar ? (
-            <img className='avatar-profil' src={`${uploadsUrl}${user.avatar}`} alt="avatar utilisateur" />) : (<BsPersonCircle />
+            <Avatar src={`${uploadsUrl}${user.avatar}`} />) : (<BsPersonCircle size={25} />
           )}
         </div>
-        <div className="button-deconnect" onClick={() => deconnexion()}>
+
+
+        {isConnected && <div className="button-deconnect" onClick={() => logout()}>
           <BsPower />
-        </div>
+        </div>}
+
         <div className="button-cart" onClick={() => goToCart()}>
           <BsBasket2Fill />
           {items.length > 0 && <span className="cart-items-count">{items.length}</span>}
