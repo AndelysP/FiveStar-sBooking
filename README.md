@@ -1,70 +1,46 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Five Star's Booking 🚀
 
-## Available Scripts
+“Five Star’s Booking” est une entreprise fictive opérant dans le secteur du tourisme spatial, cherchant à allier l’organisation de voyage dans l’espace avec la recherche scientifique et l’éco responsabilité. L'objectif principal de Five Star's booking est de créer une expérience utilisateur agréable et facile d’utilisation pour ceux qui souhaitent explorer l'espace. Les utilisateurs pourront créer un profil personnalisé pour enregistrer leurs informations de voyage, suivre l’état de leur panier de réservations, et obtenir des informations sur les voyages spatiaux à travers le site. L’utilisateur aura également la possibilité de personnaliser son voyage et poser des questions aux experts grâce à un formulaire de contact.
+## Contributeurs du projet
 
-In the project directory, you can run:
+- [@AndelysP](https://github.com/AndelysP)
+- [@CassandreLg](https://github.com/CassandreLg)
+- [@AuroreBlaison](https://github.com/AuroreBlaison)
 
-### `npm start`
+## Palette de couleurs
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+| Couleur             | Référence                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Couleur n°1 | ![#202e56](https://via.placeholder.com/10/202e56?text=+) #202e56 |
+| Couleur n°2 | ![#D4E0E7](https://via.placeholder.com/10/D4E0E7?text=+) #D4E0E7 |
+| Couleur n°3 | ![#4C51BF](https://via.placeholder.com/10/4C51BF?text=+) #4C51BF |
+| Couleur n°4 | ![#B7F6EC](https://via.placeholder.com/10/B7F6EC?text=+) #B7F6EC |
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Deploiement
 
-### `npm run build`
+Pour installer les dépendances
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+  npm i
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Pour lancer le projet
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+```bash
+  npm start
+```
+## Screenshot
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![App Screenshot](https://zupimages.net/up/23/19/qra0.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Technos
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Client:** React, Sass, AntDesign
 
-## Learn More
+**Server:** NodeJS, Express, MongoDB, JWT
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
